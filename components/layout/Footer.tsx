@@ -14,6 +14,7 @@ const serviceLinks = [
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
+  { label: "Longevity", href: "/longevity" },
   { label: "Event & Media", href: "/event-and-media" },
   { label: "Careers", href: "/career" },
   { label: "FAQ", href: "/faq" },

@@ -22,6 +22,7 @@ export type NavLink = { label: string; href: string; hasDropdown?: boolean };
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Treatments & Services", href: "/booking", hasDropdown: true },
+  { label: "Longevity", href: "/longevity" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Event & Media", href: "/event-and-media" },
