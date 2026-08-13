@@ -59,6 +59,23 @@ export default function BookingForm() {
       form.time ? `Preferred time: ${form.time}` : "",
     ].filter(Boolean);
 
+    // Capture the lead in the CMO Brain (n8n CRM bridge) BEFORE the WhatsApp
+    // handoff — so no enquiry is lost even if WhatsApp isn't completed.
+    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "lead.created",
+        source: "website-booking",
+        clinic: form.location,
+        service: form.service,
+        name: form.name,
+        phone: form.phone,
+        at: new Date().toISOString(),
+      }),
+      keepalive: true,
+    }).catch(() => {});
+
     window.open(
       `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
       "_blank",
