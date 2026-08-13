@@ -11,9 +11,9 @@ export const site = {
     "https://wa.me/918891929337?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Dolce%20Estetica%20services.",
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Dolce+Estetica",
   social: {
-    facebook: "#",
+    facebook: "https://www.facebook.com/dolceesteticaclinic/",
     twitter: "#",
-    instagram: "#",
+    instagram: "https://www.instagram.com/dolceesteticaclinic/",
   },
 } as const;
 
@@ -21,7 +21,7 @@ export type NavLink = { label: string; href: string; hasDropdown?: boolean };
 
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Treatments & Services", href: "/booking", hasDropdown: true },
+  { label: "Treatments & Services", href: "/treatments", hasDropdown: true },
   { label: "Longevity", href: "/longevity" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
