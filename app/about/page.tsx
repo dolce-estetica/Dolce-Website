@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     "Born from a collective of practicing doctors in aesthetic and wellness medicine, Dolce Estetica is built on research and a deep respect for the human journey.",
 };
 
+
+/* this is a test commentS */ 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
