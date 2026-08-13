@@ -24,6 +24,20 @@ export default function ContactForm() {
       form.message,
     ].filter(Boolean);
 
+    // Capture the enquiry in the CMO Brain (n8n CRM bridge) before WhatsApp handoff.
+    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "lead.created",
+        source: "website-contact",
+        name: form.name,
+        phone: form.phone,
+        at: new Date().toISOString(),
+      }),
+      keepalive: true,
+    }).catch(() => {});
+
     window.open(
       `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
       "_blank",
