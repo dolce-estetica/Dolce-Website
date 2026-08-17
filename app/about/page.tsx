@@ -21,7 +21,7 @@ export default function AboutPage() {
           <div
             className="pointer-events-none absolute inset-0 opacity-40 lg:hidden"
             style={{
-              backgroundImage: "url('/assets/about.png')",
+              backgroundImage: "url('/assets/about.webp')",
               backgroundSize: "cover",
               backgroundPosition: "right center",
               backgroundRepeat: "no-repeat",
@@ -60,7 +60,7 @@ export default function AboutPage() {
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: "url('/assets/about.png')",
+                backgroundImage: "url('/assets/about.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center right",
                 backgroundRepeat: "no-repeat",

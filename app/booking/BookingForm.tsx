@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { Calendar, Clock, Mail, MapPin, Phone, Sparkles, User } from "lucide-react";
 import { serviceCategories } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
@@ -18,11 +17,19 @@ const fieldClass =
 
 const labelClass = "mb-2 block text-sm font-medium text-gray-700";
 
-export default function BookingForm() {
-  const params = useSearchParams();
-  const presetCategory = params.get("category") ?? "";
-  const presetService = params.get("service") ?? "";
-
+/**
+ * The preset comes in as props read on the server rather than from `useSearchParams`.
+ * `useSearchParams` opts the component out of the prerender, so the page used to ship a
+ * small spinner and swap in the ~1130px form after hydration — a ~1000px jolt that put CLS
+ * at 0.29. Rendered from props, the real form is in the initial HTML and nothing moves.
+ */
+export default function BookingForm({
+  presetCategory = "",
+  presetService = "",
+}: {
+  presetCategory?: string;
+  presetService?: string;
+}) {
   const [form, setForm] = useState({
     name: "",
     phone: "",

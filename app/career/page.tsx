@@ -35,7 +35,7 @@ export default function CareerPage() {
                 <div className="absolute -right-4 -bottom-4 h-full w-full bg-dolce-green/70" />
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm shadow-2xl">
                   <Image
-                    src="/assets/career.jpg"
+                    src="/assets/career.webp"
                     alt="Careers at Dolce Estetica"
                     fill
                     sizes="45vw"

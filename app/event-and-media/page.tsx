@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const gallery = [
-  { src: "/gallery/brand-story.png", alt: "Brand Story" },
-  { src: "/gallery/clinic-excellence.jpg", alt: "Clinic Excellence" },
+  { src: "/gallery/brand-story.webp", alt: "Brand Story" },
+  { src: "/gallery/clinic-excellence.webp", alt: "Clinic Excellence" },
   { src: "/gallery/aesthetic-art.jpg", alt: "Aesthetic Art" },
-  { src: "/gallery/results-showcase.jpg", alt: "Results Showcase" },
+  { src: "/gallery/results-showcase.webp", alt: "Results Showcase" },
 ];
 
 export default function EventAndMediaPage() {

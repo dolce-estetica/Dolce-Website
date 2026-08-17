@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
     title: "Welcome to Dolce Estetica",
     excerpt:
       "Beauty isn't created, it's revealed. An introduction to our doctor-led approach to aesthetics and wellness.",
-    coverImage: "/assets/blog-placeholder.jpg",
+    coverImage: "/assets/blog-placeholder.webp",
     author: "Dolce Estetica",
     date: "2026-01-15",
     content: [

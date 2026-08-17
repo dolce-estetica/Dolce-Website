@@ -33,7 +33,13 @@ function ReviewCard({ review }: { review: Review }) {
         <GoogleIcon className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" />
       </header>
 
-      <div className="mt-5 flex gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
+      {/*
+        `role="img"` is what makes the label legal here: a bare <div> is a generic element,
+        and generic elements do not permit aria-label, so the rating was being dropped by
+        assistive tech and flagged as malformed ARIA. The role also collapses the star
+        glyphs into a single labelled image instead of five anonymous SVGs.
+      */}
+      <div className="mt-5 flex gap-0.5" role="img" aria-label={`${review.rating} out of 5 stars`}>
         {Array.from({ length: review.rating }).map((_, i) => (
           <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
         ))}

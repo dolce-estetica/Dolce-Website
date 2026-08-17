@@ -10,6 +10,8 @@ export const site = {
   whatsappHref:
     "https://wa.me/918891929337?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Dolce%20Estetica%20services.",
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Dolce+Estetica",
+  /** GA4 measurement ID. Empty string disables analytics entirely. */
+  gaMeasurementId: "G-13ENHXGKHB",
   social: {
     facebook: "https://www.facebook.com/dolceesteticaclinic/",
     twitter: "#",

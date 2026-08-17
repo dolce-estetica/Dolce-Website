@@ -1,10 +1,15 @@
-"use client";
-
-import { useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { treatmentCards } from "@/lib/data/treatments";
 import { serviceCategories } from "@/lib/data/services";
+import DragScroller from "./DragScroller";
+import ServicesDisclosure from "./ServicesDisclosure";
+
+/**
+ * Server component. Only the drag-scroll and the disclosure toggle need to run in the
+ * browser, and those are separate client islands — so the fifteen cards and the whole
+ * service catalogue are rendered once on the server and never hydrated.
+ */
 
 /** The row is the five cards repeated so the strip always fills a wide screen. */
 const cards = [...treatmentCards, ...treatmentCards, ...treatmentCards];
@@ -23,29 +28,6 @@ function maskFor(index: number) {
 }
 
 export default function TreatmentsSection() {
-  const [open, setOpen] = useState(false);
-  const scroller = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0 });
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    // Touch devices already scroll natively; only take over for mouse drags.
-    if (e.pointerType === "touch" || !scroller.current) return;
-    drag.current = {
-      active: true,
-      startX: e.clientX,
-      startScroll: scroller.current.scrollLeft,
-    };
-  };
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.active || !scroller.current) return;
-    scroller.current.scrollLeft = drag.current.startScroll - (e.clientX - drag.current.startX);
-  };
-
-  const endDrag = () => {
-    drag.current.active = false;
-  };
-
   return (
     <section id="treatments" className="relative w-full bg-white py-12 lg:py-20">
       <div className="relative z-10">
@@ -58,12 +40,7 @@ export default function TreatmentsSection() {
           <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-32" />
           <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-32" />
 
-          <div
-            ref={scroller}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            onPointerLeave={endDrag}
+          <DragScroller
             className="scrollbar-hide cursor-grab overflow-x-auto overscroll-x-contain active:cursor-grabbing"
             style={{ perspective: "1100px" }}
           >
@@ -81,34 +58,24 @@ export default function TreatmentsSection() {
                     WebkitMaskImage: maskFor(i % 5),
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={card.src}
                     alt={card.alt}
+                    fill
                     draggable={false}
-                    loading="lazy"
-                    className="h-full w-full rounded-3xl object-cover select-none"
+                    // The card never paints wider than 340px, so there is no reason to
+                    // send the full 1080px master to anyone.
+                    sizes="(max-width: 640px) 60vw, 340px"
+                    className="rounded-3xl object-cover select-none"
                   />
                 </div>
               ))}
             </div>
-          </div>
+          </DragScroller>
         </div>
 
         <div className="relative z-50 flex flex-col items-center px-4 py-4">
-          <button
-            type="button"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="group relative z-50 flex items-center gap-2 rounded-full border-2 border-dolce-moss bg-white px-8 py-3 text-base font-medium text-dolce-moss transition-all duration-300 hover:bg-dolce-moss hover:text-white hover:shadow-lg sm:px-14 sm:py-4 sm:text-lg"
-          >
-            See all Services
-            <ChevronDown
-              className={`h-5 w-5 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          {open && (
+          <ServicesDisclosure>
             <div className="mt-8 grid w-full max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {Object.entries(serviceCategories).map(([category, items]) => (
                 <div
@@ -133,7 +100,7 @@ export default function TreatmentsSection() {
                 </div>
               ))}
             </div>
-          )}
+          </ServicesDisclosure>
         </div>
       </div>
     </section>
