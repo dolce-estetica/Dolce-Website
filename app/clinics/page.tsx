@@ -28,7 +28,7 @@ export default function ClinicsPage() {
               {l.rating && <span className="text-sm font-semibold text-dolce-bronze">★ {l.rating.value} ({l.rating.count})</span>}
               {l.note && <span className="rounded-full bg-dolce-green/10 px-3 py-1 text-xs font-semibold text-dolce-green">{l.note}</span>}
             </div>
-            <p className="mt-2 text-sm text-gray-600">{l.address}</p>
+            <p className="mt-2 text-sm text-gray-600">{l.operatingAs ? `${l.operatingAs} · ` : ""}{l.address}</p>
             <p className="mt-3 text-sm font-semibold text-dolce-green">{l.phone}</p>
             <p className="mt-4 text-sm font-semibold text-dolce-bronze">Visit clinic page →</p>
           </Link>
