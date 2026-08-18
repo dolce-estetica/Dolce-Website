@@ -26,6 +26,11 @@
  *     be written as patient education and risk information, never as an
  *     advertisement for treatment of the condition.
  *   - Every article ends with an in-person assessment caveat.
+ *
+ * PRICING — ABSOLUTE RULE: never publish a rate, a range, an "onwards" or any
+ * rupee figure in any article. Rates are commercially confidential. Cost-intent
+ * queries are answered by explaining what drives the price and inviting the
+ * enquiry. Do not reintroduce figures, in tables or in prose.
  */
 
 export type ContentBlock =
@@ -74,321 +79,8 @@ const CREDENTIALS = "Written and reviewed by practising aesthetic physicians";
 
 export const blogPosts: BlogPost[] = [
   /* ------------------------------------------------------------------ */
-  {
-    id: "1",
-    slug: "profhilo-india-cost-and-what-it-actually-does",
-    title: "Profhilo in India: What It Costs, What It Actually Does, and Who Should Not Have It",
-    excerpt:
-      "A plain explanation of what Profhilo is, how it differs from filler and mesotherapy, realistic price bands in India, and the patients it is not suitable for.",
-    coverImage: "/assets/blog-placeholder.jpg",
-    author: AUTHOR,
-    authorCredentials: CREDENTIALS,
-    reviewedBy: REVIEWER,
-    date: "2026-08-13",
-    dateModified: "2026-08-13",
-    category: "Skin Boosters",
-    readingMinutes: 8,
-    directAnswer:
-      "Profhilo is an injectable stabilised hyaluronic acid used to improve skin hydration and firmness. It is not a dermal filler and does not add volume or change facial shape. The standard protocol is two sessions four weeks apart, using five injection points per side of the face. In India it typically starts around ₹20,000 per syringe, with a two-session course usually falling between ₹36,000 and ₹45,000. Effects generally last six to nine months. It is not suitable during pregnancy, over active skin infection, or in anyone with a known hyaluronic acid allergy.",
-    content: [
-      {
-        type: "h2",
-        text: "What is Profhilo, and how is it different from a dermal filler?",
-      },
-      {
-        type: "p",
-        text: "Profhilo is a stabilised form of hyaluronic acid injected into the skin to improve hydration, elasticity and firmness. The critical difference from a dermal filler is intent. A filler is placed to add volume in a specific location — a cheek, a chin, a lip. Profhilo is placed to spread through the tissue and improve the quality of the skin itself. It does not project, lift or reshape.",
-      },
-      {
-        type: "p",
-        text: "This distinction matters because it decides whether the treatment is right for you at all. A patient who wants a more defined jawline is asking a volume question, and Profhilo is the wrong answer. A patient whose skin has become thin, crepey and dull despite good skincare is asking a skin-quality question, and this is the category that addresses it.",
-      },
-      {
-        type: "p",
-        text: "Profhilo is manufactured by IBSA Derma. Unlike most injectable hyaluronic acid products, it is stabilised thermally rather than with chemical cross-linking agents, which is why it behaves as a spreading hydrator rather than a structural gel.",
-      },
-      {
-        type: "h2",
-        text: "How much does Profhilo cost in India?",
-      },
-      {
-        type: "p",
-        text: "Pricing varies by city, by clinic and by how many syringes a face actually needs. The bands below reflect what is realistic in Indian metro and tier-2 practice in 2026. Treat any price dramatically below this range with caution — it usually signals a different product being described by the same name.",
-      },
-      {
-        type: "table",
-        caption: "Indicative price bands — skin boosters in India, 2026",
-        headers: ["Treatment", "Typical starting price", "Standard course"],
-        rows: [
-          ["Profhilo — face", "From ₹20,000 per syringe", "2 sessions, 4 weeks apart"],
-          ["Profhilo — face and neck", "From ₹28,000 (2 syringes)", "2 sessions, 4 weeks apart"],
-          ["Profhilo — neck and décolletage", "From ₹24,000 (2 syringes)", "2 sessions, 4 weeks apart"],
-          ["Polynucleotides — face", "From ₹15,000 per session", "3 sessions, 3-4 weeks apart"],
-          ["NCTF mesotherapy — face", "From ₹10,000 per session", "3-4 sessions"],
-        ],
-      },
-      {
-        type: "callout",
-        title: "Why a two-session course, not one",
-        text: "The standard Profhilo protocol is two treatments four weeks apart. A single session is an incomplete course, and judging the result after one is judging half a treatment. If a clinic sells you one session as a complete treatment, ask why.",
-      },
-      {
-        type: "h2",
-        text: "How is Profhilo injected, and how long does it take?",
-      },
-      {
-        type: "p",
-        text: "The established technique uses five injection points on each side of the face — a total of ten — chosen to sit away from major vessels and to allow the product to spread evenly. The appointment itself takes roughly 20 to 30 minutes including numbing. Most people return to normal activity the same day.",
-      },
-      {
-        type: "p",
-        text: "Small raised bumps at each injection point are expected immediately afterwards and usually settle within a few hours to a day. Bruising is possible. Makeup is generally avoided for the rest of the day.",
-      },
-      {
-        type: "h2",
-        text: "How long do the effects last?",
-      },
-      {
-        type: "p",
-        text: "Most patients see effects lasting approximately six to nine months from a completed two-session course, after which maintenance is usually discussed. Results are gradual rather than immediate — the visible change typically develops over four to eight weeks rather than appearing the next morning. Duration varies with age, skin condition, sun exposure and general health, and no clinic can promise a specific figure for an individual.",
-      },
-      {
-        type: "h2",
-        text: "Who should not have Profhilo?",
-      },
-      {
-        type: "p",
-        text: "Profhilo is not appropriate for everyone, and a proper consultation exists partly to identify the people who should not have it.",
-      },
-      {
-        type: "list",
-        items: [
-          "Anyone pregnant or breastfeeding — injectable aesthetic treatments are deferred as a standard precaution.",
-          "Anyone with a known allergy or previous reaction to hyaluronic acid products.",
-          "Active infection, active acne lesions or broken skin at the intended injection sites — treatment is postponed until the skin has settled.",
-          "Anyone with an autoimmune or connective-tissue condition, or on immunosuppressive therapy, without prior discussion with their treating physician.",
-          "Anyone on blood-thinning medication, where bruising risk must be weighed and the prescribing doctor consulted.",
-          "Patients whose actual concern is volume loss or skin laxity — these need a different plan, and injecting a hydrator will not deliver what they are asking for.",
-        ],
-      },
-      {
-        type: "h2",
-        text: "Profhilo or polynucleotides — which one?",
-      },
-      {
-        type: "p",
-        text: "They are not competitors so much as different tools. Profhilo works primarily on hydration and firmness across a broad area of skin. Polynucleotides, derived from purified DNA fragments, are used where the aim is tissue repair and improvement in skin quality in a more targeted region — the under-eye area being the most common example in Indian practice. Many treatment plans use them in sequence rather than choosing one.",
-      },
-      {
-        type: "p",
-        text: "The decision is clinical, not commercial. It depends on skin thickness, the specific area of concern, previous treatments and budget over a 12-month horizon rather than a single appointment.",
-      },
-      {
-        type: "h2",
-        text: "What should you ask before booking?",
-      },
-      {
-        type: "list",
-        items: [
-          "Which specific product is being used, and can I see the packaging before it is opened?",
-          "Is the price quoted per syringe or for the full two-session course?",
-          "Who is performing the injection, and are they a qualified medical practitioner?",
-          "What happens if I have a reaction — who do I contact, and when?",
-          "Based on my skin, is this actually the right treatment, or am I asking for the wrong thing?",
-        ],
-      },
-      {
-        type: "callout",
-        title: "This article is general information",
-        text: "Nothing here is a diagnosis or a treatment recommendation for any individual. Suitability, dosing and expected outcome can only be established at an in-person medical consultation.",
-      },
-    ],
-    faqs: [
-      {
-        q: "Is Profhilo a filler?",
-        a: "No. Profhilo is a stabilised hyaluronic acid skin booster. A dermal filler adds volume to a specific area and changes contour; Profhilo spreads through the skin to improve hydration and firmness without adding projection or altering facial shape.",
-      },
-      {
-        q: "How many Profhilo sessions do I need?",
-        a: "The standard protocol is two sessions four weeks apart. A single session is half a course. Maintenance is usually discussed around six to nine months after the second session.",
-      },
-      {
-        q: "Does Profhilo hurt?",
-        a: "Discomfort is generally described as brief and mild. Topical numbing cream is applied beforehand, and there are ten injection points in total for a full face. The appointment usually takes 20 to 30 minutes.",
-      },
-      {
-        q: "What is the downtime after Profhilo?",
-        a: "Small raised bumps at each injection point are expected and usually settle within a few hours to a day. Bruising is possible. Most people return to normal activity the same day and avoid makeup for the rest of that day.",
-      },
-      {
-        q: "How much does Profhilo cost in India?",
-        a: "Prices generally start around ₹20,000 per syringe for the face, with a full two-session course commonly falling between ₹36,000 and ₹45,000. Face and neck treatment requires more product and costs more. Prices vary by city and clinic.",
-      },
-      {
-        q: "Can I have Profhilo while pregnant?",
-        a: "No. Injectable aesthetic treatments including Profhilo are deferred during pregnancy and breastfeeding as a standard precaution.",
-      },
-      {
-        q: "Will Profhilo tighten sagging skin?",
-        a: "No. Profhilo improves skin hydration and firmness but does not lift or reposition tissue. Significant laxity is a different clinical problem and needs a different discussion at consultation.",
-      },
-    ],
-    sources: [
-      { label: "IBSA Derma — Profhilo product information" },
-      { label: "Journal of Cosmetic Dermatology — published literature on stabilised hyaluronic acid bio-remodelling" },
-    ],
-    relatedTreatments: ["anti-ageing-skin-boosters"],
-  },
-
-  /* ------------------------------------------------------------------ */
-  {
-    id: "2",
-    slug: "skin-boosters-compared-profhilo-polynucleotides-nctf",
-    title: "Profhilo, Polynucleotides or NCTF: Which Skin Booster Does What",
-    excerpt:
-      "Three injectable skin treatments are routinely confused with each other. Here is what each one actually does, which concern each suits, and how the costs compare in India.",
-    coverImage: "/assets/blog-placeholder.jpg",
-    author: AUTHOR,
-    authorCredentials: CREDENTIALS,
-    reviewedBy: REVIEWER,
-    date: "2026-08-13",
-    dateModified: "2026-08-13",
-    category: "Skin Boosters",
-    readingMinutes: 9,
-    directAnswer:
-      "Profhilo, polynucleotides and NCTF are all injected into the skin, but they do different jobs. Profhilo is a stabilised hyaluronic acid used for broad hydration and firmness across the face or neck. Polynucleotides are purified DNA fragments used for tissue repair and skin quality, most often around thin under-eye skin. NCTF is a multi-ingredient mesotherapy cocktail of vitamins, amino acids and minerals used for overall radiance. None of them add volume or lift sagging tissue.",
-    content: [
-      {
-        type: "h2",
-        text: "Why are these three treatments so often confused?",
-      },
-      {
-        type: "p",
-        text: "Because they share a delivery method. All three are injected into the skin with fine needles across multiple points, all three are marketed under the loose heading of skin boosters, and all three produce gradual rather than immediate change. The similarity ends there. They contain entirely different substances and are chosen for different clinical reasons.",
-      },
-      {
-        type: "p",
-        text: "The confusion has a practical cost. Patients arrive having read about one and asking for it by name, when the concern they describe is better addressed by another.",
-      },
-      {
-        type: "h2",
-        text: "What does each one actually contain?",
-      },
-      {
-        type: "table",
-        headers: ["", "Profhilo", "Polynucleotides", "NCTF"],
-        rows: [
-          ["What it is", "Stabilised hyaluronic acid", "Purified polynucleotide chains", "Multi-ingredient mesotherapy cocktail"],
-          ["Main purpose", "Hydration and firmness over a broad area", "Tissue repair and skin quality in a target zone", "Overall radiance and skin conditioning"],
-          ["Typical area", "Full face, neck, décolletage", "Under-eyes, face, hands", "Face, face and neck"],
-          ["Standard course", "2 sessions, 4 weeks apart", "3 sessions, 3-4 weeks apart", "3-4 sessions"],
-          ["Starting price (India)", "From ₹20,000 per syringe", "From ₹12,000-₹15,000 per session", "From ₹10,000 per session"],
-          ["Adds volume?", "No", "No", "No"],
-        ],
-      },
-      {
-        type: "h2",
-        text: "Which one suits my concern?",
-      },
-      {
-        type: "p",
-        text: "The most useful way to choose is to start from the complaint rather than the product name.",
-      },
-      {
-        type: "table",
-        headers: ["If your concern is…", "The usual starting point"],
-        rows: [
-          ["Skin feels dry, dull and has lost bounce across the whole face", "Profhilo"],
-          ["Crepey texture on the neck or décolletage", "Profhilo"],
-          ["Thin, crepey, dark-looking under-eye skin", "Polynucleotides"],
-          ["Skin looks tired and lacks glow before an event", "NCTF"],
-          ["Overall skin quality maintenance through the year", "A planned combination, not one product"],
-          ["Sagging jawline or loss of cheek volume", "None of these — this needs a different conversation"],
-        ],
-      },
-      {
-        type: "callout",
-        title: "The most important row in that table is the last one",
-        text: "If the concern is sagging or lost volume, no skin booster will address it. A clinic that sells you one anyway has answered a question you did not ask. Skin quality and facial structure are separate problems.",
-      },
-      {
-        type: "h2",
-        text: "Can they be combined?",
-      },
-      {
-        type: "p",
-        text: "Yes, and in practice they often are — but sequenced across months rather than stacked in one appointment. A common structure is a Profhilo course to address baseline hydration and firmness, followed by targeted polynucleotide sessions for the under-eye area, with NCTF used periodically for conditioning. What matters is that the sequence is planned at consultation with a clear reason for each step, not added one at a time at each visit.",
-      },
-      {
-        type: "h2",
-        text: "How long before I see anything?",
-      },
-      {
-        type: "p",
-        text: "All three are gradual. Expect four to eight weeks for visible change from a completed course, not overnight results. This is the single most common source of patient disappointment with skin boosters, and it is entirely avoidable by setting the expectation before the first injection rather than after it.",
-      },
-      {
-        type: "p",
-        text: "Anyone promising visible transformation the next morning is describing a different category of treatment, or overstating this one.",
-      },
-      {
-        type: "h2",
-        text: "What are the risks?",
-      },
-      {
-        type: "list",
-        items: [
-          "Injection-point bumps, redness and swelling — expected, usually settling within hours to a day.",
-          "Bruising — common, more likely on thin skin and in patients on blood thinners.",
-          "Infection — uncommon, and the reason treatment is deferred over active skin infection or acne lesions.",
-          "Allergic reaction — uncommon but possible, particularly relevant with multi-ingredient cocktails.",
-          "Disappointment from mismatched expectations — the most frequent problem of all, and the one a proper consultation prevents.",
-        ],
-      },
-      {
-        type: "p",
-        text: "All three are deferred in pregnancy and breastfeeding, and require disclosure of your full medical history and medication list before treatment.",
-      },
-      {
-        type: "callout",
-        title: "This article is general information",
-        text: "Which treatment suits you — if any — depends on an in-person examination of your skin, your history and your goals. Nothing here substitutes for that consultation.",
-      },
-    ],
-    faqs: [
-      {
-        q: "What is the difference between Profhilo and polynucleotides?",
-        a: "Profhilo is stabilised hyaluronic acid used for hydration and firmness across a broad area such as the full face or neck. Polynucleotides are purified DNA fragments used for tissue repair and skin quality in a targeted zone, most commonly the thin skin under the eyes.",
-      },
-      {
-        q: "Is NCTF the same as mesotherapy?",
-        a: "NCTF is a specific branded mesotherapy formulation containing vitamins, amino acids, minerals and hyaluronic acid. Mesotherapy is the broader technique of injecting such cocktails into the skin. All NCTF treatment is mesotherapy, but not all mesotherapy uses NCTF.",
-      },
-      {
-        q: "Which skin booster is best for under-eye dark circles?",
-        a: "Polynucleotides are the most commonly chosen option for thin, crepey under-eye skin. However, dark circles have several different causes — pigmentation, shadowing from volume loss, and visible vessels through thin skin — and each cause needs a different approach. Assessment first.",
-      },
-      {
-        q: "Do skin boosters tighten loose skin?",
-        a: "No. Skin boosters improve hydration, firmness and quality of the skin surface. They do not lift or reposition tissue. Significant laxity is a separate clinical problem requiring a different discussion.",
-      },
-      {
-        q: "How much do skin boosters cost in India?",
-        a: "As of 2026, NCTF generally starts from around ₹10,000 per session, polynucleotides from around ₹12,000-₹15,000 per session, and Profhilo from around ₹20,000 per syringe. Full courses cost more than single sessions; prices vary by city and clinic.",
-      },
-      {
-        q: "How often do I need to repeat them?",
-        a: "Profhilo effects commonly last six to nine months after a two-session course. Polynucleotide and NCTF maintenance intervals vary more widely by individual and area treated. Maintenance planning is part of the consultation, not an afterthought.",
-      },
-    ],
-    sources: [
-      { label: "IBSA Derma — Profhilo product information" },
-      { label: "Filorga — NCTF product information" },
-    ],
-    relatedTreatments: ["anti-ageing-skin-boosters"],
-  },
-
-  /* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
   {
     id: "3",
     slug: "laser-hair-reduction-aftercare-indian-skin",
@@ -803,7 +495,7 @@ export const blogPosts: BlogPost[] = [
         a: "Hormonal factors including pregnancy and hormonal contraception are recognised triggers, which is why melasma is sometimes called the mask of pregnancy. It can also occur without any hormonal trigger. Treatment approach differs during pregnancy and must be discussed with your doctor.",
       },
     ],
-    relatedTreatments: ["pigmentation-pico-laser", "skin-brightening-medifacials"],
+    relatedTreatments: ["pigmentation-and-peels", "skin-brightening-medifacials"],
   },
 
   /* ------------------------------------------------------------------ */
@@ -848,19 +540,19 @@ export const blogPosts: BlogPost[] = [
             "Icepick",
             "Small, narrow, deep — like a pinprick or a puncture",
             "A narrow tract extending deep into the skin",
-            "Focal techniques such as TCA CROSS or punch methods; resurfacing alone rarely reaches the base",
+            "Treated focally, spot by spot, rather than by resurfacing the whole face — broad resurfacing rarely reaches the base",
           ],
           [
             "Boxcar",
             "Round or oval depression with sharp, steep edges",
             "Loss of tissue with defined vertical walls",
-            "Fractional resurfacing — CO2 laser, microneedling — to soften the edges over multiple sessions",
+            "Fractional CO2 laser or microneedling, to soften the edges across a course of sessions",
           ],
           [
             "Rolling",
             "Broad, shallow, wave-like undulation; skin looks uneven in raking light",
             "Fibrous bands tethering the skin to deeper tissue",
-            "Release of the tethering bands (subcision), often with volume support; resurfacing alone under-treats these",
+            "The tethering has to be released; resurfacing the surface alone under-treats these",
           ],
           [
             "Hypertrophic / keloid",
@@ -893,18 +585,19 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "table",
-        caption: "Indicative starting price bands, 2026",
-        headers: ["Treatment", "Typical starting price", "Usual course"],
+        caption: "What actually decides the cost of acne scar treatment",
+        headers: ["Factor", "Why it changes the figure"],
         rows: [
-          ["Fractional CO2 laser — full face", "From ₹15,000 per session", "3-6 sessions"],
-          ["Fractional CO2 — periocular or perioral", "From ₹8,000 per session", "3-6 sessions"],
-          ["Pico laser — full face toning", "From ₹6,500 per session", "Varies; often combined"],
-          ["Medifacial / peel adjuncts", "From ₹4,000 per session", "Course-based, supportive"],
+          ["Which scar types you have", "Spot-by-spot treatment of a few deep scars costs far less than resurfacing a whole face"],
+          ["Area treated", "A small area is a fraction of a full face"],
+          ["Which treatment is chosen", "Peels, microneedling and fractional CO2 sit at different price points"],
+          ["Length of the course", "Set after assessment, then quoted as one figure rather than per visit"],
+          ["Whether acne must be controlled first", "Adds a stage before scar work begins"],
         ],
       },
       {
         type: "p",
-        text: "Be cautious with quotes that are dramatically lower or higher than these bands. Very low pricing usually indicates a less effective device or a shorter session than the plan requires; very high pricing sometimes reflects surgical scar revision costs being quoted for what is actually a laser treatment.",
+        text: "We do not publish rates, because a figure quoted before anyone has looked at your skin is guesswork. What we do commit to is that the full cost is itemised and agreed with you at consultation, before any treatment begins, with nothing added afterwards.",
       },
       {
         type: "h2",
@@ -955,7 +648,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "How many CO2 laser sessions do I need for acne scars?",
-        a: "Three to six sessions spaced roughly four to eight weeks apart is a common plan, with improvement continuing for several months after the final session as collagen remodels. The number depends on scar type, depth and how your skin responds.",
+        a: "CO2 laser for acne scars is given as a course spaced weeks apart, with improvement continuing for months afterwards as collagen remodels. The number of sessions depends on your scar type, depth and how your skin responds, and is decided after assessment rather than promised in advance.",
       },
       {
         q: "Can acne scars be removed completely?",
@@ -971,10 +664,10 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What does acne scar treatment cost in Kochi or Calicut?",
-        a: "As of 2026, fractional CO2 laser for the full face commonly starts from around ₹15,000 per session, with most plans running three to six sessions. Smaller areas cost less. Final cost depends on scar type, area and the number of sessions your skin actually needs.",
+        a: "Cost is driven by which scar types you have, how large an area needs treating, which treatment is chosen and how long the course runs. Treating a few individual deep scars costs far less than resurfacing a full face. We give you the complete figure at consultation, itemised, once your skin has been examined.",
       },
     ],
-    relatedTreatments: ["acne-and-scar-care", "pigmentation-pico-laser"],
+    relatedTreatments: ["acne-and-scar-care", "pigmentation-and-peels"],
   },
 
   /* ------------------------------------------------------------------ */
