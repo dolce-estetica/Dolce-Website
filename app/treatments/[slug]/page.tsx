@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = getTreatment(slug);
   if (!t) return {};
   return {
-    title: `${t.name} | Dolce Estetica — Doctor-Led, Transparent Pricing`,
+    title: `${t.name} | Dolce Estetica — Doctor-Led Aesthetic Care`,
     description: t.directAnswer.slice(0, 155),
     alternates: { canonical: `/treatments/${t.slug}` },
   };
@@ -76,7 +76,7 @@ export default async function TreatmentPage({ params }: Props) {
         <div><p className="font-serif text-2xl text-dolce-green">Doctor-led</p><p className="text-xs text-gray-600 uppercase tracking-wide">every treatment</p></div>
         <div><p className="font-serif text-2xl text-dolce-green">4 clinics</p><p className="text-xs text-gray-600 uppercase tracking-wide">South India</p></div>
         <div><p className="font-serif text-2xl text-dolce-green">4.6★</p><p className="text-xs text-gray-600 uppercase tracking-wide">Google rating</p></div>
-        <div><p className="font-serif text-2xl text-dolce-green">Transparent</p><p className="text-xs text-gray-600 uppercase tracking-wide">pricing & advice</p></div>
+        <div><p className="font-serif text-2xl text-dolce-green">Honest</p><p className="text-xs text-gray-600 uppercase tracking-wide">advice first</p></div>
       </div>
 
       {/* DIRECT ANSWER (AEO) */}
@@ -122,18 +122,31 @@ export default async function TreatmentPage({ params }: Props) {
         <p className="mt-2 text-gray-700">{t.results}</p>
       </section>
 
-      {/* PRICING */}
+      {/* WHAT DECIDES YOUR COST — no rates are published; see lib/data/treatment-pages.ts */}
       <section className="mt-12">
-        <h2 className="font-serif text-2xl text-dolce-ink">Transparent pricing</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="font-serif text-2xl text-dolce-ink">What decides your cost</h2>
+        <p className="mt-2 max-w-3xl text-gray-600">
+          We do not publish rates, because a figure quoted before a doctor has seen you is
+          guesswork. Here is what actually moves the number — and you get the full, itemised
+          quote at your consultation, before anything begins.
+        </p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {t.pricing.map((p) => (
-            <div key={p.label} className="rounded-2xl border border-gray-100 p-5 text-center">
-              <p className="text-sm text-gray-600">{p.label}</p>
-              <p className="mt-1 font-serif text-2xl text-dolce-green">{p.price}</p>
+            <div key={p.label} className="rounded-2xl border border-gray-100 p-5">
+              <p className="font-semibold text-dolce-ink">{p.label}</p>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600">{p.price}</p>
             </div>
           ))}
         </div>
         <p className="mt-3 text-sm text-gray-500">{t.pricingNote}</p>
+        {t.availability && (
+          <aside className="mt-5 rounded-2xl border-l-4 border-dolce-bronze bg-dolce-sand/20 p-5">
+            <p className="mb-1 text-xs font-bold tracking-wide text-dolce-green uppercase">
+              Where this is available
+            </p>
+            <p className="text-base leading-relaxed text-gray-700">{t.availability}</p>
+          </aside>
+        )}
       </section>
 
       {/* FAQS */}
