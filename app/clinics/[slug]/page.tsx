@@ -90,7 +90,7 @@ export default async function ClinicPage({ params }: Props) {
       )}
       <p className="mt-4 max-w-2xl text-lg text-gray-600">
         Doctor-led aesthetic medicine, wellness and longevity care in {l.city} — consultations first,
-        transparent pricing, and the standards Dolce Estetica is known for.
+        honest advice, and the standards Dolce Estetica is known for.
         {l.note ? ` ${l.note}.` : ""}
       </p>
 
