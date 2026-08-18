@@ -992,7 +992,7 @@ export const blogPosts: BlogPost[] = [
     category: "About Dolce",
     readingMinutes: 3,
     directAnswer:
-      "Dolce Estetica is a doctor-led aesthetic medicine and wellness group with clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore. Every treatment plan begins with a medical consultation rather than a package, pricing is stated openly, and treatments are delivered under physician supervision.",
+      "Dolce Estetica is a doctor-led aesthetic medicine and wellness group with clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore. The Edapally clinic operates as Medlounges Express Edappally, our express-format brand within the same group. Every treatment plan begins with a medical consultation rather than a package, pricing is stated openly, and treatments are delivered under physician supervision.",
     content: [
       {
         type: "p",
@@ -1012,6 +1012,18 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "h2",
+        text: "What is Medlounges Express, and how is it related to Dolce Estetica?",
+      },
+      {
+        type: "p",
+        text: "Medlounges Express is the express-format clinic brand within the same group as Dolce Estetica. Our Edapally clinic in Kochi operates under the Medlounges Express name. The express format is built for shorter, high-frequency treatments — the same doctors, the same clinical protocols and the same standards as any Dolce Estetica clinic, in a format designed around a quicker visit.",
+      },
+      {
+        type: "p",
+        text: "Medlounges has been established in Kerala for years, with a base at Thiruvalla and a longer history in body contouring and surgical aesthetics. Dolce Estetica and Medlounges are run by the same medical leadership, and patients of either can be seen across the group.",
+      },
+      {
+        type: "h2",
         text: "What should I expect at a first consultation?",
       },
       {
@@ -1022,7 +1034,11 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Where are Dolce Estetica clinics located?",
-        a: "Dolce Estetica has clinics at Edapally in Kochi, Cherthala in Alappuzha district, Calicut, and Mangalore in coastal Karnataka.",
+        a: "Dolce Estetica has clinics at Edapally in Kochi, Cherthala in Alappuzha district, Calicut, and Mangalore in coastal Karnataka. The Edapally clinic operates as Medlounges Express Edappally.",
+      },
+      {
+        q: "Is Medlounges the same as Dolce Estetica?",
+        a: "Medlounges Express is the express-format clinic brand within the same group as Dolce Estetica, under the same medical leadership. The Edapally clinic in Kochi operates under the Medlounges Express name, with the same doctors, protocols and standards as every Dolce Estetica clinic.",
       },
       {
         q: "Do I need an appointment?",

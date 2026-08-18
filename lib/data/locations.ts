@@ -11,6 +11,15 @@ export type ClinicLocation = {
   geo: { lat: number; lng: number };
   rating?: { value: number; count: number };
   note?: string;
+  /**
+   * On-the-ground trading name where it differs from "Dolce Estetica <city>".
+   * Used for signage, Google Business Profile and schema `alternateName` so the
+   * website, the door and the map listing all agree. Google treats a mismatch
+   * between these as two different businesses at one address.
+   */
+  operatingAs?: string;
+  /** One line explaining the joint identity, shown on the clinic page. */
+  operatingNote?: string;
 };
 
 /**
@@ -31,6 +40,9 @@ export const locations: ClinicLocation[] = [
     mapUrl: "https://maps.google.com/maps?q=Dolce%20Estetica%20Ernakulam%20Edappally&output=embed",
     mapsLink: "https://www.google.com/maps/place/Dolce+Estetica+Ernakulam/@10.0207491,76.3108261,17z",
     geo: { lat: 10.0207491, lng: 76.3108261 },
+    operatingAs: "Medlounges Express Edappally",
+    operatingNote:
+      "Our Edapally clinic operates as Medlounges Express Edappally, part of the Dolce Estetica group. Medlounges Express is our express-format clinic brand — the same doctors, the same protocols and the same standards as every Dolce Estetica clinic.",
   },
   {
     city: "Cherthala",
