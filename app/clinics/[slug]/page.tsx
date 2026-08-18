@@ -15,9 +15,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const l = locations.find((x) => x.slug === slug);
   if (!l) return {};
+  // Where a clinic trades under a second name, both names go in the title and
+  // description. Patients search the name on the door; Google needs the two
+  // names associated with one address or it treats them as separate businesses.
+  const title = l.operatingAs
+    ? `Dolce Estetica ${l.city} (${l.operatingAs}) | Aesthetic & Wellness Clinic`
+    : `Dolce Estetica ${l.city} | Aesthetic & Wellness Clinic`;
+  const description = l.operatingAs
+    ? `Dolce Estetica ${l.city}, operating as ${l.operatingAs} — doctor-led skin, hair, body and wellness care. ${l.address}. Book a consultation: ${l.phone}.`
+    : `Dolce Estetica ${l.city}: doctor-led skin, hair, body and wellness care. ${l.address}. Book a consultation: ${l.phone}.`;
+
   return {
-    title: `Dolce Estetica ${l.city} | Aesthetic & Wellness Clinic`,
-    description: `Dolce Estetica ${l.city}: doctor-led skin, hair, body and wellness care. ${l.address}. Book a consultation: ${l.phone}.`,
+    title,
+    description,
     alternates: { canonical: `/clinics/${l.slug}` },
   };
 }
@@ -35,6 +45,7 @@ export default async function ClinicPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
     name: `${site.name} — ${l.city}`,
+    ...(l.operatingAs ? { alternateName: l.operatingAs } : {}),
     url: `https://dolceestetica.com/clinics/${l.slug}`,
     telephone: l.phone,
     address: {
@@ -50,7 +61,16 @@ export default async function ClinicPage({ params }: Props) {
     ...(l.rating
       ? { aggregateRating: { "@type": "AggregateRating", ratingValue: l.rating.value, reviewCount: l.rating.count } }
       : {}),
-    sameAs: ["https://www.facebook.com/dolceesteticaclinic/", "https://www.instagram.com/dolceesteticaclinic/"],
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Dolce Estetica",
+      url: "https://dolceestetica.com",
+    },
+    sameAs: [
+      "https://www.facebook.com/dolceesteticaclinic/",
+      "https://www.instagram.com/dolceesteticaclinic/",
+      ...(l.operatingAs ? ["https://medlounges.com"] : []),
+    ],
   };
 
   return (
@@ -63,15 +83,29 @@ export default async function ClinicPage({ params }: Props) {
       <h1 className="mt-2 font-serif text-4xl text-dolce-ink sm:text-5xl">
         Dolce Estetica {l.city}
       </h1>
+      {l.operatingAs && (
+        <p className="mt-2 text-base font-semibold text-dolce-bronze">
+          Operating as {l.operatingAs}
+        </p>
+      )}
       <p className="mt-4 max-w-2xl text-lg text-gray-600">
         Doctor-led aesthetic medicine, wellness and longevity care in {l.city} — consultations first,
         transparent pricing, and the standards Dolce Estetica is known for.
         {l.note ? ` ${l.note}.` : ""}
       </p>
 
+      {l.operatingNote && (
+        <aside className="mt-6 max-w-2xl rounded-2xl border-l-4 border-dolce-bronze bg-dolce-sand/20 p-5">
+          <p className="text-base leading-relaxed text-gray-700">{l.operatingNote}</p>
+        </aside>
+      )}
+
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <div className="rounded-2xl border border-gray-100 p-6">
           <h2 className="font-serif text-xl text-dolce-ink">Visit us</h2>
+          {l.operatingAs && (
+            <p className="mt-3 font-semibold text-dolce-ink">{l.operatingAs}</p>
+          )}
           <p className="mt-3 text-gray-700">{l.address}</p>
           {l.landmark && <p className="mt-1 text-sm text-gray-500">{l.landmark}</p>}
           <p className="mt-4">
