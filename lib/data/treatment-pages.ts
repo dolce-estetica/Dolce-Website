@@ -13,8 +13,9 @@
  *
  * Treatments NOT on the rate sheet and therefore NOT on this website:
  *   Profhilo, polynucleotides, NCTF, Pico laser, HIFU (listed but unpriced),
- *   tattoo removal (listed but unpriced), and Cosmelan (removed from the menu
- *   26 Aug 2026 by Dr Joseph — not promoted, do not reintroduce).
+ *   tattoo removal (listed but unpriced), and Cosmelan (in-clinic only per
+ *   Dr Joseph 26 Aug 2026 — a doctor may offer it at consultation, but it is
+ *   never promoted publicly; do not reintroduce it on this site).
  * =========================================================================
  *
  * PRICING: NO PRICE MAY APPEAR ON THIS WEBSITE. Not a figure, not a range,
