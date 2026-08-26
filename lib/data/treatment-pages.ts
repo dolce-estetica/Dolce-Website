@@ -13,7 +13,8 @@
  *
  * Treatments NOT on the rate sheet and therefore NOT on this website:
  *   Profhilo, polynucleotides, NCTF, Pico laser, HIFU (listed but unpriced),
- *   tattoo removal (listed but unpriced). Do not reintroduce them.
+ *   tattoo removal (listed but unpriced), and Cosmelan (removed from the menu
+ *   26 Aug 2026 by Dr Joseph — not promoted, do not reintroduce).
  * =========================================================================
  *
  * PRICING: NO PRICE MAY APPEAR ON THIS WEBSITE. Not a figure, not a range,
@@ -173,7 +174,7 @@ export const treatmentPages: TreatmentPage[] = [  /* ===========================
       },
       {
         title: "Treat conservatively",
-        text: "Medical peels are usually the starting point — chemical peel, yellow peel or Cosmelan, depending on what was found. Laser toning is added where it is suitable for your pigmentation type.",
+        text: "Medical peels are usually the starting point — chemical peel or yellow peel, depending on what was found. Laser toning is added where it is suitable for your pigmentation type.",
       },
       {
         title: "Maintain",
@@ -184,17 +185,17 @@ export const treatmentPages: TreatmentPage[] = [  /* ===========================
       "Realistic goals are meaningful lightening, slower and less frequent relapse, and a routine you can sustain. Timelines are measured in months, not weeks. Melasma in particular is chronic and relapsing — some patients achieve long stretches of near-clear skin, most will see some return with sun exposure or hormonal change and will need maintenance. Any promise of permanent removal is inconsistent with how pigmentation behaves.",
     pricing: [
       { label: "Which type of pigmentation you have", price: "Melasma, sun damage and post-acne marks differ in plan and cost" },
-      { label: "Which peel is appropriate", price: "Ranges from a basic medical peel to a Cosmelan protocol" },
+      { label: "Which peel is appropriate", price: "Ranges from a basic medical peel to a deeper yellow peel programme" },
       { label: "Area treated", price: "Under-eye or lip costs less than a full face" },
       { label: "Maintenance", price: "Melasma needs ongoing care; this is planned upfront" },
     ],
     pricingNote: CONSULT_NOTE,
     availability:
-      "Chemical and yellow peels are available at all four clinics. Cosmelan peel is currently available at our Edapally (Kochi) clinic. Laser toning, carbon peel and Hollywood peel are currently available at Cherthala and Edapally.",
+      "Chemical and yellow peels are available at all four clinics. Laser toning, carbon peel and Hollywood peel are currently available at Cherthala and Edapally.",
     faqs: [
       {
         q: "How much does pigmentation treatment cost?",
-        a: "It depends entirely on which type of pigmentation you have, which peel or device is appropriate, and how large an area needs treating — an under-eye peel and a full-face Cosmelan protocol are very different treatments. We quote in full at consultation, after the pigmentation is properly identified. Guessing a price before diagnosis would be meaningless.",
+        a: "It depends entirely on which type of pigmentation you have, which peel or device is appropriate, and how large an area needs treating — an under-eye peel and a full-face programme are very different treatments. We quote in full at consultation, after the pigmentation is properly identified. Guessing a price before diagnosis would be meaningless.",
       },
       {
         q: "Can melasma be cured permanently?",
@@ -205,8 +206,8 @@ export const treatmentPages: TreatmentPage[] = [  /* ===========================
         a: "Yes, if it is too aggressive or used on the wrong type of pigmentation. Melasma in particular can rebound darker after heavy thermal treatment, and the risk is higher on darker skin. This is why sun protection and conservative peels are established before any device is considered.",
       },
       {
-        q: "Which clinics offer Cosmelan peel?",
-        a: "Cosmelan peel is currently available at our Edapally (Kochi) clinic. Chemical peels and yellow peels are available at all four clinics — Calicut, Cherthala, Edapally and Mangalore.",
+        q: "Which clinics offer laser toning and carbon peel?",
+        a: "Laser toning, carbon peel and Hollywood peel are currently available at our Cherthala and Edapally (Kochi) clinics. Chemical peels and yellow peels are available at all four clinics — Calicut, Cherthala, Edapally and Mangalore.",
       },
       {
         q: "Do I still need sunscreen after pigmentation treatment?",
