@@ -23,6 +23,11 @@
  * the cost. Cost-intent search queries are answered by explaining the factors
  * and inviting the enquiry — which converts better than a number anyway.
  *
+ * ORDERING: array order = display order on /treatments. Laser Hair Reduction
+ * is deliberately LAST (Aug 2026): current LHR equipment is not best-in-class,
+ * so LHR is de-emphasised in all marketing until the device is upgraded.
+ * Do not move it back to the top without Dr Joseph's decision.
+ *
  * COMPLIANCE (India): Drugs & Magic Remedies Act 1954 schedules include
  * obesity, baldness and skin disorders. Content in those areas is written as
  * patient education with consultation-first framing. No prescription product
@@ -55,87 +60,7 @@ export type TreatmentPage = {
 const CONSULT_NOTE =
   "We quote openly and in full — at your consultation, once a doctor has seen what you actually need. We do not publish rates, because a number without an assessment behind it is guesswork, and every quote we give is itemised before anything begins. Ask us on WhatsApp or at your visit and you will get the complete figure with nothing added later. EMI options are available on courses.";
 
-export const treatmentPages: TreatmentPage[] = [
-  /* ================================================================== */
-  {
-    slug: "laser-hair-reduction",
-    name: "Laser Hair Reduction",
-    heroTitle: "Laser Hair Reduction — Doctor-Supervised, Skin-Type Matched",
-    heroSub:
-      "Session protocols set by doctors, device settings chosen for Indian skin tones, at all four clinics.",
-    directAnswer:
-      "Laser hair reduction uses focused light absorbed by the pigment in the hair to weaken the follicle, so hair regrows finer and slower over a course of sessions. At Dolce Estetica it is physician-supervised and available at all four clinics, with device settings matched to your skin type. Sessions run from about 15 minutes for a small area such as the upper lip to around 45 minutes for full legs. The number of sessions and the cost are confirmed after a doctor assesses your hair and skin.",
-    forWhom: [
-      "Tired of the waxing, shaving and threading cycle",
-      "Ingrown hairs, razor bumps or darkening after waxing",
-      "Preparing for a wedding or a particular season",
-      "Men looking for beard shaping, chest, back or body grooming",
-      "Anyone whose skin reacts badly to repeated waxing",
-    ],
-    notFor: [
-      "Anyone pregnant or breastfeeding — treatment is deferred",
-      "Skin with a recent tan or active sunburn at the treatment site — we reschedule rather than risk a burn",
-      "Active infection, open skin or an inflamed rash in the area",
-      "Anyone on medication that increases light sensitivity, without discussing it first",
-      "Very fine, light or white hair, which carries too little pigment for the laser to target",
-    ],
-    steps: [
-      {
-        title: "Consultation and patch test",
-        text: "A doctor examines the area, checks your skin type and recent sun exposure, and where there is any doubt a test patch is done before a full session.",
-      },
-      {
-        title: "Preparation",
-        text: "The area is shaved and cleaned. You are given eye protection. Hair must be shaved, not waxed or threaded — the laser needs the follicle intact.",
-      },
-      {
-        title: "The session",
-        text: "The handpiece is passed over the area with cooling applied. Most people describe a warm snapping sensation. A small area takes 15 minutes; full legs take around 45.",
-      },
-      {
-        title: "Aftercare",
-        text: "Mild redness and small bumps around the follicles for a day are expected. Avoid heat, sweat, sun and friction for 48 hours, and use SPF 50 daily on exposed areas.",
-      },
-    ],
-    results:
-      "Hair reduces gradually across a course rather than after one session, because only hairs in their active growth phase respond at each visit. Most areas need multiple sessions spaced weeks apart, and maintenance sessions afterwards. Treated hairs shed over one to three weeks after each session, which looks like regrowth but is not. Response varies with hair colour, thickness, hormones and skin type — no clinic can promise a fixed number of sessions before assessing you.",
-    pricing: [
-      { label: "Size of the area treated", price: "Upper lip costs a fraction of full legs" },
-      { label: "How many areas you combine", price: "Combined areas are quoted together, not added up" },
-      { label: "Number of sessions in your course", price: "Set after assessment, not promised upfront" },
-      { label: "Single session or a package", price: "Courses are quoted as one figure with EMI available" },
-    ],
-    pricingNote: CONSULT_NOTE,
-    faqs: [
-      {
-        q: "How much does laser hair reduction cost?",
-        a: "Cost depends on the size of the area, how many areas you treat together, and how many sessions your course needs — a small area such as the upper lip costs a fraction of full legs. We quote the full figure at consultation once a doctor has assessed your hair and skin, itemised before anything begins. Message us on WhatsApp with the areas you are considering and we will talk you through it.",
-      },
-      {
-        q: "Is laser hair reduction safe for Indian skin?",
-        a: "Yes, when the device settings are matched to your skin type. Darker skin carries more melanin in the surrounding skin, so settings are adjusted and cooling used to protect it. Recent tanning is the main reason a session is postponed, because it raises the risk of burns and pigment change.",
-      },
-      {
-        q: "Can I shave between sessions?",
-        a: "Yes. Shaving is fine and often recommended, because it cuts the hair at the surface while leaving the follicle intact. Waxing, threading, plucking and epilation must be avoided between sessions — they remove the target the laser needs.",
-      },
-      {
-        q: "Does laser hair reduction hurt?",
-        a: "Most people describe a warm snapping sensation rather than pain, with cooling applied throughout. Sensitive areas such as the upper lip and bikini feel more than the arms or legs. Sessions are short — 15 minutes for a small area.",
-      },
-      {
-        q: "How many sessions will I need?",
-        a: "It depends on the area, your hair thickness, colour and hormonal factors, so the number is set after assessment rather than promised in advance. Hair responds only during its active growth phase, which is why sessions are spaced weeks apart and why a course is needed rather than a single visit.",
-      },
-      {
-        q: "Is laser hair removal permanent?",
-        a: "It is hair reduction, not removal. Hair regrows finer, lighter and slower, and most people need occasional maintenance sessions afterwards. Any clinic promising permanent removal is overstating what the treatment does.",
-      },
-    ],
-    related: ["acne-and-scar-care", "skin-brightening-medifacials"],
-  },
-
-  /* ================================================================== */
+export const treatmentPages: TreatmentPage[] = [  /* ================================================================== */
   {
     slug: "acne-and-scar-care",
     name: "Acne & Acne Scar Care",
@@ -899,6 +824,85 @@ export const treatmentPages: TreatmentPage[] = [
     ],
     related: ["body-contouring", "iv-therapy-and-wellness"],
   },
+  /* ================================================================== */
+  {
+    slug: "laser-hair-reduction",
+    name: "Laser Hair Reduction",
+    heroTitle: "Laser Hair Reduction — Doctor-Supervised, Skin-Type Matched",
+    heroSub:
+      "Session protocols set by doctors, device settings chosen for Indian skin tones, at all four clinics.",
+    directAnswer:
+      "Laser hair reduction uses focused light absorbed by the pigment in the hair to weaken the follicle, so hair regrows finer and slower over a course of sessions. At Dolce Estetica it is physician-supervised and available at all four clinics, with device settings matched to your skin type. Sessions run from about 15 minutes for a small area such as the upper lip to around 45 minutes for full legs. The number of sessions and the cost are confirmed after a doctor assesses your hair and skin.",
+    forWhom: [
+      "Tired of the waxing, shaving and threading cycle",
+      "Ingrown hairs, razor bumps or darkening after waxing",
+      "Preparing for a wedding or a particular season",
+      "Men looking for beard shaping, chest, back or body grooming",
+      "Anyone whose skin reacts badly to repeated waxing",
+    ],
+    notFor: [
+      "Anyone pregnant or breastfeeding — treatment is deferred",
+      "Skin with a recent tan or active sunburn at the treatment site — we reschedule rather than risk a burn",
+      "Active infection, open skin or an inflamed rash in the area",
+      "Anyone on medication that increases light sensitivity, without discussing it first",
+      "Very fine, light or white hair, which carries too little pigment for the laser to target",
+    ],
+    steps: [
+      {
+        title: "Consultation and patch test",
+        text: "A doctor examines the area, checks your skin type and recent sun exposure, and where there is any doubt a test patch is done before a full session.",
+      },
+      {
+        title: "Preparation",
+        text: "The area is shaved and cleaned. You are given eye protection. Hair must be shaved, not waxed or threaded — the laser needs the follicle intact.",
+      },
+      {
+        title: "The session",
+        text: "The handpiece is passed over the area with cooling applied. Most people describe a warm snapping sensation. A small area takes 15 minutes; full legs take around 45.",
+      },
+      {
+        title: "Aftercare",
+        text: "Mild redness and small bumps around the follicles for a day are expected. Avoid heat, sweat, sun and friction for 48 hours, and use SPF 50 daily on exposed areas.",
+      },
+    ],
+    results:
+      "Hair reduces gradually across a course rather than after one session, because only hairs in their active growth phase respond at each visit. Most areas need multiple sessions spaced weeks apart, and maintenance sessions afterwards. Treated hairs shed over one to three weeks after each session, which looks like regrowth but is not. Response varies with hair colour, thickness, hormones and skin type — no clinic can promise a fixed number of sessions before assessing you.",
+    pricing: [
+      { label: "Size of the area treated", price: "Upper lip costs a fraction of full legs" },
+      { label: "How many areas you combine", price: "Combined areas are quoted together, not added up" },
+      { label: "Number of sessions in your course", price: "Set after assessment, not promised upfront" },
+      { label: "Single session or a package", price: "Courses are quoted as one figure with EMI available" },
+    ],
+    pricingNote: CONSULT_NOTE,
+    faqs: [
+      {
+        q: "How much does laser hair reduction cost?",
+        a: "Cost depends on the size of the area, how many areas you treat together, and how many sessions your course needs — a small area such as the upper lip costs a fraction of full legs. We quote the full figure at consultation once a doctor has assessed your hair and skin, itemised before anything begins. Message us on WhatsApp with the areas you are considering and we will talk you through it.",
+      },
+      {
+        q: "Is laser hair reduction safe for Indian skin?",
+        a: "Yes, when the device settings are matched to your skin type. Darker skin carries more melanin in the surrounding skin, so settings are adjusted and cooling used to protect it. Recent tanning is the main reason a session is postponed, because it raises the risk of burns and pigment change.",
+      },
+      {
+        q: "Can I shave between sessions?",
+        a: "Yes. Shaving is fine and often recommended, because it cuts the hair at the surface while leaving the follicle intact. Waxing, threading, plucking and epilation must be avoided between sessions — they remove the target the laser needs.",
+      },
+      {
+        q: "Does laser hair reduction hurt?",
+        a: "Most people describe a warm snapping sensation rather than pain, with cooling applied throughout. Sensitive areas such as the upper lip and bikini feel more than the arms or legs. Sessions are short — 15 minutes for a small area.",
+      },
+      {
+        q: "How many sessions will I need?",
+        a: "It depends on the area, your hair thickness, colour and hormonal factors, so the number is set after assessment rather than promised in advance. Hair responds only during its active growth phase, which is why sessions are spaced weeks apart and why a course is needed rather than a single visit.",
+      },
+      {
+        q: "Is laser hair removal permanent?",
+        a: "It is hair reduction, not removal. Hair regrows finer, lighter and slower, and most people need occasional maintenance sessions afterwards. Any clinic promising permanent removal is overstating what the treatment does.",
+      },
+    ],
+    related: ["acne-and-scar-care", "skin-brightening-medifacials"],
+  },
+
 ];
 
 export function getTreatment(slug: string) {
