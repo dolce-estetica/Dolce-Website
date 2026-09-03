@@ -19,8 +19,8 @@ export default function TreatmentsPage() {
       </h1>
       <p className="mt-4 max-w-2xl text-gray-600">
         Every treatment at Dolce Estetica begins with a consultation — we prescribe what your skin,
-        hair and body actually need. Explore each treatment below, including how it works, honest
-        result expectations and transparent starting prices.
+        hair and body actually need. Explore each treatment below: how it works, who it suits, who it
+        does not, and an honest account of what to expect.
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

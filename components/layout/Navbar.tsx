@@ -46,10 +46,12 @@ export default function Navbar({ variant = "solid" }: Props) {
         <div className="flex min-h-[56px] items-center justify-between gap-4 sm:min-h-[70px] lg:min-h-[90px]">
           <Link href="/" className="flex items-center gap-3" aria-label="Dolce Estetica home">
             <Image
-              src="/assets/logo.png"
+              src="/assets/logo.webp"
               alt="Dolce Estetica"
-              width={360}
-              height={180}
+              // The master is 400x148; the old 360x180 squashed it and reserved the
+              // wrong box, which shifted the header once the file arrived.
+              width={400}
+              height={148}
               priority
               className="h-[42px] w-auto transition-all duration-300 sm:h-[56px] md:h-[70px] lg:h-[90px]"
             />
@@ -128,9 +130,17 @@ export default function Navbar({ variant = "solid" }: Props) {
       </header>
 
       {/* Mobile menu */}
+      {/*
+        `inert` matters as much as `aria-hidden` here. The closed panel is only moved
+        off-screen with a transform, so its links and buttons stayed in the tab order —
+        keyboard users could tab into an invisible menu, and marking the wrapper
+        aria-hidden while it still held focusable children is malformed ARIA. `inert`
+        takes the whole subtree out of both the tab order and the accessibility tree.
+      */}
       <div
         className={`fixed inset-0 z-[200] lg:hidden ${open ? "" : "pointer-events-none"}`}
         aria-hidden={!open}
+        inert={!open}
       >
         <div
           className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
@@ -145,10 +155,10 @@ export default function Navbar({ variant = "solid" }: Props) {
         >
           <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
             <Image
-              src="/assets/logo.png"
+              src="/assets/logo.webp"
               alt="Dolce Estetica"
-              width={200}
-              height={100}
+              width={400}
+              height={148}
               className="h-11 w-auto"
             />
             <button

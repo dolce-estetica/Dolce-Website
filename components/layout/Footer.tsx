@@ -32,10 +32,10 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <Link href="/" className="inline-block">
               <Image
-                src="/assets/logo.png"
+                src="/assets/logo.webp"
                 alt="Dolce Estetica"
-                width={280}
-                height={140}
+                width={400}
+                height={148}
                 className="h-16 w-auto brightness-0 invert"
               />
             </Link>

@@ -29,6 +29,15 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Tried and rejected: `content-visibility: auto` on the below-the-fold sections. It made no
+ * measurable difference to any Lighthouse metric here (the page is only ~575 nodes, so
+ * off-screen style and layout was never the bottleneck), and it broke click targeting on
+ * off-screen elements because their geometry is not resolved until first render. Not worth
+ * the risk for zero gain — but worth reconsidering if this page ever grows a long tail of
+ * heavy sections.
+ */
+
 /* Horizontal carousels scroll, but without a visible scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;

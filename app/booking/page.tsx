@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BookingForm from "./BookingForm";
@@ -10,7 +9,15 @@ export const metadata: Metadata = {
     "Select your preferred service and clinic location to begin your journey with Dolce Estetica.",
 };
 
-export default function BookingPage() {
+/** `?category=` / `?service=` arrive from the nav dropdowns and the footer service links. */
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+const first = (value: string | string[] | undefined) =>
+  (Array.isArray(value) ? value[0] : value) ?? "";
+
+export default async function BookingPage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar variant="solid" />
@@ -26,15 +33,10 @@ export default function BookingPage() {
           </p>
         </div>
 
-        <Suspense
-          fallback={
-            <div className="flex justify-center py-20">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-dolce-green border-t-transparent" />
-            </div>
-          }
-        >
-          <BookingForm />
-        </Suspense>
+        <BookingForm
+          presetCategory={first(params.category)}
+          presetService={first(params.service)}
+        />
       </section>
 
       <Footer />
