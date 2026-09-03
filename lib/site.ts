@@ -4,8 +4,8 @@ export const site = {
   tagline: "Excellence in Aesthetics",
   phone: "+91 79944 55019",
   phoneHref: "tel:+917994455019",
-  email: "skincare@dolceestetica.com",
-  clinicEmail: "info@dolceestetica.com",
+  email: "enquiry@dolceestetica.com",
+  clinicEmail: "enquiry@dolceestetica.com",
   whatsappNumber: "917994455019",
   whatsappHref:
     "https://wa.me/917994455019?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Dolce%20Estetica%20services.",
