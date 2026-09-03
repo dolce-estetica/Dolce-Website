@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
 
+
+  async rewrites() {
+    // Dolce Findesk (finance approval desk) runs on Railway and is served under /findesk
+    return [
+      { source: '/findesk', destination: 'https://dolce-findesk-production.up.railway.app/findesk' },
+      { source: '/findesk/:path*', destination: 'https://dolce-findesk-production.up.railway.app/findesk/:path*' },
+    ];
+  },
+
   async headers() {
     return [
       {
