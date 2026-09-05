@@ -47,7 +47,7 @@ export default function LandingTestimonials({ page }: { page: LandingPage }) {
             </blockquote>
             <figcaption className="mt-6 flex items-center gap-3 border-t border-gray-50 pt-5">
               <span
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${r.color} font-serif text-lg font-bold text-white`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${r.color} font-display text-lg font-bold text-white`}
               >
                 {r.initial}
               </span>

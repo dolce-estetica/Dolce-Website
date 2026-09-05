@@ -16,7 +16,7 @@ export default function LandingCtaBand({
     <section className="px-4 py-6 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[2rem] bg-gradient-to-r from-dolce-green via-dolce-moss to-dolce-green px-8 py-10 text-center shadow-xl sm:flex-row sm:text-left">
         <div>
-          <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">{title}</h2>
+          <h2 className="font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{title}</h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
             {text}
           </p>

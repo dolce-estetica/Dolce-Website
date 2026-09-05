@@ -71,7 +71,7 @@ export default function LandingLeadForm({ page }: { page: LandingPage }) {
           <p className="mb-3 text-xs font-bold tracking-[0.25em] text-dolce-bronze uppercase">
             Book a consultation
           </p>
-          <h2 className="font-serif text-3xl font-bold text-dolce-green sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold text-dolce-green sm:text-4xl">
             {isSurgical ? "Book your surgeon consultation" : "Take the first step — book your consultation"}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-gray-600 sm:text-lg">
@@ -88,7 +88,7 @@ export default function LandingLeadForm({ page }: { page: LandingPage }) {
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-dolce-green/10 text-dolce-green">
                   <CheckCircle2 className="h-9 w-9" />
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-dolce-green">
+                <h3 className="font-display text-2xl font-bold text-dolce-green">
                   Request received, {form.name.split(" ")[0]}.
                 </h3>
                 <p className="max-w-md text-sm leading-relaxed text-gray-600 sm:text-base">

@@ -27,7 +27,7 @@ export default function LandingHeading({
         </p>
       )}
       <h2
-        className={`font-serif text-3xl font-bold sm:text-4xl ${
+        className={`font-display text-3xl font-extrabold tracking-tight sm:text-4xl ${
           isDark ? "text-white" : "text-dolce-green"
         }`}
       >

@@ -26,7 +26,7 @@ export default function LandingHero({ page }: { page: LandingPage }) {
           <p className="mb-4 text-[11px] font-bold tracking-[0.2em] text-dolce-bronze uppercase sm:text-xs sm:tracking-[0.25em]">
             {page.hero.eyebrow}
           </p>
-          <h1 className="font-serif text-4xl leading-tight font-bold text-dolce-green sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="font-display text-4xl leading-[1.1] font-extrabold tracking-tight text-dolce-green sm:text-5xl sm:leading-[1.05] lg:text-[3.4rem]">
             {page.hero.heading}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg">

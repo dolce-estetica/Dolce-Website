@@ -16,7 +16,7 @@ export default function LandingImpact({ page }: { page: LandingPage }) {
               i > 0 ? "sm:border-l sm:border-white/15" : ""
             } ${i % 2 === 1 ? "border-l border-white/15 sm:border-l" : ""}`}
           >
-            <dd className="font-serif text-2xl font-bold text-white sm:text-3xl">
+            <dd className="font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
               {item.value}
             </dd>
             <dt className="max-w-[18ch] text-[11px] leading-snug text-white/70 sm:text-xs">

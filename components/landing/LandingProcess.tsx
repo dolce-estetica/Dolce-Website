@@ -29,7 +29,7 @@ export default function LandingProcess({ page }: { page: LandingPage }) {
               {i < steps.length - 1 && (
                 <span
                   aria-hidden
-                  className="absolute top-1/2 -right-3 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-dolce-green font-serif text-xs font-bold text-white sm:flex"
+                  className="absolute top-1/2 -right-3 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-dolce-green font-display text-xs font-bold text-white sm:flex"
                 >
                   →
                 </span>
