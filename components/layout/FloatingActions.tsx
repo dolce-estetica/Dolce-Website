@@ -1,9 +1,18 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/shared/BrandIcons";
 
 /** Call + WhatsApp shortcuts pinned to the bottom-right on every page. */
 export default function FloatingActions() {
+  const pathname = usePathname();
+
+  // Ad landing pages carry their own sticky Book Now bar with a call button;
+  // the global floating shortcuts would crowd it there.
+  if (pathname.startsWith("/lp")) return null;
+
   return (
     // Sits above the hero's social pill rather than on top of it.
     <div className="fixed right-4 bottom-28 z-[150] flex flex-col gap-3 sm:right-6 sm:bottom-32 sm:gap-4">
