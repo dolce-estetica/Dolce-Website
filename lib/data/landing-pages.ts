@@ -50,6 +50,8 @@ export type LandingPage = {
     subheading: string;
     image: string;
     imageAlt: string;
+    /** Short credibility chips under the hero CTAs (Bodycraft-style badges). */
+    trustChips: string[];
   };
   impact: { value: string; label: string }[];
   why: { title: string; text: string }[];
@@ -57,6 +59,13 @@ export type LandingPage = {
     heading: string;
     intro: string;
     items: { name: string; text: string }[];
+  };
+  /** "How it works" — three numbered steps, optional supporting photo. */
+  process: {
+    heading: string;
+    steps: { title: string; text: string }[];
+    image?: string;
+    imageAlt?: string;
   };
   doctorsNote: string;
   results: {
@@ -125,8 +134,9 @@ export const landingPages: LandingPage[] = [
       heading: "Your skin deserves a specialist, not a guess.",
       subheading:
         "Acne that keeps returning, pigmentation, hair fall, a scalp problem or a lump you want checked — a qualified dermatologist examines you first, explains what is actually happening, and only then discusses what can be done.",
-      image: "/gallery/clinic-excellence.webp",
-      imageAlt: "Dolce Estetica dermatology clinic interior",
+      image: "/lp/dermatology.jpg",
+      imageAlt: "Aesthetician performing a cosmetology skin treatment in a clinic",
+      trustChips: ["Qualified dermatologists", "Medically supervised", "Honest diagnosis first"],
     },
     impact: IMPACT,
     why: WHY,
@@ -150,6 +160,23 @@ export const landingPages: LandingPage[] = [
         {
           name: "Hair & Scalp",
           text: "Hair fall, thinning, dandruff, scalp itching and infections — diagnosed properly before anything is recommended.",
+        },
+      ],
+    },
+    process: {
+      heading: "How your consultation works",
+      steps: [
+        {
+          title: "Consultation & diagnosis",
+          text: "A dermatologist examines your concern, takes a full history and explains in plain words what it actually is.",
+        },
+        {
+          title: "Investigations where needed",
+          text: "Blood tests or a closer look with dermatoscopy when an internal cause or something deeper is suspected.",
+        },
+        {
+          title: "Plan, quote & treatment",
+          text: "A written, itemised plan — treat now, treat in stages, or simply monitor. Your call, with the full cost up front.",
         },
       ],
     },
@@ -209,8 +236,9 @@ export const landingPages: LandingPage[] = [
       heading: "Hair fall has a cause. We find it first.",
       subheading:
         "Thyroid changes, low iron, post-delivery shedding, dandruff and hereditary patterns all look identical in the mirror — and each needs a different plan. Our doctors diagnose before they treat.",
-      image: "/assets/about.webp",
-      imageAlt: "Dolce Estetica clinic consultation room",
+      image: "/lp/hair.jpg",
+      imageAlt: "Woman receiving a scalp and hair treatment at a salon clinic",
+      trustChips: ["Root-cause diagnosis", "Blood tests where indicated", "Doctor-led plans"],
     },
     impact: IMPACT,
     why: WHY,
@@ -234,6 +262,23 @@ export const landingPages: LandingPage[] = [
         {
           name: "Scalp treatment",
           text: "Dandruff, itching, oiliness, folliculitis and other scalp conditions treated medically, so the ground your hair grows from is healthy.",
+        },
+      ],
+    },
+    process: {
+      heading: "How hair treatment works here",
+      steps: [
+        {
+          title: "Scalp & history examination",
+          text: "The doctor examines your pattern and pace of hair fall, and takes the history that points to its cause.",
+        },
+        {
+          title: "Find the cause",
+          text: "Thyroid, iron and other internal causes look identical in the mirror — investigations are ordered where indicated.",
+        },
+        {
+          title: "Treat the diagnosis",
+          text: "A medical plan built around your cause, with realistic expectations set honestly and reviews at sensible intervals.",
         },
       ],
     },
@@ -292,8 +337,9 @@ export const landingPages: LandingPage[] = [
       heading: "Smooth skin, without the weekly routine.",
       subheading:
         "Laser hair reduction for the face, underarms, arms, legs, bikini area or the full body — planned by a doctor, with a patch test first so you know exactly how your skin responds before you commit.",
-      image: "/gallery/brand-story.webp",
-      imageAlt: "Dolce Estetica laser treatment room",
+      image: "/lp/lhr.jpg",
+      imageAlt: "Practitioner performing laser hair removal with a handpiece",
+      trustChips: ["Patch test before sessions", "Settings tuned for Indian skin", "Doctor-set parameters"],
     },
     impact: IMPACT,
     why: WHY,
@@ -325,6 +371,23 @@ export const landingPages: LandingPage[] = [
         {
           name: "Touch-ups & maintenance",
           text: "Already had sessions elsewhere? We assess where you are and plan honest maintenance rather than restarting you from zero.",
+        },
+      ],
+    },
+    process: {
+      heading: "Your laser journey",
+      steps: [
+        {
+          title: "Consultation & patch test",
+          text: "The doctor assesses your skin and hair, then patch tests so you know exactly how your skin responds before you commit.",
+        },
+        {
+          title: "Sessions at safe settings",
+          text: "Trained staff perform every session under clinical protocols, with parameters set for your skin tone.",
+        },
+        {
+          title: "Review & maintenance",
+          text: "Progress is reviewed through your course, with occasional maintenance once reduction holds.",
         },
       ],
     },
@@ -384,8 +447,9 @@ export const landingPages: LandingPage[] = [
       heading: "Skin concerns treated in the right order.",
       subheading:
         "Acne is settled before scars are treated. Pigmentation is diagnosed before it is faded. Lines are assessed before anything is injected. The sequence is what makes results look natural — and it starts with a doctor.",
-      image: "/assets/hero.webp",
-      imageAlt: "Dolce Estetica skin treatment clinic",
+      image: "/lp/skin.jpg",
+      imageAlt: "Woman receiving a facial skin treatment",
+      trustChips: ["Sequence-correct treatment", "Indian-skin-safe protocols", "Strict sun protection"],
     },
     impact: IMPACT,
     why: WHY,
@@ -417,6 +481,23 @@ export const landingPages: LandingPage[] = [
         {
           name: "Chemical peels",
           text: "Medical-grade peels chosen for your concern and skin tone — performed in-clinic, with aftercare that protects Indian skin from post-peel pigmentation.",
+        },
+      ],
+    },
+    process: {
+      heading: "How skin treatment works",
+      steps: [
+        {
+          title: "Skin assessment",
+          text: "A doctor examines your skin in proper light and identifies whether you are dealing with acne, marks, scarring or a mix.",
+        },
+        {
+          title: "Sequence-correct treatment",
+          text: "Active concerns are settled before resurfacing begins — the order is what protects your result.",
+        },
+        {
+          title: "Protect & follow up",
+          text: "Strict sun protection and a home routine carry the result, with reviews through your course.",
         },
       ],
     },
@@ -476,8 +557,9 @@ export const landingPages: LandingPage[] = [
       heading: "The facial that works while you watch.",
       subheading:
         "Deep cleansing, extraction and hydration in one treatment — dead skin and impurities vacuumed away while serums are infused into fresh skin. Walk in dull, walk out glowing, no downtime.",
-      image: "/gallery/results-showcase.webp",
-      imageAlt: "HydraFacial skin treatment at Dolce Estetica",
+      image: "/lp/hydrafacial.jpg",
+      imageAlt: "Deep-cleansing facial treatment in progress",
+      trustChips: ["No downtime", "Serums chosen for your skin", "Doctor-assessed first"],
     },
     impact: IMPACT,
     why: WHY,
@@ -511,6 +593,25 @@ export const landingPages: LandingPage[] = [
           text: "A monthly cadence that keeps skin clean, hydrated and even — or a pre-event session for same-week glow with no downtime.",
         },
       ],
+    },
+    process: {
+      heading: "Your HydraFacial, step by step",
+      steps: [
+        {
+          title: "Skin assessment",
+          text: "Your skin is assessed on the day — active acne or sensitivity changes what the session should include.",
+        },
+        {
+          title: "Cleanse, extract, hydrate",
+          text: "Dead skin and impurities are lifted away painlessly while tailored serums are infused into clean skin.",
+        },
+        {
+          title: "Protect & maintain",
+          text: "Sun protection afterwards, and a cadence your doctor suggests so the glow compounds instead of fading.",
+        },
+      ],
+      image: "/lp/facial-massage.jpg",
+      imageAlt: "Relaxing facial treatment during a skin care session",
     },
     doctorsNote:
       "Even a 'lunchtime facial' deserves clinical judgment — active acne, sensitive skin and certain conditions change what the treatment should include. Your skin is assessed before the session and the serums are chosen for you, not from a fixed menu.",
@@ -568,8 +669,9 @@ export const landingPages: LandingPage[] = [
       heading: "Brightness that starts in the bloodstream.",
       subheading:
         "Glutathione — the body's own master antioxidant — delivered by IV drip under a doctor's supervision, as part of a plan that also treats the cause of your dullness and pigmentation. Assessed first, always.",
-      image: "/gallery/clinic-excellence.webp",
-      imageAlt: "IV therapy lounge at Dolce Estetica",
+      image: "/lp/glutathione.jpg",
+      imageAlt: "Intravenous drip therapy administered in a clinic",
+      trustChips: ["Doctor-administered IV", "In-clinic supervision", "Realistic expectations set"],
     },
     impact: IMPACT,
     why: WHY,
@@ -593,6 +695,23 @@ export const landingPages: LandingPage[] = [
         {
           name: "Dull & tired skin",
           text: "Stress, sleep and pollution deplete antioxidants — IV therapy replenishes them directly, with hydration included in every session.",
+        },
+      ],
+    },
+    process: {
+      heading: "How the treatment runs",
+      steps: [
+        {
+          title: "Suitability assessment",
+          text: "A doctor reviews your history, skin and goals — and tells you honestly whether IV glutathione fits your plan.",
+        },
+        {
+          title: "In-clinic IV sessions",
+          text: "Comfortable, supervised sessions at doctor-set doses and gaps, with hydration built into every visit.",
+        },
+        {
+          title: "Maintenance & sun care",
+          text: "Brightness holds with maintenance and strict sun protection — the plan is mapped at your first consultation.",
         },
       ],
     },
@@ -650,8 +769,9 @@ export const landingPages: LandingPage[] = [
       heading: "Reshape what diet and gym won't move.",
       subheading:
         "VASER ultrasound-assisted liposuction precisely targets stubborn fat on the abdomen, waist, arms, thighs and back — a surgical contouring procedure, planned by a surgeon who tells you honestly whether it is right for you.",
-      image: "/gallery/brand-story.webp",
-      imageAlt: "Medlounges body contouring consultation",
+      image: "/lp/vaser.jpg",
+      imageAlt: "Operating theatre prepared for a surgical body contouring procedure",
+      trustChips: ["Surgeon-led consultations", "Full surgical quote in writing", "Candidacy assessed honestly"],
     },
     impact: [
       { value: "Surgeon-led", label: "Surgical consultation first" },
@@ -707,6 +827,25 @@ export const landingPages: LandingPage[] = [
           text: "Combined areas planned in one surgical session where safe — discussed fully, with recovery time explained honestly.",
         },
       ],
+    },
+    process: {
+      heading: "Your VASER journey",
+      steps: [
+        {
+          title: "Surgeon consultation",
+          text: "Examination, health review and an honest answer on candidacy — with photographs and the full surgical quote in writing.",
+        },
+        {
+          title: "The procedure",
+          text: "VASER ultrasound gently loosens fat before precise removal, planned for the areas you want reshaped.",
+        },
+        {
+          title: "Recovery & follow-up",
+          text: "Walking within a day or two, desk work within about a week, with the final contour emerging over months as swelling settles.",
+        },
+      ],
+      image: "/lp/surgeon.jpg",
+      imageAlt: "Surgical team in an operating theatre",
     },
     doctorsNote:
       "Every VASER journey starts with a surgeon's consultation: examination, health assessment, and an honest discussion of candidacy, realistic outcomes and recovery. Medlounges and Dolce Estetica are run by the same medical leadership — patients of either are cared for across the group.",

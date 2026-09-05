@@ -6,6 +6,7 @@ import LandingHero from "@/components/landing/LandingHero";
 import LandingImpact from "@/components/landing/LandingImpact";
 import LandingWhy from "@/components/landing/LandingWhy";
 import LandingServices from "@/components/landing/LandingServices";
+import LandingProcess from "@/components/landing/LandingProcess";
 import LandingDoctors from "@/components/landing/LandingDoctors";
 import LandingResults from "@/components/landing/LandingResults";
 import LandingTestimonials from "@/components/landing/LandingTestimonials";
@@ -83,7 +84,7 @@ export default async function LandingPageRoute({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pb-[calc(4.5rem+env(safe-area-inset-bottom))]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
@@ -100,6 +101,9 @@ export default async function LandingPageRoute({ params }: Props) {
 
       {/* 4 — Services offered */}
       <LandingServices page={page} />
+
+      {/* How it works — Bodycraft-style numbered process */}
+      <LandingProcess page={page} />
 
       {/* CTA between sections */}
       <LandingCtaBand
@@ -136,7 +140,7 @@ export default async function LandingPageRoute({ params }: Props) {
 
       <Footer />
 
-      {/* Sticky Book Now CTA — required by the landing page structure sheet */}
+      {/* Sticky Book Now CTA — permanent, per the client's update (Bodycraft reference) */}
       <LandingStickyCta label={`Book your ${page.name.toLowerCase()} consultation`} />
     </main>
   );

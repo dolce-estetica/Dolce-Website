@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-09-05T09:29:25.773Z",
+  "sessionId": "sess_f5e4562d-c96f-4459-81d0-d5126959201c",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "E:\\PROJECTS\\Dolce-Website\\app\\lp\\[slug]\\page.tsx",
+  "outcome": "inconclusive",
+  "coverage": "partial",
+  "findingCount": 0,
+  "durationMs": 11,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
