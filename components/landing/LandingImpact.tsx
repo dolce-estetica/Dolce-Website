@@ -1,28 +1,30 @@
 import type { LandingPage } from "@/lib/data/landing-pages";
 
 /**
- * Section 2 of the required structure — USPs / impact numbers, as a card
- * overlapping the banner's bottom edge. Every figure shown must be
- * verifiable (see lib/data/landing-pages.ts).
+ * Section 2 of the required structure — USPs / impact numbers, as a crisp
+ * full-width brand-green band directly under the hero. Every figure shown
+ * must be verifiable (see lib/data/landing-pages.ts).
  */
 export default function LandingImpact({ page }: { page: LandingPage }) {
   return (
-    <div className="relative z-10 -mt-10 px-4 sm:-mt-14 sm:px-6">
-      <dl className="mx-auto grid max-w-5xl grid-cols-2 overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-gray-100 sm:grid-cols-4">
-        {page.impact.map((item) => (
+    <section className="bg-dolce-green">
+      <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-y-6 px-4 py-8 sm:grid-cols-4 sm:px-6 sm:py-10">
+        {page.impact.map((item, i) => (
           <div
             key={item.label}
-            className="flex flex-col items-center gap-1 border-gray-100 px-4 py-6 text-center sm:px-6 sm:py-8 [&:nth-child(odd)]:border-r sm:[&:not(:last-child)]:border-r"
+            className={`flex flex-col items-center gap-1 px-3 text-center ${
+              i > 0 ? "sm:border-l sm:border-white/15" : ""
+            } ${i % 2 === 1 ? "border-l border-white/15 sm:border-l" : ""}`}
           >
-            <dt className="order-2 max-w-[16ch] text-[11px] leading-snug text-gray-500 sm:text-xs">
-              {item.label}
-            </dt>
-            <dd className="order-1 font-serif text-2xl font-bold text-dolce-green sm:text-3xl">
+            <dd className="font-serif text-2xl font-bold text-white sm:text-3xl">
               {item.value}
             </dd>
+            <dt className="max-w-[18ch] text-[11px] leading-snug text-white/70 sm:text-xs">
+              {item.label}
+            </dt>
           </div>
         ))}
       </dl>
-    </div>
+    </section>
   );
 }
