@@ -530,73 +530,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         </div>
       </section>
 
-      {/* ===== 5 — THE PROCESS: STEP 01/02/03, bronze labels ===== */}
-      <section id="process" className="scroll-mt-4 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              {page.process.heading}
-            </h2>
-          </div>
 
-          <div className={`mt-12 grid items-center gap-8 ${extras.processImage ? "lg:grid-cols-[1.15fr_0.85fr]" : ""}`}>
-            {extras.timelineProcess ? (
-              <ol className="relative grid gap-12 sm:grid-cols-3 sm:gap-6">
-                {/* connecting line: runs through the icon-row centres */}
-                <span
-                  aria-hidden
-                  className="absolute top-8 hidden border-t-2 border-dashed sm:block"
-                  style={{ left: "16.66%", right: "16.66%", borderColor: "rgba(138,113,66,0.45)" }}
-                />
-                {page.process.steps.map((step, i) => {
-                  const StepIcon = extras.timelineIcons?.[i] ?? ShieldCheck;
-                  return (
-                    <li key={step.title} className="relative z-10 flex w-full flex-col items-center text-center">
-                      <span
-                        className="flex h-16 w-16 items-center justify-center rounded-full border-2 bg-white shadow-md"
-                        style={{ borderColor: "#A88D5E", color: BRONZE_TEXT }}
-                      >
-                        <StepIcon className="h-7 w-7" strokeWidth={1.7} />
-                      </span>
-                      <div className="mt-5 w-full rounded-3xl border bg-white p-6 shadow-sm sm:p-7" style={{ borderColor: "#E8E0CC" }}>
-                        <p className="text-xs font-extrabold tracking-[0.25em] uppercase" style={{ color: BRONZE_TEXT }}>
-                          Step {String(i + 1).padStart(2, "0")}
-                        </p>
-                        <h3 className="mt-2 text-lg font-extrabold text-dolce-green">{step.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-gray-600">{step.text}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            ) : (
-              <ol className="grid gap-5 sm:grid-cols-3">
-                {page.process.steps.map((step, i) => (
-                  <li key={step.title} className="flex flex-col rounded-3xl bg-white p-7 shadow-sm">
-                    <p className="text-xs font-extrabold tracking-[0.25em] uppercase" style={{ color: BRONZE_TEXT }}>
-                      Step {String(i + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-3 text-lg font-extrabold text-dolce-green">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-600">{step.text}</p>
-                  </li>
-                ))}
-              </ol>
-
-            )}
-            {extras.processImage && (
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-xl">
-                <Image
-                  src={extras.processImage.src}
-                  alt={extras.processImage.alt}
-                  fill
-                  sizes="(min-width: 1024px) 440px, calc(100vw - 40px)"
-                  className="object-cover"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* 6 — FAQ, or doctors first on pages that prefer people before answers */}
 
@@ -795,12 +729,13 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {locations.map((loc) => (
-              <article
+              <Link
                 key={loc.slug}
-                className="flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-shadow hover:shadow-lg"
+                href={`/clinics/${loc.slug}`}
+                className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span
-                  className="flex h-11 w-11 items-center justify-center rounded-full border-2"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border-2 transition-colors group-hover:bg-[#8A7142] group-hover:text-white"
                   style={{ borderColor: "#A88D5E", color: BRONZE_TEXT }}
                 >
                   <MapPin className="h-5 w-5" />
@@ -815,18 +750,13 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                   </span>
                 </h3>
                 <p className="mt-2 flex-1 text-xs leading-relaxed text-gray-600">{loc.address}</p>
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    `Dolce Estetica ${loc.address}`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <span
                   className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold"
                   style={{ color: BRONZE_TEXT }}
                 >
-                  Directions <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </article>
+                  View clinic <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
