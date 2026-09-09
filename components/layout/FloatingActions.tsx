@@ -3,15 +3,18 @@
 import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { site } from "@/lib/site";
+import { landingPages } from "@/lib/data/landing-pages";
 import { WhatsAppIcon } from "@/components/shared/BrandIcons";
 
 /** Call + WhatsApp shortcuts pinned to the bottom-right on every page. */
 export default function FloatingActions() {
   const pathname = usePathname();
 
-  // Ad landing pages carry their own sticky Book Now bar with a call button;
-  // the global floating shortcuts would crowd it there.
-  if (pathname.startsWith("/lp")) return null;
+  // Ad landing pages (now at top-level /<slug>) carry their own sticky Book
+  // Now bar; the global floating shortcuts would crowd it there.
+  if (pathname.startsWith("/lp") || landingPages.some((p) => `/${p.slug}` === pathname)) {
+    return null;
+  }
 
   return (
     // Sits above the hero's social pill rather than on top of it.

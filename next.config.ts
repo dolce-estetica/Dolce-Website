@@ -3,7 +3,29 @@ import type { NextConfig } from "next";
 /** Folders under `public/` that hold versioned-by-hand artwork rather than code. */
 const ASSET_DIRS = ["assets", "bgs", "gallery", "team", "treatments"];
 
+/** The 7 Google-Ads landing pages live at top-level paths; /lp/<slug> 301s to them. */
+const LP_SLUGS = [
+  "dermatology-clinic",
+  "hair-treatment",
+  "laser-hair-removal",
+  "skin-treatments",
+  "hydrafacial",
+  "glutathione-treatment",
+  "vaser-liposuction",
+];
+
 const nextConfig: NextConfig = {
+
+
+
+  async redirects() {
+    return LP_SLUGS.map((slug) => ({
+      source: `/lp/${slug}`,
+      destination: `/${slug}`,
+      permanent: true,
+    }));
+  },
+
   images: {
     // AVIF first: it lands roughly 30% under WebP on these photographic assets, and every
     // browser that misses it falls through to WebP.

@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/*
+ * Font utilities that reference next/font CSS variables must resolve their
+ * var() chains per element, INSIDE the subtree where the variables are
+ * defined (the layout wrapper elements). Tailwind v4 emits @theme tokens on
+ * :root — where --font-jakarta / --font-lora / --font-playfair do not exist
+ * — so the generated utilities silently fell back to the system stack.
+ * These overrides re-declare the utilities with direct var() chains.
+ */
+.font-display {
+  font-family: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.font-editorial {
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif;
+}
+.font-serif {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
 @theme {
   /* Brand palette, taken verbatim from the existing site */
   --color-dolce-green: #1c3816;
@@ -14,6 +32,9 @@
   /* Modern display face for the /lp ad landing pages only — the main site
      keeps the Playfair brand serif. Falls back to Inter until loaded. */
   --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Serif accent voice for the editorial / wellness LP designs (skin journal,
+     glutathione lounge). Loaded only inside /lp, never preloaded. */
+  --font-editorial: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif;
 }
 
 :root {
@@ -48,6 +69,30 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* /lp booking bar + sheet: simple slide-down-in / slide-up-out motion */
+@keyframes lp-slide-down-in {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes lp-slide-up-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110%);
+  }
+}
+.lp-slide-down-in {
+  animation: lp-slide-down-in 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.lp-slide-up-out {
+  animation: lp-slide-up-out 0.32s cubic-bezier(0.55, 0, 0.55, 0.2) both;
 }
 
 /* iOS zooms the page when a focused input is under 16px. Keep form text at 16px. */
