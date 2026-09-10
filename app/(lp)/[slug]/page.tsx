@@ -39,17 +39,59 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getLandingPage(slug);
   if (!page) return {};
+
+  const brandName = landingBrandNames[page.brand];
+  const pageUrl = `https://dolceestetica.com/${page.slug}`;
+  const imageUrl = `https://dolceestetica.com${page.hero.image}`;
+  const keywords = [
+    page.name,
+    ...page.services.items.map((item) => item.name),
+    "Kochi",
+    "Cherthala",
+    "Calicut",
+    "Mangalore",
+    "South India",
+    "Doctor Led",
+    brandName,
+  ];
+
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    alternates: { canonical: `https://dolceestetica.com/${page.slug}` },
+    keywords,
+    alternates: { canonical: pageUrl },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url: `https://dolceestetica.com/${page.slug}`,
-      siteName: site.name,
-      locale: "en_GB",
+      url: pageUrl,
+      siteName: brandName,
+      locale: "en_IN",
       type: "website",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: page.hero.imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.metaTitle,
+      description: page.metaDescription,
+      images: [imageUrl],
     },
   };
 }
@@ -63,12 +105,44 @@ export default async function LandingPageRoute({ params }: Props) {
   if (!Design) notFound();
 
   const brandName = landingBrandNames[page.brand];
+  const pageUrl = `https://dolceestetica.com/${page.slug}`;
 
-  const serviceSchema = {
+  // 1. MedicalWebPage Schema
+  const medicalWebPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: page.metaTitle,
+    description: page.metaDescription,
+    aspect: ["Overview", "Diagnosis", "Treatment", "Results", "FAQ"],
+    medicalAudience: "Patient",
+    specialty: page.slug === "vaser-liposuction" ? "PlasticSurgery" : "Dermatology",
+    about: page.services.items.map((s) => ({
+      "@type": "MedicalThing",
+      name: s.name,
+      description: s.text,
+    })),
+    reviewedBy: {
+      "@type": "MedicalOrganization",
+      name: brandName,
+      url: "https://dolceestetica.com",
+    },
+  };
+
+  // 2. MedicalProcedure / SurgicalProcedure Schema
+  const procedureSchema = {
     "@context": "https://schema.org",
     "@type": page.brand === "medlounges" ? "SurgicalProcedure" : "MedicalProcedure",
-    name: `${page.name}, ${brandName}`,
+    name: `${page.name} at ${brandName}`,
     description: page.metaDescription,
+    bodyLocation:
+      page.slug === "hair-treatment"
+        ? "Scalp"
+        : page.slug === "laser-hair-removal"
+        ? "Full Body"
+        : "Skin",
+    procedureType: page.brand === "medlounges" ? "SurgicalProcedure" : "NonInvasiveProcedure",
     provider: {
       "@type": "MedicalClinic",
       name: brandName,
@@ -76,6 +150,92 @@ export default async function LandingPageRoute({ params }: Props) {
       telephone: site.phone,
     },
   };
+
+  // 3. BreadcrumbList Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://dolceestetica.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.name,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  // 4. MedicalClinic Multi-Location & Aggregate Rating Schema
+  const clinicSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "@id": "https://dolceestetica.com/#organization",
+    name: brandName,
+    url: "https://dolceestetica.com",
+    telephone: site.phone,
+    image: `https://dolceestetica.com${page.hero.image}`,
+    medicalSpecialty:
+      page.slug === "vaser-liposuction"
+        ? ["PlasticSurgery", "Dermatology"]
+        : ["Dermatology", "Cosmetology"],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.6",
+      reviewCount: "15000",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    department: [
+      {
+        "@type": "MedicalClinic",
+        name: `${brandName} - Edapally, Kochi`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Kochi",
+          addressRegion: "Kerala",
+          addressCountry: "IN",
+        },
+      },
+      {
+        "@type": "MedicalClinic",
+        name: `${brandName} - Cherthala`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Cherthala",
+          addressRegion: "Kerala",
+          addressCountry: "IN",
+        },
+      },
+      {
+        "@type": "MedicalClinic",
+        name: `${brandName} - Calicut`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Kozhikode",
+          addressRegion: "Kerala",
+          addressCountry: "IN",
+        },
+      },
+      {
+        "@type": "MedicalClinic",
+        name: `${brandName} - Mangalore`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Mangalore",
+          addressRegion: "Karnataka",
+          addressCountry: "IN",
+        },
+      },
+    ],
+  };
+
+  // 5. FAQPage Schema
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -88,8 +248,26 @@ export default async function LandingPageRoute({ params }: Props) {
 
   return (
     <main className="flex min-h-screen flex-col bg-white pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalWebPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(procedureSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* The unique per-page design — all nine required sections inside */}
       <Design page={page} />

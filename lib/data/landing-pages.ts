@@ -193,24 +193,14 @@ export const landingPages: LandingPage[] = [
       text: "Real results from real Dolce patients, shared with their written consent. Every skin is different, so your own results depend on your diagnosis, skin type and the plan your doctor builds for you, which is why every treatment starts with an in-person assessment.",
       pairs: [
         {
-          before: "/lp/results-derm-acne-before.jpg",
-          after: "/lp/results-derm-acne-after.jpg",
-          label: "Acne & pigmentation care",
+          before: "/lp/derma-skin-treat.webp",
+          after: "/lp/derma-skin-treat.webp",
+          label: "Skin & acne treatment results",
         },
         {
-          before: "/lp/results-ml-abdomen-before.jpg",
-          after: "/lp/results-ml-abdomen-after.jpg",
-          label: "Abdomen & flank contouring",
-        },
-        {
-          before: "/lp/results-ml-chin-before.jpg",
-          after: "/lp/results-ml-chin-after.jpg",
-          label: "Chin & jawline contouring",
-        },
-        {
-          before: "/lp/results-ml-chest-before.jpg",
-          after: "/lp/results-ml-chest-after.jpg",
-          label: "Chest contouring",
+          before: "/lp/dermatology-skin-treat.webp",
+          after: "/lp/dermatology-skin-treat.webp",
+          label: "Dermatological skin care results",
         },
       ],
     },
@@ -281,20 +271,24 @@ export const landingPages: LandingPage[] = [
         "Every plan starts with a scalp examination and, where indicated, blood investigations, because hair fall from an internal cause cannot be fixed at the scalp alone.",
       items: [
         {
-          name: "Hair fall control",
-          text: "A doctor identifies why you are shedding, nutritional, hormonal, post-illness or hereditary, and treats that specific cause.",
+          name: "Hair Fall",
+          text: "Root-cause diagnosis for sudden or chronic hair shedding, treating nutritional, hormonal, and scalp factors with medical protocols.",
         },
         {
-          name: "Hair thinning & density",
-          text: "Early thinning is assessed with a scalp examination, and a medical plan is built around what is actually driving it.",
+          name: "Hair Thinning",
+          text: "Targeted therapies to arrest progressive follicle miniaturisation, rebuild hair shaft thickness, and restore density.",
         },
         {
-          name: "PRP therapy",
-          text: "Platelet-rich plasma from your own blood, administered by doctors as part of a diagnosed treatment plan, never as a standalone package sold before assessment.",
+          name: "Hair Regrowth",
+          text: "Evidence-based regrowth plans combining doctor-prescribed topicals, growth factors, and cellular scalp stimulation.",
         },
         {
-          name: "Scalp treatment",
-          text: "Dandruff, itching, oiliness, folliculitis and other scalp conditions treated medically, so the ground your hair grows from is healthy.",
+          name: "PRP Therapy",
+          text: "Concentrated platelet-rich plasma prepared in-clinic to reactivate dormant hair follicles and accelerate natural hair regrowth.",
+        },
+        {
+          name: "Scalp Treatment",
+          text: "Deep scalp detox, micro-exfoliation, and anti-inflammatory care for dandruff, sebum imbalance, and scalp infections.",
         },
       ],
     },
@@ -330,6 +324,11 @@ export const landingPages: LandingPage[] = [
           before: "/lp/results-hair-2-before.jpg",
           after: "/lp/results-hair-2-after.jpg",
           label: "Hair density improvement",
+        },
+        {
+          before: "/lp/hair-treatment-before-after.webp",
+          after: "/lp/hair-treatment-before-after.webp",
+          label: "Hair restoration & regrowth results",
         },
       ],
     },
@@ -406,8 +405,12 @@ export const landingPages: LandingPage[] = [
           text: "A quick, popular area that usually responds well, ideal as a first experience of laser hair reduction.",
         },
         {
-          name: "Arms & legs",
-          text: "Full arms, forearms, full legs or lower legs, planned as sensible session packages, not open-ended commitments.",
+          name: "Arms",
+          text: "Full arms and forearms reduction, planned as sensible session packages with precise coverage.",
+        },
+        {
+          name: "Legs",
+          text: "Full legs or lower legs reduction, designed to deliver smooth, hair-free skin comfortably.",
         },
         {
           name: "Bikini area",
@@ -416,10 +419,6 @@ export const landingPages: LandingPage[] = [
         {
           name: "Full body",
           text: "A complete head-to-toe plan with a per-session structure you can see in full before starting, the quote covers everything, nothing appears later.",
-        },
-        {
-          name: "Touch-ups & maintenance",
-          text: "Already had sessions elsewhere? We assess where you are and plan honest maintenance rather than restarting you from zero.",
         },
       ],
     },
@@ -447,19 +446,9 @@ export const landingPages: LandingPage[] = [
       text: "Laser hair reduction thickens and slows regrowth over a course of sessions, most patients need multiple sessions, spaced weeks apart, followed by occasional maintenance. It is reduction, not permanent removal of every last hair, and hormonal areas sometimes need more sessions. At your consultation we show you what this has realistically meant for patients with your hair and skin type, in person, never as stock or AI images.",
       pairs: [
         {
-          before: "/lp/results-lhr-upperlip-before.jpg",
-          after: "/lp/results-lhr-upperlip-after.jpg",
-          label: "Arm hair reduction",
-        },
-        {
-          before: "/lp/results-lhr-underarm-before.jpg",
-          after: "/lp/results-lhr-underarm-after.jpg",
-          label: "Underarm hair reduction",
-        },
-        {
-          before: "/lp/results-lhr-arms-before.jpg",
-          after: "/lp/results-lhr-arms-after.jpg",
-          label: "Legs & lower body hair reduction",
+          before: "/lp/lhr-before-after.webp",
+          after: "/lp/lhr-before-after.webp",
+          label: "Laser hair reduction results",
         },
       ],
     },
@@ -529,28 +518,28 @@ export const landingPages: LandingPage[] = [
         "Medical-grade skin care planned around your diagnosis and your skin type, with strict sun protection built into every plan, because Indian skin pigments easily.",
       items: [
         {
-          name: "Acne treatment",
-          text: "Active breakouts controlled first, medical peels and prescribed treatment, because treating scars while acne is still active just creates new ones.",
+          name: "Acne",
+          text: "Active breakouts controlled first with medical peels and prescribed protocols, treating root causes to prevent future scarring.",
         },
         {
-          name: "Pigmentation care",
-          text: "Melasma, tan, dark patches and uneven tone, diagnosed by type, because pigment sits at different depths and each needs a different approach.",
+          name: "Pigmentation",
+          text: "Melasma, tan, dark patches and uneven tone diagnosed by depth and targeted with specialized brightening care.",
         },
         {
-          name: "Acne scar treatment",
-          text: "Microneedling and fractional CO2 for pitted scars, including spot-by-spot treatment for individual deep scars instead of full-face resurfacing by default.",
+          name: "Acne Scars",
+          text: "Microneedling and fractional CO2 resurfacing for pitted scars, tailored to your skin texture and scar depth.",
         },
         {
-          name: "Anti-ageing",
-          text: "Fine lines, laxity and volume loss assessed by a doctor, then treated with a plan that keeps you looking like yourself, just rested.",
+          name: "Anti-Ageing",
+          text: "Fine lines, laxity, and volume loss assessed by a doctor to refresh skin elasticity while keeping your natural features.",
         },
         {
-          name: "Skin rejuvenation",
-          text: "Dullness, texture and glow plans built on medical treatments and a home routine you can actually sustain, not a one-off facial.",
+          name: "Skin Rejuvenation",
+          text: "Dullness and texture renewal plans built on clinical therapies and sustainable home care routines for lasting glow.",
         },
         {
-          name: "Chemical peels",
-          text: "Medical-grade peels chosen for your concern and skin tone, performed in-clinic, with aftercare that protects Indian skin from post-peel pigmentation.",
+          name: "Chemical Peel",
+          text: "Medical-grade peels selected for your skin tone and performed in-clinic with strict post-peel pigmentation defense.",
         },
       ],
     },
@@ -578,14 +567,19 @@ export const landingPages: LandingPage[] = [
       text: "Improvement, not erasure, a course softens texture and shadow so scars become far less noticeable in normal light, and pigmentation lightens gradually with strict sun protection. Photos of consenting patients with concerns like yours are shown at your consultation, in person. We do not publish stock or AI-generated before/after images and we do not promise perfect skin to anyone.",
       pairs: [
         {
-          before: "/lp/results-skin-1.jpg",
-          after: "/lp/results-skin-1.jpg",
+          before: "/lp/skin-treatments-before-after.webp",
+          after: "/lp/skin-treatments-before-after.webp",
+          label: "Skin treatment results",
+        },
+        {
+          before: "/lp/derma-skin-treat.webp",
+          after: "/lp/derma-skin-treat.webp",
           label: "Acne & pigmentation care",
         },
         {
-          before: "/lp/results-skin-2.jpg",
-          after: "/lp/results-skin-2.jpg",
-          label: "Skin brightening & clarity",
+          before: "/lp/dermatology-skin-treat.webp",
+          after: "/lp/dermatology-skin-treat.webp",
+          label: "Dermatological skin care",
         },
       ],
     },
@@ -655,28 +649,24 @@ export const landingPages: LandingPage[] = [
         "A three-step medical-grade treatment, cleanse and peel, extract and hydrate, protect and finish, tailored to your skin's condition on the day.",
       items: [
         {
-          name: "Deep cleansing",
-          text: "Gentle exfoliation and acid peel loosen dead skin and unclog pores, preparing skin for extraction without irritation.",
+          name: "Deep Cleansing",
+          text: "Gentle exfoliation and vortex extraction loosen dead skin cells, unclog congested pores, and remove impurities without irritation.",
         },
         {
-          name: "Painless extraction",
-          text: "The vortex tip vacuumes out blackheads and impurities from pores, the part manual extractions usually leave red and sore, done here without the trauma.",
+          name: "Hydration",
+          text: "Antioxidant and hyaluronic serums are infused deep into freshly cleaned skin to restore moisture and long-lasting glow.",
         },
         {
-          name: "Intensive hydration",
-          text: "Antioxidant and hyaluronic serums are infused deep into freshly cleaned skin, where they actually absorb instead of sitting on the surface.",
+          name: "Acne",
+          text: "Targeted decongestion and salicylic infusions for breakout-prone skin, calming active inflammation without harsh scrubbing.",
         },
         {
-          name: "Acne-prone skin",
-          text: "A version planned for breakout-prone skin that deep-cleans without the aggressive scrubbing that makes acne worse.",
+          name: "Pigmentation",
+          text: "Brightening boosters and active serums selected for your skin tone, layered on freshly exfoliated skin to lighten dark spots.",
         },
         {
-          name: "Pigmentation & dullness",
-          text: "Brightening boosters selected for your concern, layered on skin that has just been cleaned enough to receive them properly.",
-        },
-        {
-          name: "Rejuvenation & maintenance",
-          text: "A monthly cadence that keeps skin clean, hydrated and even, or a pre-event session for same-week glow with no downtime.",
+          name: "Skin Rejuvenation",
+          text: "Cellular renewal and nourishing peptides that restore smooth texture, elasticity, and immediate pre-event radiance.",
         },
       ],
     },
@@ -706,19 +696,9 @@ export const landingPages: LandingPage[] = [
       text: "Most patients leave the clinic visibly brighter and smoother, HydraFacial is loved precisely because the glow is immediate, with no redness or downtime. The effect builds over a course of sessions and holds best with a maintenance cadence your doctor will suggest. Photos of consenting patients are shown at the clinic, never stock or AI-generated images online.",
       pairs: [
         {
-          before: "/lp/results-hydra-cleanse-before.jpg",
-          after: "/lp/results-hydra-cleanse-after.jpg",
-          label: "Deep cleansing & pore extraction",
-        },
-        {
-          before: "/lp/results-hydra-glow-before.jpg",
-          after: "/lp/results-hydra-glow-after.jpg",
-          label: "Instant skin hydration & glow",
-        },
-        {
-          before: "/lp/results-hydra-texture-before.jpg",
-          after: "/lp/results-hydra-texture-after.jpg",
-          label: "Pore refinement & texture renewal",
+          before: "/lp/hydrafacial-before-after.webp",
+          after: "/lp/hydrafacial-before-after.webp",
+          label: "HydraFacial skin rejuvenation results",
         },
         {
           before: "/lp/results-hydra-radiance-before.jpg",
@@ -834,14 +814,19 @@ export const landingPages: LandingPage[] = [
       text: "Glutathione IV is gradual: brightness builds over a course of sessions and holds with maintenance and strict sun protection. It does not change your fundamental skin colour, and results genuinely vary between people, anyone promising a specific shade change is guessing. Your doctor will set realistic expectations for your skin at the first consultation, and show you what it has meant for consenting patients in person.",
       pairs: [
         {
-          before: "/lp/results-glut-pigment-before.jpg",
-          after: "/lp/results-glut-pigment-after.jpg",
-          label: "Pigmentation & spot softening",
+          before: "/lp/glutathione-result-1.jpeg",
+          after: "/lp/glutathione-result-1.jpeg",
+          label: "Skin tone brightening & radiance",
         },
         {
-          before: "/lp/results-glut-session-before.jpg",
-          after: "/lp/results-glut-session-after.jpg",
-          label: "In-clinic IV drip & skin hydration",
+          before: "/lp/glutathione-result-2.jpeg",
+          after: "/lp/glutathione-result-2.jpeg",
+          label: "Pigmentation & spot reduction",
+        },
+        {
+          before: "/lp/glutathione-result-3.jpeg",
+          after: "/lp/glutathione-result-3.jpeg",
+          label: "In-clinic IV therapy results",
         },
       ],
     },
@@ -910,27 +895,27 @@ export const landingPages: LandingPage[] = [
       items: [
         {
           name: "Abdomen",
-          text: "Upper and lower abdominal fat, including the stubborn band that survives diets, the most commonly contoured area.",
+          text: "Upper and lower abdominal fat, including stubborn bands that resist diet and exercise.",
         },
         {
-          name: "Waist & flanks",
-          text: "Love handles and muffin-top areas that reshape the whole torso when treated together with the abdomen.",
+          name: "Waist",
+          text: "Love handles and flank areas reshaped with ultrasound precision to sculpt the torso.",
         },
         {
           name: "Arms",
-          text: "Full-arm contouring with the gentleness VASER is known for, an area where precision matters most.",
+          text: "Selective arm fat liquefaction and tightening, preserving nerves and connective tissue.",
         },
         {
           name: "Thighs",
-          text: "Inner and outer thighs, planned as a set so the legs stay balanced and natural in proportion.",
+          text: "Inner and outer thigh sculpting planned to maintain natural, balanced proportions.",
         },
         {
-          name: "Back & bra area",
-          text: "Upper and lower back rolls, including the fat around the bra band that clothing shows first.",
+          name: "Back",
+          text: "Upper and lower back contouring, targeting bra-line bulges and stubborn rolls.",
         },
         {
-          name: "Multi-area body contouring",
-          text: "Combined areas planned in one surgical session where safe, discussed fully, with recovery time explained honestly.",
+          name: "Body Contouring",
+          text: "Comprehensive multi-area surgical contouring planned safely in one structured session.",
         },
       ],
     },
@@ -960,19 +945,14 @@ export const landingPages: LandingPage[] = [
       text: "VASER liposuction permanently removes the treated fat cells, but the result is a reshaped contour, not weight loss, and keeping it depends on your lifestyle. Swelling masks the final shape for weeks, with full definition appearing over months as it settles. Photos of consenting patients are shown at the surgical consultation, in person, never as stock or AI-generated images online.",
       pairs: [
         {
-          before: "/lp/results-ml-abdomen-before.jpg",
-          after: "/lp/results-ml-abdomen-after.jpg",
-          label: "Abdomen & flank contouring",
+          before: "/lp/vaser-lipo-contour-1.jpeg",
+          after: "/lp/vaser-lipo-contour-1.jpeg",
+          label: "Abdomen & waist VASER contouring",
         },
         {
-          before: "/lp/results-ml-chin-before.jpg",
-          after: "/lp/results-ml-chin-after.jpg",
-          label: "Chin & jawline contouring",
-        },
-        {
-          before: "/lp/results-ml-chest-before.jpg",
-          after: "/lp/results-ml-chest-after.jpg",
-          label: "Chest contouring",
+          before: "/lp/vaser-lipo-contour-2.jpeg",
+          after: "/lp/vaser-lipo-contour-2.jpeg",
+          label: "Full body & flank VASER contouring",
         },
       ],
     },

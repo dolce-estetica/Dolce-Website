@@ -78,6 +78,8 @@ const PAGE_EXTRAS: Record<
     defaultConcern?: string;
     /** process section renders as an icon timeline with connecting lines */
     timelineProcess?: boolean;
+    /** render service card images with a shorter aspect ratio */
+    shortServiceImages?: boolean;
   }
 > = {
   "dermatology-clinic": {
@@ -87,10 +89,10 @@ const PAGE_EXTRAS: Record<
     // Real South Indian imagery: our own dermatologist at work, the brand
     // glow portrait, and a shirodhara scalp photo (Pixabay where noted).
     serviceImages: [
-      "/lp/derm-skin-treatment.jpg",      // Skin: medical skin care & examination
-      "/treatments/bright-even.webp",      // Face: facial rejuvenation & tone care
-      "/treatments/body-detan.webp",      // Body: body skin care & detan
-      "/treatments/hairfall-control.webp", // Hair & Scalp: scalp & hair fall treatment
+      "/lp/derm-skin-treatment.webp",      // Skin: medical skin care & examination
+      "/lp/derm-face-treatment.webp",      // Face: facial rejuvenation & tone care
+      "/lp/derm-body-treatment.jpg",      // Body: body skin care & detan
+      "/lp/derm-hair-scalp-treatment.jpg", // Hair & Scalp: scalp & hair fall treatment
     ],
     serviceIcons: [Layers, Smile, HeartPulse, Sparkles],
     stickyLabel: "Book your dermatology consultation",
@@ -110,12 +112,12 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Hair fall / shedding",
-    fourColServices: true,
     serviceImages: [
-      "/treatments/hairfall-control.webp",
+      "/treatments/hair-fall.webp",
+      "/treatments/understanding-hair-thinning.jpg",
+      "/treatments/scalp-detox.webp",
       "/treatments/hair-regrowth.webp",
       "/treatments/dandruff.webp",
-      "/treatments/hair-stronger.webp",
     ],
     stickyLabel: "Book your hair consultation",
     stickyVariant: "bronze",
@@ -134,13 +136,14 @@ const PAGE_EXTRAS: Record<
     //   face     pixabay.com/photos/beauty-354565    underarms pixabay.com/photos/sport-1685812
     //   arms-legs pixabay.com/photos/stretching-498256 bikini  pixabay.com/photos/girl-358768
     //   full-body pixabay.com/photos/girl-677576     touchups pixabay.com/photos/woman-586185
+    shortServiceImages: true,
     serviceImages: [
-      "/lp/lhr-face.jpg",
+      "/lp/lhr-face.webp",
       "/lp/lhr-underarms.jpg",
-      "/lp/lhr-arms-legs-2.jpg",
-      "/lp/lhr-bikini.jpg",
-      "/lp/lhr-full-body.jpg",
-      "/lp/lhr-touchups.jpg",
+      "/lp/vaser-arms.webp",
+      "/lp/lhr-legs.png",
+      "/lp/lhr-bikini.png",
+      "/treatments/deep-clense.webp",
     ],
     stickyLabel: "Book your laser consultation",
     stickyVariant: "green",
@@ -155,12 +158,12 @@ const PAGE_EXTRAS: Record<
     concernsCta: true,
     defaultConcern: "Acne / breakouts",
     serviceImages: [
-      "/treatments/acne-free-skin.webp",
-      "/treatments/pigmentation.webp",
+      "/treatments/acne.jpg",
+      "/treatments/glutathione-pigmentation.jpeg",
       "/treatments/scar.webp",
-      "/treatments/fine-line.webp",
-      "/treatments/bright-even.webp",
-      "/treatments/instant-glow.webp",
+      "/treatments/skin-aging.jpeg",
+      "/treatments/skin-rejuvenation.webp",
+      "/treatments/chemical-peel.jpeg",
     ],
     stickyLabel: "Book your skin consultation",
     stickyVariant: "green",
@@ -175,12 +178,11 @@ const PAGE_EXTRAS: Record<
     concernsCta: true,
     defaultConcern: "Dull skin / want a glow",
     serviceImages: [
-      "/treatments/smooth-texture.webp",
-      "/treatments/oil-control.webp",
+      "/treatments/deep-clense.webp",
       "/treatments/deep-hydration.webp",
-      "/treatments/acne-free-skin.webp",
-      "/treatments/even-toned.webp",
-      "/treatments/instant-glow.webp",
+      "/treatments/acne.jpg",
+      "/treatments/glutathione-pigmentation.jpeg",
+      "/treatments/skin-rejuvenation.webp",
     ],
     processImage: {
       src: "/lp/facial-massage.jpg",
@@ -198,11 +200,13 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Dull skin / want brightness",
+    fourColServices: true,
+    shortServiceImages: true,
     serviceImages: [
-      "/treatments/bright-even.webp",
-      "/treatments/even-toned.webp",
-      "/treatments/instant-glow.webp",
-      "/treatments/deep-hydration.webp",
+      "/treatments/glutathione-skin-brightening.webp",
+      "/treatments/glutathione-pigmentation.jpeg",
+      "/treatments/uneven.webp",
+      "/treatments/dull-and-tired.webp",
     ],
     stickyLabel: "Book your IV consultation",
     stickyVariant: "bronze",
@@ -227,7 +231,7 @@ const PAGE_EXTRAS: Record<
       "/lp/vaser-arms.webp",
       "/lp/vaser-thighs.jpg",
       "/lp/vaser-back.jpg",
-      "/lp/vaser-multi.jpg",
+      "/lp/vaser-body-contouring.png",
     ],
     processImage: {
       src: "/lp/surgeon.jpg",
@@ -484,7 +488,13 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             <p className="mt-4 text-base leading-relaxed text-gray-600">{page.services.intro}</p>
           </div>
 
-          <div className={`mt-12 grid gap-5 sm:grid-cols-2 ${extras.fourColServices ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+          <div
+            className={`mt-12 ${
+              page.services.items.length === 5
+                ? "flex flex-wrap justify-center gap-5"
+                : `grid gap-5 sm:grid-cols-2 ${extras.fourColServices ? "lg:grid-cols-4" : "lg:grid-cols-3"}`
+            }`}
+          >
             {page.services.items.map((item, i) => {
               const img = extras.serviceImages?.[i];
               const Icon = extras.serviceIcons?.[i];
@@ -492,10 +502,18 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 <a
                   key={item.name}
                   href="#book"
-                  className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className={`group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-xl ${
+                    page.services.items.length === 5
+                      ? "w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.85rem)] max-w-sm"
+                      : ""
+                  }`}
                 >
                   {img ? (
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div
+                      className={`relative overflow-hidden ${
+                        extras.shortServiceImages ? "aspect-[16/9.5]" : "aspect-[4/3]"
+                      }`}
+                    >
                       <Image
                         src={img}
                         alt={item.name}
@@ -543,19 +561,35 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           <p className="mt-5 text-base leading-relaxed text-white/75 sm:text-lg">{page.results.text}</p>
           {page.results.pairs.length > 0 ? (
             <>
-              <div className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-6">
+              <div
+                className={`mx-auto mt-12 flex flex-wrap justify-center gap-6 ${
+                  page.slug === "glutathione-treatment" ? "max-w-5xl" : "max-w-4xl"
+                }`}
+              >
                 {page.results.pairs.map((pair) => (
                   <figure
                     key={pair.label}
-                    className="w-full max-w-sm overflow-hidden rounded-[2rem] bg-white shadow-2xl sm:w-[calc(50%-0.75rem)]"
+                    className={`w-full overflow-hidden rounded-[2rem] bg-white shadow-2xl ${
+                      page.slug === "glutathione-treatment"
+                        ? "max-w-[270px] sm:max-w-[290px] sm:w-[calc(33.333%-1rem)]"
+                        : pair.before === pair.after
+                        ? "max-w-xs sm:max-w-sm sm:w-[calc(50%-0.75rem)]"
+                        : "max-w-sm sm:w-[calc(50%-0.75rem)]"
+                    }`}
                   >
                     {pair.before === pair.after ? (
-                      <div className="relative aspect-[4/5] overflow-hidden">
+                      <div
+                        className={`relative overflow-hidden bg-white ${
+                          pair.before.includes("glutathione") || pair.before.includes("vaser")
+                            ? "aspect-square"
+                            : "aspect-[2/1]"
+                        }`}
+                      >
                         <Image
                           src={pair.before}
                           alt={pair.label}
                           fill
-                          sizes="(min-width: 640px) 320px, calc(100vw - 48px)"
+                          sizes="(min-width: 640px) 384px, calc(100vw - 48px)"
                           className="object-cover"
                         />
                       </div>
@@ -735,7 +769,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span
-                  className="flex h-11 w-11 items-center justify-center rounded-full border-2 transition-colors group-hover:bg-[#8A7142] group-hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border-2"
                   style={{ borderColor: "#A88D5E", color: BRONZE_TEXT }}
                 >
                   <MapPin className="h-5 w-5" />
