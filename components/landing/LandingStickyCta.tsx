@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CalendarCheck, CheckCircle2, X } from "lucide-react";
 import { site } from "@/lib/site";
+import { locations } from "@/lib/data/locations";
 import { WhatsAppIcon } from "@/components/shared/BrandIcons";
 
 /**
@@ -11,7 +12,7 @@ import { WhatsAppIcon } from "@/components/shared/BrandIcons";
  *
  *  - "cta"   slim bar (label + note + BOOK NOW + ×) — slides down into view
  *  - "form"  tapping Book Now slides the bar down and a BOOKING SHEET up:
- *            centred white 2-line headline, stacked Name / Email / Mobile *
+ *            centred white 2-line headline, stacked Name / Mobile * / Clinic
  *            inputs and a black uppercase SUBMIT button (reference layout)
  *  - "done"  success message with a WhatsApp fallback inside the same sheet
  *
@@ -20,8 +21,8 @@ import { WhatsAppIcon } from "@/components/shared/BrandIcons";
  *  - KEYBOARD LIFT: while an input is focused, the whole bar rides ABOVE the
  *    on-screen keyboard (visualViewport-driven translateY), so the SUBMIT
  *    button is visible immediately when typing starts — no manual scrolling.
- *  - A one-time gentle page scroll-assist on first focus keeps context
- *    visible behind the raised sheet.
+ *    Focus-gated + thresholded so ordinary scrolling (iOS toolbar resizes)
+ *    never moves the bar.
  *
  * MOBILE HARDENING: fully opaque backgrounds, no backdrop-filter (iOS
  * hit-testing bug), compositing layer on the fixed wrapper, and
@@ -70,16 +71,10 @@ export default function LandingStickyCta({
   slug,
   label,
   variant = "green",
-  defaultConcern,
-  concerns,
 }: {
   slug?: string;
   label?: string;
   variant?: keyof typeof VARIANTS;
-  /** pre-fills the sheet's concern select (page-appropriate on some LPs) */
-  defaultConcern?: string;
-  /** the page's concern list — rendered as the sheet's dropdown options */
-  concerns?: string[];
 }) {
   const v = VARIANTS[variant];
   const headline = label ?? "Book your consultation";
@@ -87,43 +82,44 @@ export default function LandingStickyCta({
   const [mode, setMode] = useState<"cta" | "form" | "done">("cta");
   const [closing, setClosing] = useState<null | "bar" | "sheet">(null);
   const [closed, setClosed] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", concern: defaultConcern ?? "" });
-  const concernOptions = concerns ?? (defaultConcern ? [defaultConcern] : []);
+  const [form, setForm] = useState({ name: "", phone: "", clinic: "" });
   const [error, setError] = useState("");
 
   const kbRef = useRef<HTMLDivElement>(null);
-  const scrolledOnce = useRef(false);
 
-  /* ---- keyboard lift: keep the sheet above the on-screen keyboard ---- */
+  /* ---- keyboard lift: keep the sheet above the on-screen keyboard ----
+     GATED to when one of our own fields is focused. iOS fires vv resize/
+     scroll during ordinary scrolling too (toolbar show/hide), and while
+     those animate window.innerHeight and vv.height disagree briefly —
+     an ungated lift makes the bar float up mid-scroll and settle back
+     when scrolling stops. The 120px threshold ignores toolbar-sized
+     deltas entirely; real keyboards are far taller. */
   useEffect(() => {
     const vv = window.visualViewport;
     const el = kbRef.current;
     if (!vv || !el) return;
-    const lift = () => {
+
+    const apply = () => {
+      const focusInside = el.contains(document.activeElement);
       const overlap = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      el.style.transform = overlap > 0 ? `translateY(${-overlap}px)` : "";
+      el.style.transform = focusInside && overlap > 120 ? `translateY(${-overlap}px)` : "";
     };
-    vv.addEventListener("resize", lift);
-    vv.addEventListener("scroll", lift);
+
+    // Closing the keyboard doesn't always fire a final vv resize; re-check
+    // shortly after focus leaves the sheet so the transform can't stick.
+    const onFocusOut = () => window.setTimeout(apply, 0);
+
+    vv.addEventListener("resize", apply);
+    vv.addEventListener("scroll", apply);
+    el.addEventListener("focusout", onFocusOut);
     return () => {
-      vv.removeEventListener("resize", lift);
-      vv.removeEventListener("scroll", lift);
+      vv.removeEventListener("resize", apply);
+      vv.removeEventListener("scroll", apply);
+      el.removeEventListener("focusout", onFocusOut);
     };
   }, []);
 
-  /* First field focus: nudge the page once so there is content above the
-     raised sheet and the SUBMIT button lands in view the moment typing
-     starts (the lift above does the heavy lifting). */
-  const onFirstFocus = () => {
-    if (scrolledOnce.current) return;
-    scrolledOnce.current = true;
-    window.setTimeout(() => {
-      window.scrollBy({ top: 180, behavior: "smooth" });
-    }, 350);
-  };
-
   const openSheet = () => {
-    scrolledOnce.current = false;
     setError("");
     setMode("form");
   };
@@ -151,12 +147,12 @@ export default function LandingStickyCta({
       setError("Please tell us your name.");
       return;
     }
-    if (form.email && !/^\S+@\S+\.\S+$/.test(form.email)) {
-      setError("That email doesn't look right. Check it, or leave it empty.");
-      return;
-    }
     if (!/^[6-9]\d{9}$/.test(phone)) {
       setError("Enter a valid 10-digit mobile number.");
+      return;
+    }
+    if (!form.clinic) {
+      setError("Please choose a clinic.");
       return;
     }
     setError("");
@@ -169,12 +165,10 @@ export default function LandingStickyCta({
       body: JSON.stringify({
         event: "lead.created",
         source: `lp-${slug ?? "page"}-sticky-bar`,
-        clinic: "",
+        clinic: form.clinic,
         service: `${headline} — quick booking`,
         name: form.name.trim(),
         phone,
-        email: form.email.trim() || undefined,
-        concern: form.concern.trim() || undefined,
         at: new Date().toISOString(),
       }),
       keepalive: true,
@@ -254,19 +248,7 @@ export default function LandingStickyCta({
                     placeholder="Name"
                     className={sheetInput}
                     value={form.name}
-                    onFocus={onFirstFocus}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                  />
-                  <input
-                    aria-label="Email address"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="Email"
-                    className={sheetInput}
-                    value={form.email}
-                    onFocus={onFirstFocus}
-                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   />
                   <input
                     aria-label="Mobile number"
@@ -276,23 +258,23 @@ export default function LandingStickyCta({
                     placeholder="Mobile *"
                     className={sheetInput}
                     value={form.phone}
-                    onFocus={onFirstFocus}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                   />
                   <select
-                    aria-label="Your concern"
+                    aria-label="Preferred clinic"
                     className={`${sheetInput} appearance-none`}
-                    value={form.concern}
-                    onChange={(e) => setForm((f) => ({ ...f, concern: e.target.value }))}
+                    value={form.clinic}
+                    onChange={(e) => setForm((f) => ({ ...f, clinic: e.target.value }))}
                   >
                     <option value="" disabled>
-                      Select your concern
+                      Select your clinic *
                     </option>
-                    {concernOptions.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
+                    {locations.map((loc) => (
+                      <option key={loc.slug} value={loc.city}>
+                        {loc.city}
                       </option>
                     ))}
+                    <option value="Not sure, help me choose">Not sure, help me choose</option>
                   </select>
                 </div>
 
@@ -323,7 +305,8 @@ export default function LandingStickyCta({
                 </h2>
                 <p className={`mt-1.5 text-sm leading-relaxed ${v.sub}`}>
                   We&apos;ll call you on <strong className={v.title}>{form.phone}</strong> within 2
-                  hours to fix your appointment.
+                  hours to fix your appointment
+                  {form.clinic && form.clinic !== "Not sure, help me choose" ? ` at ${form.clinic}` : ""}.
                 </p>
                 <div className="mt-4 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
                   <a

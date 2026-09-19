@@ -763,9 +763,11 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {locations.map((loc) => (
-              <Link
+              <a
                 key={loc.slug}
-                href={`/clinics/${loc.slug}`}
+                href={loc.mapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span
@@ -788,9 +790,9 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                   className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold"
                   style={{ color: BRONZE_TEXT }}
                 >
-                  View clinic <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  View on Google Maps <ExternalLink className="h-3.5 w-3.5" />
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -806,7 +808,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </p>
 
       {/* sticky bottom bar — untouched per client instruction */}
-      <LandingStickyCta label={extras.stickyLabel} variant={extras.stickyVariant} defaultConcern={extras.defaultConcern} concerns={page.concerns} />
+      <LandingStickyCta label={extras.stickyLabel} variant={extras.stickyVariant} />
     </>
   );
 }
