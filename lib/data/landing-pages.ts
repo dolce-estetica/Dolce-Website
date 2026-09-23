@@ -254,8 +254,11 @@ export const landingPages: LandingPage[] = [
       heading: "Hair fall has a cause. We find it first.",
       subheading:
         "Thyroid, iron, post-delivery shedding or hereditary patterns. Our doctors diagnose the exact cause of your hair fall before treating it.",
-      image: "/lp/hair.jpg",
-      imageAlt: "Woman receiving a scalp and hair treatment at a salon clinic",
+      // Hero photo swapped to a South Indian hair-treatment scene (23 Sep 2026).
+      // UNDO: restore image "/lp/hair.jpg" and alt "Woman receiving a scalp and hair treatment at a salon clinic".
+      image: "/lp/hair-treatment-hero.webp",
+      imageAlt:
+        "Hair technician giving a seated South Indian woman a scalp and hair treatment at a clinic",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [

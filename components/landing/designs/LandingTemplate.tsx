@@ -27,7 +27,7 @@ import ConcernPicker from "../ConcernPicker";
 import GoogleReviewCard from "@/components/shared/GoogleReviewCard";
 import { ExternalLink } from "lucide-react";
 import LandingStickyCta from "../LandingStickyCta";
-import { LP_DISCLAIMER, ReviewCard, ReviewsFootnote, Stars, rotatedReviews } from "../kit";
+import { LP_DISCLAIMER, ReviewsFootnote, Stars, rotatedReviews } from "../kit";
 
 /**
  * CAMPAIGN TEMPLATE — the client's issue spec: a ditto copy of the reference
@@ -80,6 +80,18 @@ const PAGE_EXTRAS: Record<
     timelineProcess?: boolean;
     /** render service card images with a shorter aspect ratio */
     shortServiceImages?: boolean;
+    /**
+     * Responsive object-position classes for the hero photo, for banners
+     * whose subject is off-centre at phone crop widths (mobile-first:
+     * base class targets phones, larger breakpoints can re-centre).
+     */
+    heroImagePosition?: string;
+    /**
+     * Overrides the hero's min-height classes (default "min-h-[92svh]").
+     * A shorter phone hero zooms a landscape banner OUT, showing more of
+     * the image instead of a tight cover crop.
+     */
+    heroMinHeightClass?: string;
   }
 > = {
   "dermatology-clinic": {
@@ -112,6 +124,11 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Hair fall / shedding",
+    // Hero banner: on phones a 60svh hero shows ~43% of the image width,
+    // anchored at 63% — face intact on the left of the window, washing
+    // hands and foam filling the right. Desktop (lg) centres as usual.
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[63%_40%] lg:object-center",
     serviceImages: [
       "/treatments/hair-fall.webp",
       "/treatments/understanding-hair-thinning.jpg",
@@ -179,7 +196,7 @@ const PAGE_EXTRAS: Record<
     defaultConcern: "Dull skin / want a glow",
     serviceImages: [
       "/treatments/deep-clense.webp",
-      "/treatments/deep-hydration.webp",
+      "/treatments/hydrafacial-hydration.webp",
       "/treatments/acne.jpg",
       "/treatments/glutathione-pigmentation.jpeg",
       "/treatments/skin-rejuvenation.webp",
@@ -274,6 +291,22 @@ const WHY_PILLARS: { title: string; text: string; icon: typeof Stethoscope }[] =
   },
 ];
 
+/**
+ * Verified Google Business Profile links (maps?cid=…) for the four clinics.
+ * Unlike the hand-built name+coords URLs in locations.ts (mapsLink), which
+ * Google resolves as a *search* when the name doesn't match the listing —
+ * exactly what happens at Edappally, whose listing is "Medlounges Express -
+ * Skin and Hair Care Clinic" — a cid link always opens the exact profile
+ * page. CIDs resolved from each listing's public Maps data and cross-checked
+ * against the clinic coordinates/addresses on 22 Sep 2026.
+ */
+const GMB_PROFILE_LINKS: Record<string, string> = {
+  "edapally-kochi": "https://www.google.com/maps?cid=6698402131889718693",
+  cherthala: "https://www.google.com/maps?cid=14938211385420558108",
+  calicut: "https://www.google.com/maps?cid=14795562384658342585",
+  mangalore: "https://www.google.com/maps?cid=8732014371873302934",
+};
+
 export default function LandingTemplate({ page }: { page: LandingPage }) {
   const extras = PAGE_EXTRAS[page.slug];
   const reviews = rotatedReviews(page.slug);
@@ -341,7 +374,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </header>
 
       {/* ===== 1 — HERO: full-bleed photo, heavy scrim, centered stack ===== */}
-      <section className="relative isolate flex min-h-[92svh] items-center justify-center overflow-hidden">
+      <section className={`relative isolate flex items-center justify-center overflow-hidden ${extras.heroMinHeightClass ?? "min-h-[92svh]"}`}>
         <div className="absolute inset-0 -z-10">
           <Image
             src={page.hero.image}
@@ -349,7 +382,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className={`object-cover ${extras.heroImagePosition ?? ""}`}
           />
           <div
             aria-hidden
@@ -361,9 +394,10 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           />
         </div>
 
-        {/* floating header (MOBILE ONLY — scrolls away with the hero; desktop has a sticky header) */}
+        {/* floating header (MOBILE ONLY — logo only, scrolls away with the hero;
+            the Book Now CTA lives in the desktop sticky header + bottom bar) */}
         <header className="absolute inset-x-0 top-0 z-10 lg:hidden">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6">
             <Link href="/" aria-label="Dolce Estetica home" className="flex items-center">
               <Image
                 src="/assets/logo.webp"
@@ -374,13 +408,6 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 className="h-12 w-auto drop-shadow-md sm:h-14"
               />
             </Link>
-            <a
-              href="#book"
-              className="inline-flex items-center gap-2 rounded-full bg-[#8A7142] px-6 py-2.5 text-sm font-bold text-white shadow-lg transition-colors hover:bg-[#6E5930] sm:px-7 sm:py-3"
-            >
-              <CalendarCheck className="h-4 w-4" />
-              Book Now
-            </a>
           </div>
         </header>
 
@@ -706,13 +733,22 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 <Stars rating={5} className="h-5 w-5" />
                 <p className="text-sm font-bold text-gray-700">4.6 on Google · loved by patients across Kerala</p>
               </div>
-              <div
-                className={`mt-12 grid gap-5 ${reviews.length === 2 ? "mx-auto max-w-3xl md:grid-cols-2" : "md:grid-cols-3"
+              {/* Phones: one horizontally-scrollable, snap-aligned row (never stacked
+                  vertically); md+ keeps the page's original grid. */}
+              <div className="scrollbar-hide -mx-4 mt-12 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
+                <div
+                  className={`flex w-max snap-x gap-5 md:grid md:w-auto md:grid-cols-3 md:gap-5 ${
+                    reviews.length === 2 ? "md:mx-auto md:max-w-3xl md:grid-cols-2" : ""
                   }`}
-              >
-                {reviews.map((r) => (
-                  <ReviewCard key={r.author} review={r} />
-                ))}
+                >
+                  {reviews.map((r) => (
+                    <GoogleReviewCard
+                      key={r.author}
+                      review={r}
+                      className="w-[85vw] max-w-[360px] shrink-0 snap-center md:w-auto md:max-w-none"
+                    />
+                  ))}
+                </div>
               </div>
               <ReviewsFootnote />
             </>
@@ -765,7 +801,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             {locations.map((loc) => (
               <a
                 key={loc.slug}
-                href={loc.mapsLink}
+                href={GMB_PROFILE_LINKS[loc.slug] ?? loc.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-lg"
