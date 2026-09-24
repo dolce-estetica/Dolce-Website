@@ -733,19 +733,15 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 <Stars rating={5} className="h-5 w-5" />
                 <p className="text-sm font-bold text-gray-700">4.6 on Google · loved by patients across Kerala</p>
               </div>
-              {/* Phones: one horizontally-scrollable, snap-aligned row (never stacked
-                  vertically); md+ keeps the page's original grid. */}
-              <div className="scrollbar-hide -mx-4 mt-12 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
-                <div
-                  className={`flex w-max snap-x gap-5 md:grid md:w-auto md:grid-cols-3 md:gap-5 ${
-                    reviews.length === 2 ? "md:mx-auto md:max-w-3xl md:grid-cols-2" : ""
-                  }`}
-                >
+              {/* All viewports: one horizontally-scrollable, snap-aligned row —
+                  phones get near-full-width cards, sm+ fixed 380px cards. */}
+              <div className="scrollbar-hide -mx-4 mt-12 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
+                <div className="flex w-max snap-x gap-5">
                   {reviews.map((r) => (
                     <GoogleReviewCard
                       key={r.author}
                       review={r}
-                      className="w-[85vw] max-w-[360px] shrink-0 snap-center md:w-auto md:max-w-none"
+                      className="w-[85vw] max-w-[360px] shrink-0 snap-center sm:w-[380px] sm:max-w-none"
                     />
                   ))}
                 </div>
