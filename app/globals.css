@@ -141,8 +141,10 @@ textarea {
   }
 }
 
+/* Duration scales with the review count (was 45s for the original 3 reviews)
+   so the scroll speed per pixel stays the same as the list grows. */
 .animate-marquee {
-  animation: marquee 45s linear infinite;
+  animation: marquee 800s linear infinite;
 }
 
 .animate-marquee:hover {
