@@ -635,8 +635,11 @@ export const landingPages: LandingPage[] = [
       heading: "The facial that works while you watch.",
       subheading:
         "Deep cleansing, painless extraction and hydration in one session. Walk in dull, walk out glowing, with no downtime.",
-      image: "/gallery/aesthetic-art.jpg",
-      imageAlt: "Radiant, confident woman with healthy glowing skin after a facial treatment",
+      // Hero photo swapped to a South Indian HydraFacial treatment scene (24 Sep 2026).
+      // UNDO: restore image "/gallery/aesthetic-art.jpg" and alt "Radiant, confident woman with healthy glowing skin after a facial treatment".
+      image: "/lp/hydrafacial-hero.webp",
+      imageAlt:
+        "Therapist performing a HydraFacial with a serum handpiece on a relaxed South Indian patient in a bright clinic",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
@@ -880,8 +883,11 @@ export const landingPages: LandingPage[] = [
       heading: "Reshape what diet and gym won't move.",
       subheading:
         "VASER ultrasound targets stubborn fat on the abdomen, waist, arms, thighs and back. A surgical contouring procedure, planned by a surgeon who tells you honestly whether it is right for you.",
-      image: "/lp/vaser.jpg",
-      imageAlt: "Operating theatre prepared for a surgical body contouring procedure",
+      // Hero photo swapped to a body-contouring result shot (24 Sep 2026).
+      // UNDO: restore image "/lp/vaser.jpg" and alt "Operating theatre prepared for a surgical body contouring procedure".
+      image: "/lp/vaser-lipo-hero.webp",
+      imageAlt:
+        "Toned, contoured abdomen after body sculpting, photographed against a dark studio background",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [

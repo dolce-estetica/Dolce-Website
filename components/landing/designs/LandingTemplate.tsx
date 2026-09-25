@@ -148,6 +148,12 @@ const PAGE_EXTRAS: Record<
     defaultConcern: "Full body laser hair removal",
     timelineIcons: [ClipboardCheck, ShieldCheck, LineChart],
     hideHeroChips: true,
+    // Hero banner: the treatment action (handpiece on leg + feet) spans the
+    // middle-left of the source. A full-height phone hero shows only ~34% of
+    // its width; 60svh zooms out to ~51% and the anchor keeps feet + handpiece
+    // in frame. Desktop (lg) shows the whole scene centred.
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[45%_50%] lg:object-center",
     // Real photos for the six treated areas (Pixabay Content License — free
     // for commercial use, no attribution required). Sources:
     //   face     pixabay.com/photos/beauty-354565    underarms pixabay.com/photos/sport-1685812
@@ -194,6 +200,11 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Dull skin / want a glow",
+    // Hero banner is a 2048x768 panorama: patient's face + handpiece sit at
+    // ~58-75% of its width, so phones anchor there. A 60svh phone hero keeps
+    // the wide shot from becoming a razor-thin crop (zoom-out, mobile-first).
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[65%_50%] lg:object-center",
     serviceImages: [
       "/treatments/deep-clense.webp",
       "/treatments/hydrafacial-hydration.webp",
@@ -219,6 +230,11 @@ const PAGE_EXTRAS: Record<
     defaultConcern: "Dull skin / want brightness",
     fourColServices: true,
     shortServiceImages: true,
+    // Hero banner: the veiled face sits in the right half (pure black left).
+    // The default phone crop landed almost entirely on the black zone, so
+    // anchor onto the face and zoom out via the shorter phone hero.
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[74%_50%] lg:object-center",
     serviceImages: [
       "/treatments/glutathione-skin-brightening.webp",
       "/treatments/glutathione-pigmentation.jpeg",
@@ -237,6 +253,9 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Abdomen / belly fat",
+    // Hero banner: the contoured torso sits in the right half of the source
+    // (dark studio backdrop on the left), so phones anchor onto the subject.
+    heroImagePosition: "object-[72%_50%] lg:object-center",
     // Real photos for the six contour areas (Pixabay Content License — free
     // for commercial use, no attribution required). Sources:
     //   abdomen  pixabay.com/photos/belly-2354      waist  pixabay.com/photos/belly-2473
