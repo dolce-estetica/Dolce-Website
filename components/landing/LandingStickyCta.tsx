@@ -192,14 +192,11 @@ export default function LandingStickyCta({
       <div
         className={`border-t border-white/10 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.25)] sm:px-6 ${v.bar} ${closing === "bar" ? "lp-slide-up-out" : "lp-slide-down-in"}`}
       >
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
-            <p className={`min-w-0 flex-1 truncate text-sm font-bold sm:text-base ${v.title}`}>
-              Book a free doctor consult
-            </p>
+          <div className="relative mx-auto flex max-w-6xl items-center justify-center gap-3">
             <button
               type="button"
               onClick={openSheet}
-              className={`inline-flex flex-none touch-manipulation items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold whitespace-nowrap shadow-lg transition-colors sm:px-8 ${v.btn}`}
+              className={`inline-flex flex-none touch-manipulation items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-bold whitespace-nowrap shadow-lg transition-colors sm:px-10 ${v.btn}`}
             >
               <CalendarCheck className="h-4 w-4" />
               Book Now
@@ -208,7 +205,7 @@ export default function LandingStickyCta({
               type="button"
               onClick={dismissBar}
               aria-label="Close booking bar"
-              className={`flex h-10 w-10 flex-none touch-manipulation items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10 ${v.title}`}
+              className={`absolute right-0 flex h-10 w-10 flex-none touch-manipulation items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10 ${v.title}`}
             >
               <X className="h-4 w-4" />
             </button>
