@@ -324,7 +324,9 @@ const WHY_PILLARS: { title: string; text: string; icon: typeof Stethoscope }[] =
  * against the clinic coordinates/addresses on 22 Sep 2026.
  */
 const GMB_PROFILE_LINKS: Record<string, string> = {
-  "edapally-kochi": "https://www.google.com/maps?cid=6698402131889718693",
+  // Edapally: client-provided official GMB share link (resolves to the
+  // "Medlounges Express Edapally" listing on NH 66).
+  "edapally-kochi": "https://maps.app.goo.gl/Xbh9TLq98YWkSSKYA?g_st=ic",
   cherthala: "https://www.google.com/maps?cid=14938211385420558108",
   calicut: "https://www.google.com/maps?cid=14795562384658342585",
   mangalore: "https://www.google.com/maps?cid=8732014371873302934",
