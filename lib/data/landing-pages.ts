@@ -135,8 +135,10 @@ export const landingPages: LandingPage[] = [
       heading: "Your skin deserves a specialist, not a guess.",
       subheading:
         "Acne, pigmentation, hair fall or anything else that bothers your skin, examined and explained properly by a dermatologist before any treatment.",
-      image: "/gallery/clinic-excellence.jpg",
-      imageAlt: "Dermatologist gently performing a skin treatment on a relaxed patient at Dolce Estetica",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/gallery/clinic-excellence.jpg" and alt "Dermatologist gently performing a skin treatment on a relaxed patient at Dolce Estetica".
+      image: "/lp/dermatology-hero.jpg",
+      imageAlt: "Woman with clear, glowing skin touching her cheek in warm sunlight",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
@@ -254,11 +256,10 @@ export const landingPages: LandingPage[] = [
       heading: "Hair fall has a cause. We find it first.",
       subheading:
         "Thyroid, iron, post-delivery shedding or hereditary patterns. Our doctors diagnose the exact cause of your hair fall before treating it.",
-      // Hero photo swapped to a South Indian hair-treatment scene (23 Sep 2026).
-      // UNDO: restore image "/lp/hair.jpg" and alt "Woman receiving a scalp and hair treatment at a salon clinic".
-      image: "/lp/hair-treatment-hero.webp",
-      imageAlt:
-        "Hair technician giving a seated South Indian woman a scalp and hair treatment at a clinic",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/lp/hair-treatment-hero.webp" and alt "Hair technician giving a seated South Indian woman a scalp and hair treatment at a clinic".
+      image: "/lp/hair-treatment-hero.jpg",
+      imageAlt: "Man parting his hair with both hands to examine his scalp and hairline",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
@@ -383,8 +384,10 @@ export const landingPages: LandingPage[] = [
       heading: "Smooth skin, without the weekly routine.",
       subheading:
         "Laser hair reduction for the face, underarms, arms, legs, bikini area or full body, planned by a doctor and always starting with a patch test.",
-      image: "/lp/lhr.jpg",
-      imageAlt: "Practitioner performing laser hair removal with a handpiece",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/lp/lhr.jpg" and alt "Practitioner performing laser hair removal with a handpiece".
+      image: "/lp/laser-hair-removal-hero.jpg",
+      imageAlt: "Therapist in gloves gliding a laser hair removal handpiece over a client's lower leg",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [

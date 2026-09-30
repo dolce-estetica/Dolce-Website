@@ -92,12 +92,27 @@ const PAGE_EXTRAS: Record<
      * the image instead of a tight cover crop.
      */
     heroMinHeightClass?: string;
+    /**
+     * Phone-only hero compaction: tighter paddings and one-step-smaller
+     * hero type, so the text stack stops forcing the section taller than
+     * its min-height. With object-cover the section height IS the zoom,
+     * so this lets a landscape banner zoom further OUT on phones.
+     * sm+ restores the standard hero sizes and spacings.
+     */
+    compactMobileHero?: boolean;
   }
 > = {
   "dermatology-clinic": {
     kicker: "Safe • Effective • Dermatologist supervised",
     timelineProcess: true,
     timelineIcons: [Stethoscope, Microscope, ClipboardCheck],
+    // Hero banner (1600x900): the face sits on the right (~75% of the width),
+    // sunlit wall + plant on the left. Phones show only ~43% of a 16:9
+    // image's width at 60svh, so zoom out and anchor onto the face. Desktop
+    // keeps the full scene but biases up a little so the wide 2.2:1 crop
+    // doesn't trim her hairline.
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[75%_50%] lg:object-[50%_38%]",
     // Real South Indian imagery: our own dermatologist at work, the brand
     // glow portrait, and a shirodhara scalp photo (Pixabay where noted).
     serviceImages: [
@@ -124,11 +139,13 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Hair fall / shedding",
-    // Hero banner: on phones a 60svh hero shows ~43% of the image width,
-    // anchored at 63% — face intact on the left of the window, washing
-    // hands and foam filling the right. Desktop (lg) centres as usual.
+    // Hero banner (1600x900): the man examining his scalp sits on the LEFT
+    // (~28% of the width), empty wall on the right. Phones show only ~43% of
+    // a 16:9 image's width at 60svh, so anchor onto the head. Desktop (lg)
+    // shows the whole scene but biases up so the raised hands and hairline
+    // survive the wide crop.
     heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
-    heroImagePosition: "object-[63%_40%] lg:object-center",
+    heroImagePosition: "object-[30%_50%] lg:object-[50%_32%]",
     serviceImages: [
       "/treatments/hair-fall.webp",
       "/treatments/understanding-hair-thinning.jpg",
@@ -148,12 +165,16 @@ const PAGE_EXTRAS: Record<
     defaultConcern: "Full body laser hair removal",
     timelineIcons: [ClipboardCheck, ShieldCheck, LineChart],
     hideHeroChips: true,
-    // Hero banner: the treatment action (handpiece on leg + feet) spans the
-    // middle-left of the source. A full-height phone hero shows only ~34% of
-    // its width; 60svh zooms out to ~51% and the anchor keeps feet + handpiece
-    // in frame. Desktop (lg) shows the whole scene centred.
-    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
-    heroImagePosition: "object-[45%_50%] lg:object-center",
+    // Hero banner (1600x900): the treatment action (handpiece on the lower
+    // leg + gloved hands) sits on the RIGHT (~70% of the width), legs cross
+    // the left half. Phones show only ~43% of a 16:9 image's width at 60svh,
+    // so anchor onto the handpiece — and compactMobileHero trims the phone
+    // text stack (which, not the min-height, sets the section height) so the
+    // banner zooms out a little further. Desktop (lg) shows the whole scene
+    // centred at the standard hero size.
+    heroMinHeightClass: "min-h-[52svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[70%_50%] lg:object-center",
+    compactMobileHero: true,
     // Real photos for the six treated areas (Pixabay Content License — free
     // for commercial use, no attribution required). Sources:
     //   face     pixabay.com/photos/beauty-354565    underarms pixabay.com/photos/sport-1685812
@@ -334,6 +355,7 @@ const GMB_PROFILE_LINKS: Record<string, string> = {
 
 export default function LandingTemplate({ page }: { page: LandingPage }) {
   const extras = PAGE_EXTRAS[page.slug];
+  const compactHero = extras.compactMobileHero ?? false;
   const reviews = rotatedReviews(page.slug);
   const isMedlounges = page.brand === "medlounges";
 
@@ -436,19 +458,20 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           </div>
         </header>
 
-        {/* centered content stack */}
-        <div className="mx-auto max-w-3xl px-4 pt-24 pb-16 text-center sm:px-6">
+        {/* centered content stack — compactHero tightens phones only so the
+            banner (not the copy) sets the crop; sm+ is the standard hero */}
+        <div className={`mx-auto max-w-3xl px-4 text-center sm:px-6 ${compactHero ? "pb-10 pt-20 sm:pb-16 sm:pt-24" : "pb-16 pt-24"}`}>
           <p className="text-xs font-extrabold tracking-[0.3em] uppercase sm:text-sm" style={{ color: SAND }}>
             {extras.kicker}
           </p>
-          <h1 className="mt-4 font-display text-4xl leading-[1.06] font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className={`font-display leading-[1.06] font-extrabold tracking-tight text-white lg:text-6xl ${compactHero ? "mt-3 text-3xl sm:mt-4 sm:text-5xl" : "mt-4 text-4xl sm:text-5xl"}`}>
             {page.hero.heading}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+          <p className={`mx-auto max-w-2xl leading-relaxed text-white/80 ${compactHero ? "mt-4 text-sm sm:mt-5 sm:text-lg" : "mt-5 text-base sm:text-lg"}`}>
             {page.hero.subheading}
           </p>
 
-          <div className="mt-8 flex justify-center">
+          <div className={`flex justify-center ${compactHero ? "mt-6 sm:mt-8" : "mt-8"}`}>
             <a
               href="#book"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#8A7142] px-9 py-4 text-sm font-extrabold text-white shadow-xl transition-colors hover:bg-[#6E5930] sm:w-auto sm:text-base"
