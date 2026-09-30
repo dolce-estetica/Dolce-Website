@@ -225,11 +225,13 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Dull skin / want a glow",
-    // Hero banner is a 2048x768 panorama: patient's face + handpiece sit at
-    // ~58-75% of its width, so phones anchor there. A 60svh phone hero keeps
-    // the wide shot from becoming a razor-thin crop (zoom-out, mobile-first).
+    // Hero banner (1536x1024, 3:2): the handpiece-on-cheek action sits at
+    // ~42-56% of the width, the patient's face at ~50-65% and the therapist's
+    // at ~67-77% — the whole treatment band fits the ~49% phone window
+    // anchored at 60%. Desktop (lg) biases up so wide crops keep the
+    // therapist's face (she stands high in the frame).
     heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
-    heroImagePosition: "object-[65%_50%] lg:object-center",
+    heroImagePosition: "object-[60%_50%] lg:object-[50%_30%]",
     serviceImages: [
       "/treatments/deep-clense.webp",
       "/treatments/hydrafacial-hydration.webp",
@@ -255,11 +257,14 @@ const PAGE_EXTRAS: Record<
     defaultConcern: "Dull skin / want brightness",
     fourColServices: true,
     shortServiceImages: true,
-    // Hero banner: the veiled face sits in the right half (pure black left).
-    // The default phone crop landed almost entirely on the black zone, so
-    // anchor onto the face and zoom out via the shorter phone hero.
+    // Hero banner (1536x1024, 3:2): the patient's face sits top-centre-right
+    // (~66% of the width) and the nurse inserting the IV line at ~78-95%,
+    // quiet sunlit wall on the left. Phones show only ~49% of a 3:2 image's
+    // width at 60svh, so anchor at 75% to keep the face AND the IV action.
+    // Desktop (lg) biases up hard — wide 2.2:1 crops show just ~68% of the
+    // height, and her face sits in the top third of the source.
     heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
-    heroImagePosition: "object-[74%_50%] lg:object-center",
+    heroImagePosition: "object-[90%_50%] lg:object-[50%_25%]",
     serviceImages: [
       "/treatments/glutathione-skin-brightening.webp",
       "/treatments/glutathione-pigmentation.jpeg",
@@ -278,9 +283,13 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Abdomen / belly fat",
-    // Hero banner: the contoured torso sits in the right half of the source
-    // (dark studio backdrop on the left), so phones anchor onto the subject.
-    heroImagePosition: "object-[72%_50%] lg:object-center",
+    // Hero banner (1600x900): the contoured torso sits on the right (~68%
+    // of the width), quiet sunlit wall with plant shadows on the left.
+    // Phones show only ~43% of a 16:9 image's width at 60svh, so zoom out
+    // and anchor onto the waistline; desktop (lg) shows the whole scene
+    // centred at the standard hero size.
+    heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
+    heroImagePosition: "object-[68%_50%] lg:object-center",
     // Real photos for the six contour areas (Pixabay Content License — free
     // for commercial use, no attribution required). Sources:
     //   abdomen  pixabay.com/photos/belly-2354      waist  pixabay.com/photos/belly-2473

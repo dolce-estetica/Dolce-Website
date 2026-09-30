@@ -638,11 +638,11 @@ export const landingPages: LandingPage[] = [
       heading: "The facial that works while you watch.",
       subheading:
         "Deep cleansing, painless extraction and hydration in one session. Walk in dull, walk out glowing, with no downtime.",
-      // Hero photo swapped to a South Indian HydraFacial treatment scene (24 Sep 2026).
-      // UNDO: restore image "/gallery/aesthetic-art.jpg" and alt "Radiant, confident woman with healthy glowing skin after a facial treatment".
-      image: "/lp/hydrafacial-hero.webp",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/lp/hydrafacial-hero.webp" and alt "Therapist performing a HydraFacial with a serum handpiece on a relaxed South Indian patient in a bright clinic".
+      image: "/lp/hydrafacial-hero.jpg",
       imageAlt:
-        "Therapist performing a HydraFacial with a serum handpiece on a relaxed South Indian patient in a bright clinic",
+        "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
@@ -765,8 +765,11 @@ export const landingPages: LandingPage[] = [
       heading: "Brightness that starts in the bloodstream.",
       subheading:
         "The body's own master antioxidant, delivered by IV drip under a doctor's supervision, as part of a plan that treats the cause of your dullness.",
-      image: "/assets/about.webp",
-      imageAlt: "Soft, luminous skin after a glow treatment, the radiance glutathione therapy aims for",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/assets/about.webp" and alt "Soft, luminous skin after a glow treatment, the radiance glutathione therapy aims for".
+      image: "/lp/glutathione-treatment-hero.jpg",
+      imageAlt:
+        "Woman reclining in a clinic chair receiving a glutathione IV drip while a nurse inserts the line",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
@@ -886,11 +889,11 @@ export const landingPages: LandingPage[] = [
       heading: "Reshape what diet and gym won't move.",
       subheading:
         "VASER ultrasound targets stubborn fat on the abdomen, waist, arms, thighs and back. A surgical contouring procedure, planned by a surgeon who tells you honestly whether it is right for you.",
-      // Hero photo swapped to a body-contouring result shot (24 Sep 2026).
-      // UNDO: restore image "/lp/vaser.jpg" and alt "Operating theatre prepared for a surgical body contouring procedure".
-      image: "/lp/vaser-lipo-hero.webp",
+      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
+      // UNDO: restore image "/lp/vaser-lipo-hero.webp" and alt "Toned, contoured abdomen after body sculpting, photographed against a dark studio background".
+      image: "/lp/vaser-liposuction-hero.jpg",
       imageAlt:
-        "Toned, contoured abdomen after body sculpting, photographed against a dark studio background",
+        "Woman's toned, contoured waistline and abdomen in warm studio light",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [
