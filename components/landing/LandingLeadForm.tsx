@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CalendarCheck, CheckCircle2, Mail, Phone, User } from "lucide-react";
 import type { LandingPage } from "@/lib/data/landing-pages";
 import { locations } from "@/lib/data/locations";
 import { site } from "@/lib/site";
+import { captureUtm } from "@/lib/utm";
 import { WhatsAppIcon } from "@/components/shared/BrandIcons";
 
 const fieldClass =
@@ -40,6 +41,13 @@ export default function LandingLeadForm({
   const [form, setForm] = useState({ name: "", phone: "", email: "", concern: defaultConcern ?? "", clinic: "" });
   const [submitted, setSubmitted] = useState(false);
 
+  // Bank the ad tags the moment the visitor lands, so a lead submitted from
+  // any of the seven pages still carries the campaign even after the visitor
+  // navigates somewhere whose URL no longer has the parameters.
+  useEffect(() => {
+    captureUtm();
+  }, []);
+
   const set = (key: keyof typeof form) => (value: string) =>
     setForm((f) => ({ ...f, [key]: value }));
 
@@ -58,6 +66,10 @@ export default function LandingLeadForm({
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Attribution: UTMs/gclid from the ad URL (or this session's first touch)
+    // ride along so the CRM can tie the lead back to its campaign. The
+    // customer-facing WhatsApp message deliberately stays free of tracking.
+    const utm = captureUtm();
     fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,6 +82,13 @@ export default function LandingLeadForm({
         phone: form.phone,
         email: form.email || undefined,
         at: new Date().toISOString(),
+        utm_source: utm.source,
+        utm_medium: utm.medium,
+        utm_campaign: utm.campaign,
+        utm_term: utm.term,
+        utm_content: utm.content,
+        gclid: utm.gclid,
+        fbclid: utm.fbclid,
       }),
       keepalive: true,
     }).catch(() => {});
