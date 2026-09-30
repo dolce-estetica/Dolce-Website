@@ -20,8 +20,9 @@ import { site } from "@/lib/site";
  *   hair-treatment      amber   root-cause hair care, warm bronze
  *   laser-hair-removal  mint    LIGHT theme (the old dark studio is retired)
  * All nine Excel sections + anchors (#book #why #services #doctors #results
- * #testimonials #faq) are present on every page. Deliberately NOT listed in
- * the sitemap — same policy as /hair-fall-consultation.
+ * #testimonials #faq) are present on every page. Listed in the sitemap at
+ * 0.9 priority — they are indexed (robots meta below) and sitemap is their
+ * only non-paid discovery path.
  */
 const DESIGNS: Record<string, ComponentType<{ page: LandingPage }>> = Object.fromEntries(
   landingPages.map((p) => [p.slug, LandingTemplate]),
@@ -81,8 +82,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: imageUrl,
-          width: 1200,
-          height: 630,
           alt: page.hero.imageAlt,
         },
       ],
@@ -115,6 +114,7 @@ export default async function LandingPageRoute({ params }: Props) {
     url: pageUrl,
     name: page.metaTitle,
     description: page.metaDescription,
+    image: `https://dolceestetica.com${page.hero.image}`,
     aspect: ["Overview", "Diagnosis", "Treatment", "Results", "FAQ"],
     medicalAudience: "Patient",
     specialty: page.slug === "vaser-liposuction" ? "PlasticSurgery" : "Dermatology",
