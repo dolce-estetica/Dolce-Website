@@ -10,8 +10,8 @@ export const site = {
   whatsappHref:
     "https://wa.me/917994455019?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Dolce%20Estetica%20services.",
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Dolce+Estetica",
-  /** GA4 measurement ID. Empty string disables analytics entirely. */
-  gaMeasurementId: "G-13ENHXGKHB",
+  /** GTM container ID. All tags (incl. GA4) are managed inside the container. Empty string disables it. */
+  gtmContainerId: "GTM-WFWG52WD",
   social: {
     facebook: "https://www.facebook.com/dolceesteticaclinic/",
     twitter: "#",
