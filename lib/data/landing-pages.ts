@@ -507,8 +507,11 @@ export const landingPages: LandingPage[] = [
       heading: "Skin concerns treated in the right order.",
       subheading:
         "Acne before scars, diagnosis before fading, assessment before lines. Every skin concern treated in the right order by a dermatologist.",
-      image: "/lp/skin.jpg",
-      imageAlt: "Woman receiving a facial skin treatment",
+      // Hero photo swapped to the client's 2026 banner set (1 Oct 2026).
+      // UNDO: restore image "/lp/skin.jpg" and alt "Woman receiving a facial skin treatment".
+      image: "/lp/skin-treatments-hero.jpg",
+      imageAlt:
+        "Woman with clear, glowing skin touching her cheek against a soft beige wall",
       trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
     },
     impact: [

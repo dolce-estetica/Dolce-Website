@@ -201,10 +201,13 @@ const PAGE_EXTRAS: Record<
     hideHeroChips: true,
     concernsCta: true,
     defaultConcern: "Acne / breakouts",
-    // Hero banner: the face sits in the right half (hair + bedding on the
-    // left), so phones anchor onto the face; 60svh zooms the crop out.
+    // Hero banner (1536x1024, 3:2): the face sits on the right (~55-85% of
+    // the width, high in the frame), soft wall + blurred plant on the left.
+    // Phones show only ~49% of a 3:2 image's width at 60svh, so anchor onto
+    // the face; desktop (lg) biases up hard — wide 2.2:1 crops show just
+    // ~68% of the height and her face fills the top half.
     heroMinHeightClass: "min-h-[60svh] sm:min-h-[92svh]",
-    heroImagePosition: "object-[72%_50%] lg:object-center",
+    heroImagePosition: "object-[68%_50%] lg:object-[50%_25%]",
     serviceImages: [
       "/treatments/acne.jpg",
       "/treatments/glutathione-pigmentation.jpeg",
