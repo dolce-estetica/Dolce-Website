@@ -23,6 +23,8 @@ export const metadata: Metadata = {
   description:
     "Hair fall has many causes — thyroid, iron levels, post-delivery changes and hereditary patterns all look similar. A doctor-led consultation finds yours before anything is suggested. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
   alternates: { canonical: "https://dolceestetica.com/hair-fall-consultation" },
+  // Google Ads landing page — paid traffic only, must never rank organically.
+  robots: { index: false, follow: true },
 };
 
 const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(

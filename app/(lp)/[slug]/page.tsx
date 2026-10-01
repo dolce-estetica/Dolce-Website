@@ -20,9 +20,9 @@ import { site } from "@/lib/site";
  *   hair-treatment      amber   root-cause hair care, warm bronze
  *   laser-hair-removal  mint    LIGHT theme (the old dark studio is retired)
  * All nine Excel sections + anchors (#book #why #services #doctors #results
- * #testimonials #faq) are present on every page. Listed in the sitemap at
- * 0.9 priority — they are indexed (robots meta below) and sitemap is their
- * only non-paid discovery path.
+ * #testimonials #faq) are present on every page. Paid-traffic only: robots
+ * meta below is noindex, follow — these pages must never rank organically —
+ * so they are deliberately kept out of the sitemap as well.
  */
 const DESIGNS: Record<string, ComponentType<{ page: LandingPage }>> = Object.fromEntries(
   landingPages.map((p) => [p.slug, LandingTemplate]),
@@ -62,10 +62,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords,
     alternates: { canonical: pageUrl },
     robots: {
-      index: true,
+      index: false,
       follow: true,
       googleBot: {
-        index: true,
+        index: false,
         follow: true,
         "max-image-preview": "large",
         "max-snippet": -1,
