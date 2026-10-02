@@ -2,7 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import FloatingActions from "@/components/layout/FloatingActions";
-import GoogleTagManager from "@/components/analytics/GoogleTagManager";
+import {
+  getGoogleTagManagerHeadHtml,
+  GoogleTagManagerNoscript,
+} from "@/components/analytics/GoogleTagManager";
 
 /**
  * Both families are variable fonts. Pinning explicit weights made next/font download a
@@ -61,9 +64,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head dangerouslySetInnerHTML={getGoogleTagManagerHeadHtml()} />
       <body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>
         {/* GTM noscript iframe must sit immediately after the opening <body> tag. */}
-        <GoogleTagManager />
+        <GoogleTagManagerNoscript />
         {children}
         <FloatingActions />
       </body>
