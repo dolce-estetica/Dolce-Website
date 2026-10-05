@@ -16,7 +16,7 @@ const LP_SLUGS = [
 
 const nextConfig: NextConfig = {
 
-
+  allowedDevOrigins: ['tumbling-hurray-clamshell.ngrok-free.dev'],
 
   async redirects() {
     return LP_SLUGS.map((slug) => ({
