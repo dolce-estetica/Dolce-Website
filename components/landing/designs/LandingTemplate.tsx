@@ -779,10 +779,15 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
-              <div className="scrollbar-hide -mx-4 mt-12 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
-                <div className="flex w-max snap-x gap-6">
+              <div className="scrollbar-hide -mx-4 mt-8 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-12 sm:px-0">
+                <div className="flex w-max snap-x items-start gap-4 sm:items-stretch sm:gap-6">
                   {reviews.map((r) => (
-                    <GoogleReviewCard key={r.author} review={r} />
+                    <GoogleReviewCard
+                      key={r.author}
+                      review={r}
+                      compactMobile
+                      className="w-[85vw] max-w-[300px] shrink-0 snap-center sm:w-[380px] sm:max-w-none"
+                    />
                   ))}
                 </div>
               </div>
@@ -793,15 +798,15 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 <Stars rating={5} className="h-5 w-5" />
                 <p className="text-sm font-bold text-gray-700">4.6 on Google · loved by patients across Kerala</p>
               </div>
-              {/* All viewports: one horizontally-scrollable, snap-aligned row —
-                  phones get near-full-width cards, sm+ fixed 380px cards. */}
-              <div className="scrollbar-hide -mx-4 mt-12 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
-                <div className="flex w-max snap-x gap-5">
+              {/* Compact phone cards; preserve the existing 380px cards at sm+. */}
+              <div className="scrollbar-hide -mx-4 mt-8 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-12 sm:px-0">
+                <div className="flex w-max snap-x items-start gap-4 sm:items-stretch sm:gap-5">
                   {reviews.map((r) => (
                     <GoogleReviewCard
                       key={r.author}
                       review={r}
-                      className="w-[85vw] max-w-[360px] shrink-0 snap-center sm:w-[380px] sm:max-w-none"
+                      compactMobile
+                      className="w-[85vw] max-w-[300px] shrink-0 snap-center sm:w-[380px] sm:max-w-none"
                     />
                   ))}
                 </div>
@@ -900,7 +905,13 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </p>
 
       {/* sticky bottom bar — untouched per client instruction */}
-      <LandingStickyCta label={extras.stickyLabel} variant={extras.stickyVariant} />
+      <LandingStickyCta
+        slug={page.slug}
+        label={extras.stickyLabel}
+        variant={extras.stickyVariant}
+        concerns={page.concerns}
+        defaultConcern={extras.defaultConcern}
+      />
     </>
   );
 }

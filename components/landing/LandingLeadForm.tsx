@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { CalendarCheck, Mail, Phone, User } from "lucide-react";
 import type { LandingPage } from "@/lib/data/landing-pages";
 import { locations } from "@/lib/data/locations";
-import { site } from "@/lib/site";
 import { captureUtm } from "@/lib/utm";
 
 const fieldClass =
@@ -22,11 +21,11 @@ const labelClass = "mb-2 block text-sm font-medium text-gray-700";
  * background) via components/landing/kit.tsx, so the designs can differ
  * while the capture behaviour stays identical everywhere.
  *
- * Submission mirrors app/booking/BookingForm.tsx: the lead is captured in the
- * CMO Brain (n8n CRM bridge) first, then handed off to WhatsApp so nothing is
- * lost even if WhatsApp is never completed. The visitor is then redirected to
- * /thank-you — a dedicated conversion URL whose pageview fires the GTM lead
- * trigger (an inline message cannot be measured that way).
+ * The lead is captured by the CRM via our own server proxy (/api/lead-intake
+ * → crm.dolceestetica.com — the CRM has no CORS and its API key must never
+ * reach the browser), then the visitor is redirected to /thank-you — a
+ * dedicated conversion URL whose pageview fires the GTM lead trigger (an
+ * inline message cannot be measured that way).
  */
 export default function LandingLeadForm({
   page,
@@ -38,7 +37,6 @@ export default function LandingLeadForm({
   /** pre-selected concern (page-appropriate default on some LPs) */
   defaultConcern?: string;
 }) {
-  const isSurgical = page.brand === "medlounges";
   const [form, setForm] = useState({ name: "", phone: "", email: "", concern: defaultConcern ?? "", clinic: "" });
 
   // Bank the ad tags the moment the visitor lands, so a lead submitted from
@@ -51,55 +49,49 @@ export default function LandingLeadForm({
   const set = (key: keyof typeof form) => (value: string) =>
     setForm((f) => ({ ...f, [key]: value }));
 
-  const waMessage = () => {
-    const lines = [
-      `Hello ${isSurgical ? "MedLounges" : "Dolce Estetica"}, I would like to book a consultation for ${page.name.toLowerCase()}.`,
-      "",
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      form.email ? `Email: ${form.email}` : "",
-      `Primary concern: ${form.concern}`,
-      `Preferred clinic: ${form.clinic}`,
-    ].filter(Boolean);
-    return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
-  };
-
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     // Attribution: UTMs/gclid from the ad URL (or this session's first touch)
     // ride along so the CRM can tie the lead back to its campaign. The
     // customer-facing WhatsApp message deliberately stays free of tracking.
     const utm = captureUtm();
-    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+    const leadPayload = {
+      event: "lead.created",
+      source: `lp-${page.slug}`,
+      slug: page.slug,
+      pageName: page.name,
+      concern: form.concern,
+      clinic: form.clinic,
+      service: `${page.name} — ${form.concern}`,
+      name: form.name,
+      phone: form.phone,
+      email: form.email || undefined,
+      at: new Date().toISOString(),
+      utm_source: utm.source,
+      utm_medium: utm.medium,
+      utm_campaign: utm.campaign,
+      utm_term: utm.term,
+      utm_content: utm.content,
+      gclid: utm.gclid,
+      fbclid: utm.fbclid,
+    };
+
+    // Fire-and-forget: the CRM has no CORS and its API key must never reach
+    // the browser, so the capture goes through our own server proxy. A proxy
+    // failure is logged server-side and must not block the redirect below.
+    fetch("/api/lead-intake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: "lead.created",
-        source: `lp-${page.slug}`,
-        clinic: form.clinic,
-        service: `${page.name} — ${form.concern}`,
-        name: form.name,
-        phone: form.phone,
-        email: form.email || undefined,
-        at: new Date().toISOString(),
-        utm_source: utm.source,
-        utm_medium: utm.medium,
-        utm_campaign: utm.campaign,
-        utm_term: utm.term,
-        utm_content: utm.content,
-        gclid: utm.gclid,
-        fbclid: utm.fbclid,
-      }),
+      body: JSON.stringify(leadPayload),
       keepalive: true,
     }).catch(() => {});
 
-    // WhatsApp handoff opens inside the click's own task (the only window
-    // popup blockers always allow), then the hard navigation to /thank-you
-    // gives GTM a clean pageview on the dedicated conversion URL.
-    window.open(waMessage(), "_blank", "noopener,noreferrer");
+    // Marks the visit so the /thank-you middleware lets it through (the
+    // intake proxy sets an httpOnly twin server-side as well).
+    document.cookie = "lp_lead_ok=1; Path=/; Max-Age=1800; SameSite=Lax";
     //
     // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- a full page load (not a history push) guarantees the GTM pageview on /thank-you regardless of how the container's triggers are configured
-    window.location.assign("/thank-you");
+    window.location.assign(`/thank-you?p=${page.slug}`);
   };
 
   return (

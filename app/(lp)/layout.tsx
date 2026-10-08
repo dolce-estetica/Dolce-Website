@@ -1,4 +1,15 @@
+import type { Viewport } from "next";
 import { Lora, Plus_Jakarta_Sans } from "next/font/google";
+
+/**
+ * Android Chrome (108+) resizes the layout viewport when the keyboard opens
+ * (resizes-content), so the fixed bottom bar and booking sheet sit above the
+ * keyboard natively. iOS Safari ignores this flag and handles focused-field
+ * scrolling itself; the booking sheet does not override keyboard movement.
+ */
+export const viewport: Viewport = {
+  interactiveWidget: "resizes-content",
+};
 
 /**
  * Ad landing pages use a modern geometric sans (Plus Jakarta Sans) for

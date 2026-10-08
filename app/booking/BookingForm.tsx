@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Calendar, Clock, Mail, MapPin, Phone, Sparkles, User } from "lucide-react";
 import { serviceCategories } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
+import { captureUtm } from "@/lib/utm";
 import { site } from "@/lib/site";
 
 const times = [
@@ -66,23 +67,39 @@ export default function BookingForm({
       form.time ? `Preferred time: ${form.time}` : "",
     ].filter(Boolean);
 
-    // Capture the lead in the CMO Brain (n8n CRM bridge) BEFORE the WhatsApp
-    // handoff — so no enquiry is lost even if WhatsApp isn't completed.
-    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+    // Capture the lead in the CRM via our server proxy (/api/lead-intake →
+    // crm.dolceestetica.com) BEFORE the WhatsApp handoff — so no enquiry is
+    // lost even if WhatsApp isn't completed. UTMs ride along so the proxy
+    // can derive the right channel; date/time go in the payload (the proxy
+    // carries them in the CRM's initialMessage).
+    const utm = captureUtm();
+    const leadPayload = {
+      event: "lead.created",
+      source: "website-booking",
+      slug: "booking",
+      clinic: form.location,
+      service: form.service,
+      date: form.date,
+      time: form.time,
+      name: form.name,
+      phone: form.phone,
+      email: form.email || undefined,
+      at: new Date().toISOString(),
+      utm_source: utm.source,
+      utm_medium: utm.medium,
+      utm_campaign: utm.campaign,
+      utm_term: utm.term,
+      utm_content: utm.content,
+      gclid: utm.gclid,
+      fbclid: utm.fbclid,
+    };
+
+    fetch("/api/lead-intake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: "lead.created",
-        source: "website-booking",
-        clinic: form.location,
-        service: form.service,
-        name: form.name,
-        phone: form.phone,
-        at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(leadPayload),
       keepalive: true,
     }).catch(() => {});
-
     window.open(
       `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
       "_blank",

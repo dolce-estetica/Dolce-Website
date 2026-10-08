@@ -71,8 +71,9 @@ body {
   display: none;
 }
 
-/* /lp booking bar + sheet: simple slide-down-in / slide-up-out motion */
-@keyframes lp-slide-down-in {
+/* Only opening/closing moves the booking sheet. Drop the transform once open
+   so Safari can handle input focus and keyboard scrolling natively. */
+@keyframes lp-booking-enter {
   from {
     transform: translateY(110%);
   }
@@ -80,7 +81,7 @@ body {
     transform: translateY(0);
   }
 }
-@keyframes lp-slide-up-out {
+@keyframes lp-booking-exit {
   from {
     transform: translateY(0);
   }
@@ -88,11 +89,11 @@ body {
     transform: translateY(110%);
   }
 }
-.lp-slide-down-in {
-  animation: lp-slide-down-in 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+.lp-booking-enter {
+  animation: lp-booking-enter 0.22s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
-.lp-slide-up-out {
-  animation: lp-slide-up-out 0.32s cubic-bezier(0.55, 0, 0.55, 0.2) both;
+.lp-booking-exit {
+  animation: lp-booking-exit 0.18s ease-in forwards;
 }
 
 /* iOS zooms the page when a focused input is under 16px. Keep form text at 16px. */

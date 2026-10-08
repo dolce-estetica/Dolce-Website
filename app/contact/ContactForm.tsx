@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { captureUtm } from "@/lib/utm";
 import { site } from "@/lib/site";
 
 const fieldClass =
@@ -24,17 +25,33 @@ export default function ContactForm() {
       form.message,
     ].filter(Boolean);
 
-    // Capture the enquiry in the CMO Brain (n8n CRM bridge) before WhatsApp handoff.
-    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+    // Capture the enquiry in the CRM via our server proxy (/api/lead-intake
+    // → crm.dolceestetica.com) before WhatsApp handoff. The form has no
+    // clinic field, so the proxy routes the enquiry to the head branch; the
+    // free-text message rides in the CRM's initialMessage.
+    const utm = captureUtm();
+    const leadPayload = {
+      event: "lead.created",
+      source: "website-contact",
+      slug: "contact",
+      name: form.name,
+      phone: form.phone,
+      email: form.email || undefined,
+      message: form.message,
+      at: new Date().toISOString(),
+      utm_source: utm.source,
+      utm_medium: utm.medium,
+      utm_campaign: utm.campaign,
+      utm_term: utm.term,
+      utm_content: utm.content,
+      gclid: utm.gclid,
+      fbclid: utm.fbclid,
+    };
+
+    fetch("/api/lead-intake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: "lead.created",
-        source: "website-contact",
-        name: form.name,
-        phone: form.phone,
-        at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(leadPayload),
       keepalive: true,
     }).catch(() => {});
 

@@ -1,36 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { CalendarCheck, CheckCircle2, X } from "lucide-react";
-import { site } from "@/lib/site";
+import { useEffect, useId, useState } from "react";
+import { CalendarCheck, X } from "lucide-react";
 import { locations } from "@/lib/data/locations";
-import { WhatsAppIcon } from "@/components/shared/BrandIcons";
+import { captureUtm } from "@/lib/utm";
 
 /**
- * The sticky bottom booking bar + expandable booking sheet — an exact copy of
- * the reference site's mobile pattern, in theme colours:
+ * Mobile booking bar with a simple slide-up form, hidden at the lg breakpoint.
+ * Let the browser bring focused fields into view: resizing, translating or
+ * smooth-scrolling the sheet on focus fights the iPhone keyboard's own scroll.
+ * The bar's close button hides it until the next visit (memory-only).
  *
- *  - "cta"   slim bar (label + note + BOOK NOW + ×) — slides down into view
- *  - "form"  tapping Book Now slides the bar down and a BOOKING SHEET up:
- *            centred white 2-line headline, stacked Name / Mobile * / Clinic
- *            inputs and a black uppercase SUBMIT button (reference layout)
- *  - "done"  success message with a WhatsApp fallback inside the same sheet
- *
- * Phone-first behaviours:
- *  - Slide-down-in / slide-up-out animations on the bar and the sheet.
- *  - KEYBOARD LIFT: while an input is focused, the whole bar rides ABOVE the
- *    on-screen keyboard (visualViewport-driven translateY), so the SUBMIT
- *    button is visible immediately when typing starts — no manual scrolling.
- *    Focus-gated + thresholded so ordinary scrolling (iOS toolbar resizes)
- *    never moves the bar.
- *
- * MOBILE HARDENING: fully opaque backgrounds, no backdrop-filter (iOS
- * hit-testing bug), compositing layer on the fixed wrapper, and
- * `touch-manipulation` on every control.
- *
- * The × hides everything until the next reload/visit (memory-only).
- *
- * `variant`: green (brand), dark, bronze (IV/hair), slate (MedLounges).
+ * Submission mirrors the #book form: after capture, the visitor is redirected
+ * to /thank-you?p=<slug> — the client explicitly wants a dedicated thank-you
+ * URL instead of an in-sheet message, and the pageview on that URL is what
+ * fires the GTM lead-conversion trigger (marketing measures conversions
+ * there). The lp_lead_ok cookie set just before the redirect satisfies the
+ * middleware gate on /thank-you.
  */
 const VARIANTS = {
   green: {
@@ -71,52 +57,37 @@ export default function LandingStickyCta({
   slug,
   label,
   variant = "green",
+  concerns = [],
+  defaultConcern,
 }: {
   slug?: string;
   label?: string;
   variant?: keyof typeof VARIANTS;
+  /** Same options as the main form's "Primary Concern" dropdown. */
+  concerns?: string[];
+  /** Pre-selected concern, matching the main form's page default. */
+  defaultConcern?: string;
 }) {
   const v = VARIANTS[variant];
   const headline = label ?? "Book your consultation";
+  const sheetId = useId();
 
-  const [mode, setMode] = useState<"cta" | "form" | "done">("cta");
+  const [mode, setMode] = useState<"cta" | "form">("cta");
   const [closing, setClosing] = useState<null | "bar" | "sheet">(null);
   const [closed, setClosed] = useState(false);
-  const [form, setForm] = useState({ name: "", phone: "", clinic: "" });
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    concern: defaultConcern ?? "",
+    clinic: "",
+  });
   const [error, setError] = useState("");
 
-  const kbRef = useRef<HTMLDivElement>(null);
-
-  /* ---- keyboard lift: keep the sheet above the on-screen keyboard ----
-     GATED to when one of our own fields is focused. iOS fires vv resize/
-     scroll during ordinary scrolling too (toolbar show/hide), and while
-     those animate window.innerHeight and vv.height disagree briefly —
-     an ungated lift makes the bar float up mid-scroll and settle back
-     when scrolling stops. The 120px threshold ignores toolbar-sized
-     deltas entirely; real keyboards are far taller. */
+  // Bank the ad tags on landing, same as the main form, so a lead submitted
+  // after the visitor navigated still carries its campaign.
   useEffect(() => {
-    const vv = window.visualViewport;
-    const el = kbRef.current;
-    if (!vv || !el) return;
-
-    const apply = () => {
-      const focusInside = el.contains(document.activeElement);
-      const overlap = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      el.style.transform = focusInside && overlap > 120 ? `translateY(${-overlap}px)` : "";
-    };
-
-    // Closing the keyboard doesn't always fire a final vv resize; re-check
-    // shortly after focus leaves the sheet so the transform can't stick.
-    const onFocusOut = () => window.setTimeout(apply, 0);
-
-    vv.addEventListener("resize", apply);
-    vv.addEventListener("scroll", apply);
-    el.addEventListener("focusout", onFocusOut);
-    return () => {
-      vv.removeEventListener("resize", apply);
-      vv.removeEventListener("scroll", apply);
-      el.removeEventListener("focusout", onFocusOut);
-    };
+    captureUtm();
   }, []);
 
   const openSheet = () => {
@@ -126,18 +97,10 @@ export default function LandingStickyCta({
 
   const dismissBar = () => {
     setClosing("bar");
-    window.setTimeout(() => {
-      setClosed(true);
-      setClosing(null);
-    }, 340);
   };
 
   const closeSheet = () => {
     setClosing("sheet");
-    window.setTimeout(() => {
-      setMode("cta");
-      setClosing(null);
-    }, 340);
   };
 
   const submit = (e: React.FormEvent) => {
@@ -151,51 +114,82 @@ export default function LandingStickyCta({
       setError("Enter a valid 10-digit mobile number.");
       return;
     }
+    if (form.email && !form.email.includes("@")) {
+      setError("That email address doesn't look right.");
+      return;
+    }
+    if (!form.concern) {
+      setError("Please choose your primary concern.");
+      return;
+    }
     if (!form.clinic) {
       setError("Please choose a clinic.");
       return;
     }
     setError("");
 
-    // Same capture path as the main lead form (n8n CRM bridge), so quick
-    // sheet bookings land in the same pipeline with their own source tag.
-    fetch("https://n8n-production-f013.up.railway.app/webhook/crm-events", {
+    // Same capture path as the main lead form: the CRM, via our server proxy
+    // /api/lead-intake, with the sheet's own source tag. UTMs ride along so
+    // the proxy can derive the right channel (google_ads_lp, not "website").
+    // Fire-and-forget: never block the cookie + /thank-you redirect below.
+    const utm = captureUtm();
+    const leadPayload = {
+      event: "lead.created",
+      source: `lp-${slug ?? "page"}-sticky-bar`,
+      slug: slug ?? "page",
+      clinic: form.clinic,
+      service: `${headline} — ${form.concern}`,
+      concern: form.concern,
+      name: form.name.trim(),
+      phone,
+      email: form.email || undefined,
+      at: new Date().toISOString(),
+      utm_source: utm.source,
+      utm_medium: utm.medium,
+      utm_campaign: utm.campaign,
+      utm_term: utm.term,
+      utm_content: utm.content,
+      gclid: utm.gclid,
+      fbclid: utm.fbclid,
+    };
+
+    fetch("/api/lead-intake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: "lead.created",
-        source: `lp-${slug ?? "page"}-sticky-bar`,
-        clinic: form.clinic,
-        service: `${headline} — quick booking`,
-        name: form.name.trim(),
-        phone,
-        at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(leadPayload),
       keepalive: true,
     }).catch(() => {});
 
-    setMode("done");
+    // Marks the visit so the /thank-you middleware lets it through.
+    document.cookie = "lp_lead_ok=1; Path=/; Max-Age=1800; SameSite=Lax";
+    // A full page load (not a history push) guarantees the GTM pageview on
+    // /thank-you regardless of how the container's triggers are configured.
+    window.location.assign(slug ? `/thank-you?p=${slug}` : "/thank-you");
   };
 
   if (closed) return null;
 
-  const sheetOpen = mode === "form" || mode === "done";
+  const sheetOpen = mode === "form";
 
-  /* NOTE on compositing: the fixed wrapper deliberately carries NO permanent
-     transform (no translateZ/will-change). A permanently-promoted layer makes
-     phones rasterise the bar's text as a GPU texture — the "blurry text"
-     bug. The wrapper only gets a transform while the keyboard is open
-     (kbRef inline style), which is transient. */
   return (
-    <div ref={kbRef} className="fixed inset-x-0 bottom-0 z-[140] lg:hidden">
-      {/* ============ slim bar — always mounted; the sheet slides OVER it ============ */}
+    <div className="fixed inset-x-0 bottom-0 z-[140] lg:hidden">
+      {/* Keep the bar's space, but exclude its covered controls from focus. */}
       <div
-        className={`border-t border-white/10 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.25)] sm:px-6 ${v.bar} ${closing === "bar" ? "lp-slide-up-out" : "lp-slide-down-in"}`}
+        inert={sheetOpen}
+        onAnimationEnd={(event) => {
+          if (event.target === event.currentTarget && closing === "bar") {
+            setClosed(true);
+            setClosing(null);
+          }
+        }}
+        className={`border-t border-white/10 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.25)] sm:px-6 ${v.bar} ${closing === "bar" ? "lp-booking-exit" : ""}`}
       >
           <div className="relative mx-auto flex max-w-6xl items-center justify-center gap-3">
             <button
               type="button"
               onClick={openSheet}
+              aria-expanded={sheetOpen}
+              aria-controls={sheetId}
               className={`inline-flex flex-none touch-manipulation items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-bold whitespace-nowrap shadow-lg transition-colors sm:px-10 ${v.btn}`}
             >
               <CalendarCheck className="h-4 w-4" />
@@ -212,24 +206,32 @@ export default function LandingStickyCta({
           </div>
       </div>
 
-      {/* ============ booking sheet — slides DOWN ON TOP of the bar (reference behaviour) ============ */}
+      {/* Animate only opening/closing; field changes never move the sheet. */}
       {sheetOpen && (
         <div className="absolute inset-x-0 bottom-0 z-10">
           <div
-            className={`relative w-full rounded-t-[1.75rem] px-5 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-12px_40px_rgba(0,0,0,0.3)] sm:px-6 sm:pt-8 ${v.bar} ${closing === "sheet" ? "lp-slide-up-out" : "lp-slide-down-in"}`}
+            data-sheet
+            id={sheetId}
+            role="region"
+            aria-label="Book a consultation"
+            onAnimationEnd={(event) => {
+              if (event.target === event.currentTarget && closing === "sheet") {
+                setMode("cta");
+                setClosing(null);
+              }
+            }}
+            className={`relative max-h-[calc(100svh-1rem)] w-full overflow-y-auto overscroll-y-contain scroll-auto rounded-t-[1.75rem] px-5 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-12px_40px_rgba(0,0,0,0.3)] sm:px-6 sm:pt-8 ${v.bar} ${closing === "sheet" ? "lp-booking-exit" : "lp-booking-enter"}`}
           >
             <button
               type="button"
               onClick={closeSheet}
               aria-label="Close booking form"
-              className={`absolute top-3 right-3 flex h-9 w-9 touch-manipulation items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 ${v.title}`}
+              className={`absolute top-2 right-2 flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 ${v.title}`}
             >
               <X className="h-4 w-4" />
             </button>
 
-            {/* Same phone-sheet UX on desktop: full-width sheet, centred content */}
             <div className="mx-auto w-full max-w-xl">
-            {mode === "form" ? (
               <form onSubmit={submit} noValidate>
                 <h2 className={`pr-10 text-center text-lg leading-snug font-extrabold sm:text-xl ${v.title}`}>
                   {headline} today
@@ -257,6 +259,31 @@ export default function LandingStickyCta({
                     value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                   />
+                  <input
+                    aria-label="Email address"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    placeholder="Email (optional)"
+                    className={sheetInput}
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                  />
+                  <select
+                    aria-label="Primary concern"
+                    className={`${sheetInput} appearance-none`}
+                    value={form.concern}
+                    onChange={(e) => setForm((f) => ({ ...f, concern: e.target.value }))}
+                  >
+                    <option value="" disabled>
+                      Select your concern *
+                    </option>
+                    {concerns.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
                   <select
                     aria-label="Preferred clinic"
                     className={`${sheetInput} appearance-none`}
@@ -294,39 +321,6 @@ export default function LandingStickyCta({
                   </p>
                 )}
               </form>
-            ) : (
-              <div className="py-2 text-center">
-                <CheckCircle2 className={`mx-auto h-10 w-10 ${v.title}`} />
-                <h2 className={`mt-3 text-lg font-extrabold ${v.title}`}>
-                  Thank you, {form.name.trim().split(" ")[0] || "there"}.
-                </h2>
-                <p className={`mt-1.5 text-sm leading-relaxed ${v.sub}`}>
-                  We&apos;ll call you on <strong className={v.title}>{form.phone}</strong> within 2
-                  hours to fix your appointment
-                  {form.clinic && form.clinic !== "Not sure, help me choose" ? ` at ${form.clinic}` : ""}.
-                </p>
-                <div className="mt-4 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
-                  <a
-                    href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-                      `Hello, I just booked a call back from the ${headline.toLowerCase()} page. Name: ${form.name}, Phone: ${form.phone}.`,
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex touch-manipulation items-center justify-center gap-2 rounded-lg bg-[#111111] px-8 py-3 text-xs font-extrabold tracking-[0.18em] text-white uppercase transition-colors hover:bg-black"
-                  >
-                    <WhatsAppIcon className="h-4 w-4" />
-                    WhatsApp us
-                  </a>
-                  <button
-                    type="button"
-                    onClick={closeSheet}
-                    className={`inline-flex touch-manipulation items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-xs font-bold transition-colors hover:bg-white/10 ${v.title}`}
-                  >
-                    Done
-                  </button>
-                </div>
-              </div>
-            )}
             </div>
           </div>
         </div>

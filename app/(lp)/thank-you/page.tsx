@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarCheck, CheckCircle2 } from "lucide-react";
+import { getLandingPage, landingBrandNames } from "@/lib/data/landing-pages";
 import { site } from "@/lib/site";
 
 /**
- * LEAD THANK-YOU PAGE — /thank-you.
+ * LEAD THANK-YOU PAGE — /thank-you?p=<landing-page-slug>.
  *
  * Conversion destination for all seven ad landing pages: the lead form
  * redirects here instead of showing an inline message, so GTM records a
@@ -12,8 +13,12 @@ import { site } from "@/lib/site";
  * on this path). The GTM container arrives via the root layout, exactly as
  * on the landing pages.
  *
+ * The ?p= slug personalises the WhatsApp opt-in button with the right brand
+ * and treatment (server-rendered — no client storage, no hydration timing).
+ * Without it (or with an unknown slug) the button simply doesn't render.
+ *
  * Generic copy on purpose: one page serves every campaign, so no procedure
- * names, promises or brand claims (same compliance reasoning as the hair
+ * names, promises or outcome claims (same compliance reasoning as the hair
  * LP). noindex — a conversion URL has no organic business ranking.
  */
 
@@ -25,7 +30,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://dolceestetica.com/thank-you" },
 };
 
-export default function ThankYouPage() {
+export default async function ThankYouPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ p?: string }>;
+}) {
+  const { p } = await searchParams;
+  const page = p ? getLandingPage(p) : undefined;
+
+  const waLink = page
+    ? `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
+        `Hello ${landingBrandNames[page.brand]}, I just requested a ${page.name.toLowerCase()} consultation online.`,
+      )}`
+    : null;
+
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <section className="flex flex-1 items-center justify-center bg-dolce-green px-4 py-20 text-center text-white sm:px-6">
@@ -41,6 +59,17 @@ export default function ThankYouPage() {
             your consultation at the clinic you prefer.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {waLink && (
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-dolce-green transition-colors hover:bg-dolce-sand"
+              >
+                <CalendarCheck className="h-4 w-4" aria-hidden />
+                Continue on WhatsApp
+              </a>
+            )}
             <a
               href={site.phoneHref}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-dolce-green transition-colors hover:bg-dolce-sand"
