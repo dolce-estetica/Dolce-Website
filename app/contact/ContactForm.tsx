@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { captureUtm } from "@/lib/utm";
-import { site } from "@/lib/site";
+import { useLeadSubmission } from "@/lib/use-lead-submission";
 
 const fieldClass =
   "w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3.5 text-base text-dolce-ink outline-none transition-colors placeholder:text-gray-400 focus:border-dolce-green focus:bg-white focus:ring-2 focus:ring-dolce-green/15";
@@ -13,22 +13,10 @@ const labelClass =
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const lines = [
-      "Hello Dolce Estetica, I have an inquiry.",
-      "",
-      `Name: ${form.name}`,
-      `Mobile: ${form.phone}`,
-      form.email ? `Email: ${form.email}` : "",
-      "",
-      form.message,
-    ].filter(Boolean);
+  const { submitLead, pending, error } = useLeadSubmission();
 
-    // Capture the enquiry in the CRM via our server proxy (/api/lead-intake
-    // → crm.dolceestetica.com) before WhatsApp handoff. The form has no
-    // clinic field, so the proxy routes the enquiry to the head branch; the
-    // free-text message rides in the CRM's initialMessage.
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const utm = captureUtm();
     const leadPayload = {
       event: "lead.created",
@@ -46,20 +34,11 @@ export default function ContactForm() {
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
+      landing_page: utm.landingPage,
+      referrer: utm.referrer,
     };
 
-    fetch("/api/lead-intake", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(leadPayload),
-      keepalive: true,
-    }).catch(() => {});
-
-    window.open(
-      `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+    await submitLead(leadPayload);
   };
 
   return (
@@ -125,10 +104,13 @@ export default function ContactForm() {
 
       <button
         type="submit"
+                    disabled={pending}
+                    aria-busy={pending}
         className="w-full rounded-full bg-dolce-green px-8 py-4 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all hover:bg-dolce-bronze active:scale-[0.99]"
       >
         Submit Request
       </button>
+      {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
     </form>
   );
 }

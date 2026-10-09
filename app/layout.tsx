@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
+import AttributionCapture from "@/components/analytics/AttributionCapture";
 import FloatingActions from "@/components/layout/FloatingActions";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import { site } from "@/lib/site";
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
       <body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>
         <GoogleTagManagerNoscript />
+        <AttributionCapture />
         {children}
         <FloatingActions />
       </body>

@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import { CalendarCheck, X } from "lucide-react";
 import { locations } from "@/lib/data/locations";
 import { captureUtm } from "@/lib/utm";
+import { useLeadSubmission } from "@/lib/use-lead-submission";
 
 /**
  * Mobile booking bar with a simple slide-up form, hidden at the lg breakpoint.
@@ -13,10 +14,8 @@ import { captureUtm } from "@/lib/utm";
  *
  * Submission mirrors the #book form: after capture, the visitor is redirected
  * to /thank-you?p=<slug> — the client explicitly wants a dedicated thank-you
- * URL instead of an in-sheet message, and the pageview on that URL is what
- * fires the GTM lead-conversion trigger (marketing measures conversions
- * there). The lp_lead_ok cookie set just before the redirect satisfies the
- * middleware gate on /thank-you.
+ * URL instead of an in-sheet message. A signed server receipt permits the
+ * success navigation and the page emits the generate_lead GTM data-layer event.
  */
 const VARIANTS = {
   green: {
@@ -82,7 +81,6 @@ export default function LandingStickyCta({
     concern: defaultConcern ?? "",
     clinic: "",
   });
-  const [error, setError] = useState("");
 
   // Bank the ad tags on landing, same as the main form, so a lead submitted
   // after the visitor navigated still carries its campaign.
@@ -91,7 +89,6 @@ export default function LandingStickyCta({
   }, []);
 
   const openSheet = () => {
-    setError("");
     setMode("form");
   };
 
@@ -103,35 +100,10 @@ export default function LandingStickyCta({
     setClosing("sheet");
   };
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const phone = form.phone.replace(/\D/g, "").replace(/^91(?=[6-9])/, "");
-    if (form.name.trim().length < 2) {
-      setError("Please tell us your name.");
-      return;
-    }
-    if (!/^[6-9]\d{9}$/.test(phone)) {
-      setError("Enter a valid 10-digit mobile number.");
-      return;
-    }
-    if (form.email && !form.email.includes("@")) {
-      setError("That email address doesn't look right.");
-      return;
-    }
-    if (!form.concern) {
-      setError("Please choose your primary concern.");
-      return;
-    }
-    if (!form.clinic) {
-      setError("Please choose a clinic.");
-      return;
-    }
-    setError("");
+  const { submitLead, pending, error } = useLeadSubmission();
 
-    // Same capture path as the main lead form: the CRM, via our server proxy
-    // /api/lead-intake, with the sheet's own source tag. UTMs ride along so
-    // the proxy can derive the right channel (google_ads_lp, not "website").
-    // Fire-and-forget: never block the cookie + /thank-you redirect below.
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const utm = captureUtm();
     const leadPayload = {
       event: "lead.created",
@@ -141,7 +113,7 @@ export default function LandingStickyCta({
       service: `${headline} — ${form.concern}`,
       concern: form.concern,
       name: form.name.trim(),
-      phone,
+      phone: form.phone,
       email: form.email || undefined,
       at: new Date().toISOString(),
       utm_source: utm.source,
@@ -151,20 +123,11 @@ export default function LandingStickyCta({
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
+      landing_page: utm.landingPage,
+      referrer: utm.referrer,
     };
 
-    fetch("/api/lead-intake", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(leadPayload),
-      keepalive: true,
-    }).catch(() => {});
-
-    // Marks the visit so the /thank-you middleware lets it through.
-    document.cookie = "lp_lead_ok=1; Path=/; Max-Age=1800; SameSite=Lax";
-    // A full page load (not a history push) guarantees the GTM pageview on
-    // /thank-you regardless of how the container's triggers are configured.
-    window.location.assign(slug ? `/thank-you?p=${slug}` : "/thank-you");
+    await submitLead(leadPayload);
   };
 
   if (closed) return null;
@@ -243,6 +206,7 @@ export default function LandingStickyCta({
                 <div className="mt-5 grid gap-2.5">
                   <input
                     aria-label="Full name"
+                    required
                     autoComplete="name"
                     placeholder="Name"
                     className={sheetInput}
@@ -251,6 +215,7 @@ export default function LandingStickyCta({
                   />
                   <input
                     aria-label="Mobile number"
+                    required
                     type="tel"
                     inputMode="tel"
                     autoComplete="tel"
@@ -271,6 +236,7 @@ export default function LandingStickyCta({
                   />
                   <select
                     aria-label="Primary concern"
+                    required
                     className={`${sheetInput} appearance-none`}
                     value={form.concern}
                     onChange={(e) => setForm((f) => ({ ...f, concern: e.target.value }))}
@@ -286,6 +252,7 @@ export default function LandingStickyCta({
                   </select>
                   <select
                     aria-label="Preferred clinic"
+                    required
                     className={`${sheetInput} appearance-none`}
                     value={form.clinic}
                     onChange={(e) => setForm((f) => ({ ...f, clinic: e.target.value }))}
@@ -305,9 +272,11 @@ export default function LandingStickyCta({
                 <div className="mt-4 flex justify-center">
                   <button
                     type="submit"
+                    disabled={pending}
+                    aria-busy={pending}
                     className="inline-flex h-12 touch-manipulation items-center justify-center rounded-lg bg-[#111111] px-12 text-sm font-extrabold tracking-[0.22em] text-white uppercase transition-colors hover:bg-black"
                   >
-                    Submit
+                    {pending ? "Sending…" : "Submit"}
                   </button>
                 </div>
 

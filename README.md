@@ -83,3 +83,27 @@ updating `bun.lock`, so commit that file with any dependency change.
 
 The old site's `/admin` CMS and `/ai-chat` pages are out of scope for this rebuild — they
 need a database, authentication and an LLM key. Everything public-facing is here.
+
+## CRM lead submission and conversion tracking
+
+All main/popup landing-page forms, Contact and Booking use the same phone/name/email
+validation and await a confirmed CRM lead before redirecting. Configure server-only
+`CRM_LEAD_INTAKE_API_KEY` to match the CRM intake key and optionally `CRM_BASE_URL`.
+A failed/timeout submission retains the form and shows a retry message. A stable
+submission UUID provides CRM idempotency; retries do not create another interaction.
+
+UTM source, medium, campaign, term, content, gclid/fbclid, landing path and referrer
+origin survive untagged navigation for 30 minutes. A new tagged visit replaces the
+whole snapshot. No contact details enter the URL or analytics payload.
+
+The server sets a signed, HttpOnly five-minute receipt only after CRM success.
+`proxy.ts` consumes it on `/thank-you`; direct visits and refreshes return home.
+The page pushes one `generate_lead` event with a non-personal `event_id` to the
+existing GTM data layer. Configure a Custom Event trigger named `generate_lead`
+and a GA4 Event tag for that trigger in GTM-WFWG52WD. Do not also count a Thank You
+pageview as a lead. Container publishing and Analytics conversion/key-event setup
+need authorized account access and must be verified separately.
+
+Verification: `bun test tests/lead-intake.test.ts`, `bunx tsc --noEmit`, and
+`bun run build`. Browser QA covers main/mobile, failure/success, refresh, Contact,
+Booking and attribution across navigation.

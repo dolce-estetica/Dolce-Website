@@ -1,63 +1,31 @@
-/**
- * Ad-campaign attribution for the Google-Ads landing pages.
- *
- * Marketing tags ad destination URLs with UTM parameters
- * (utm_source / utm_medium / utm_campaign / utm_term / utm_content —
- * Google Ads also auto-appends gclid, Meta fbclid) so every lead can be
- * traced back to its campaign. GA4 reads them off the URL on its own;
- * this helper exists so the lead itself carries them into the CMO Brain
- * webhook.
- *
- * Keys are matched case-insensitively: campaign sheets sometimes ship
- * "UTM_source"-style capitalisations that analytics tools would ignore.
- *
- * First touch wins within a browsing session: fresh URL tags overwrite,
- * and the union is mirrored into sessionStorage so the values survive
- * anchor scrolls and client-side navigation, where the form page's URL
- * no longer carries them.
- */
+/** Last tagged touch wins as a complete snapshot; untagged internal navigation
+ * retains it for 30 minutes. Never mix a new campaign with an old click id. */
+export type Utm = Partial<Record<"source" | "medium" | "campaign" | "term" | "content" | "gclid" | "fbclid" | "landingPage" | "referrer", string>>;
+const FIELDS = ["source", "medium", "campaign", "term", "content"] as const;
+const SESSION_KEY = "dolce-attribution-v2";
+let memory: { values: Utm; at: number } | undefined;
 
-export type Utm = Partial<{
-  source: string;
-  medium: string;
-  campaign: string;
-  term: string;
-  content: string;
-  gclid: string;
-  fbclid: string;
-}>;
-
-const UTM_FIELDS = ["source", "medium", "campaign", "term", "content"] as const;
-const SESSION_KEY = "lp-utm";
-
-export function captureUtm(search: string = typeof window === "undefined" ? "" : window.location.search): Utm {
-  const fromUrl: Utm = {};
-  for (const [rawKey, value] of new URLSearchParams(search)) {
-    if (!value) continue;
-    const key = rawKey.toLowerCase();
-    if (key === "gclid" || key === "fbclid") {
-      fromUrl[key] = value;
-      continue;
-    }
-    if (!key.startsWith("utm_")) continue;
-    const field = key.slice(4);
-    if ((UTM_FIELDS as readonly string[]).includes(field)) {
-      fromUrl[field as (typeof UTM_FIELDS)[number]] = value;
-    }
+export function captureUtm(search = typeof window === "undefined" ? "" : window.location.search): Utm {
+  const fresh: Utm = {};
+  for (const [raw, value] of new URLSearchParams(search)) {
+    const key = raw.toLowerCase();
+    if (!value.trim()) continue;
+    if (key === "gclid" || key === "fbclid") fresh[key] = value.slice(0, 500);
+    if (key.startsWith("utm_") && (FIELDS as readonly string[]).includes(key.slice(4)))
+      fresh[key.slice(4) as typeof FIELDS[number]] = value.trim().slice(0, key === "utm_term" ? 500 : 120);
   }
-
-  let stored: Utm = {};
+  let stored = memory;
   try {
-    stored = JSON.parse(sessionStorage.getItem(SESSION_KEY) ?? "{}") as Utm;
-  } catch {
-    stored = {};
+    const parsed = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+    if (parsed && typeof parsed.at === "number" && parsed.values && typeof parsed.values === "object") stored = parsed;
+  } catch { /* Storage is optional; keep this page's in-memory snapshot. */ }
+  const tagged = Object.keys(fresh).length > 0;
+  const values = tagged ? fresh : stored && Date.now() - stored.at < 1_800_000 ? stored.values : {};
+  if (typeof window !== "undefined" && (tagged || !values.landingPage)) {
+    values.landingPage = window.location.pathname;
+    try { values.referrer = document.referrer ? new URL(document.referrer).origin : undefined; } catch { /* Ignore malformed referrers. */ }
   }
-
-  const merged: Utm = { ...stored, ...fromUrl };
-  try {
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(merged));
-  } catch {
-    // private mode / storage full — the URL tags still apply for this submit
-  }
-  return merged;
+  memory = { values, at: tagged ? Date.now() : stored?.at || Date.now() };
+  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(memory)); } catch { /* Private browsing still submits. */ }
+  return values;
 }

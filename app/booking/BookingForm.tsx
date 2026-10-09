@@ -4,8 +4,9 @@ import { useMemo, useState } from "react";
 import { Calendar, Clock, Mail, MapPin, Phone, Sparkles, User } from "lucide-react";
 import { serviceCategories } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
-import { captureUtm } from "@/lib/utm";
 import { site } from "@/lib/site";
+import { captureUtm } from "@/lib/utm";
+import { useLeadSubmission } from "@/lib/use-lead-submission";
 
 const times = [
   { value: "Morning (9AM - 12PM)", label: "Morning (9AM - 12PM)" },
@@ -53,25 +54,10 @@ export default function BookingForm({
 
   const summaryReady = form.name && form.phone && form.service;
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const lines = [
-      "Hello Dolce Estetica, I would like to book an appointment.",
-      "",
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      form.email ? `Email: ${form.email}` : "",
-      `Location: ${form.location}`,
-      `Service: ${form.service}`,
-      form.date ? `Preferred date: ${form.date}` : "",
-      form.time ? `Preferred time: ${form.time}` : "",
-    ].filter(Boolean);
+  const { submitLead, pending, error } = useLeadSubmission();
 
-    // Capture the lead in the CRM via our server proxy (/api/lead-intake →
-    // crm.dolceestetica.com) BEFORE the WhatsApp handoff — so no enquiry is
-    // lost even if WhatsApp isn't completed. UTMs ride along so the proxy
-    // can derive the right channel; date/time go in the payload (the proxy
-    // carries them in the CRM's initialMessage).
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const utm = captureUtm();
     const leadPayload = {
       event: "lead.created",
@@ -92,19 +78,11 @@ export default function BookingForm({
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
+      landing_page: utm.landingPage,
+      referrer: utm.referrer,
     };
 
-    fetch("/api/lead-intake", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(leadPayload),
-      keepalive: true,
-    }).catch(() => {});
-    window.open(
-      `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+    await submitLead(leadPayload);
   };
 
   return (
@@ -275,15 +253,18 @@ export default function BookingForm({
 
         <button
           type="submit"
+                    disabled={pending}
+                    aria-busy={pending}
           className="mt-8 w-full rounded-full bg-dolce-green px-8 py-4 text-base font-bold text-white transition-all hover:bg-dolce-green-light active:scale-[0.99] sm:text-lg"
         >
-          Book Appointment via WhatsApp
+          {pending ? "Sending…" : "Request an Appointment"}
         </button>
 
         <p className="mt-4 text-center text-xs leading-relaxed text-gray-400">
-          * Required fields. You&apos;ll be redirected to WhatsApp to confirm your booking.
+          * Required fields. We will call you to confirm your booking.
         </p>
-      </form>
+        {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
+    </form>
 
       <aside className="space-y-6 lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8">

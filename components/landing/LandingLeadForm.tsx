@@ -5,6 +5,7 @@ import { CalendarCheck, Mail, Phone, User } from "lucide-react";
 import type { LandingPage } from "@/lib/data/landing-pages";
 import { locations } from "@/lib/data/locations";
 import { captureUtm } from "@/lib/utm";
+import { useLeadSubmission } from "@/lib/use-lead-submission";
 
 const fieldClass =
   "w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3.5 text-base text-dolce-ink outline-none transition-colors placeholder:text-gray-400 focus:border-dolce-green focus:bg-white focus:ring-2 focus:ring-dolce-green/15";
@@ -49,7 +50,9 @@ export default function LandingLeadForm({
   const set = (key: keyof typeof form) => (value: string) =>
     setForm((f) => ({ ...f, [key]: value }));
 
-  const submit = (e: React.FormEvent) => {
+  const { submitLead, pending, error } = useLeadSubmission();
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Attribution: UTMs/gclid from the ad URL (or this session's first touch)
     // ride along so the CRM can tie the lead back to its campaign. The
@@ -74,24 +77,14 @@ export default function LandingLeadForm({
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
+      landing_page: utm.landingPage,
+      referrer: utm.referrer,
     };
 
     // Fire-and-forget: the CRM has no CORS and its API key must never reach
     // the browser, so the capture goes through our own server proxy. A proxy
     // failure is logged server-side and must not block the redirect below.
-    fetch("/api/lead-intake", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(leadPayload),
-      keepalive: true,
-    }).catch(() => {});
-
-    // Marks the visit so the /thank-you middleware lets it through (the
-    // intake proxy sets an httpOnly twin server-side as well).
-    document.cookie = "lp_lead_ok=1; Path=/; Max-Age=1800; SameSite=Lax";
-    //
-    // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- a full page load (not a history push) guarantees the GTM pageview on /thank-you regardless of how the container's triggers are configured
-    window.location.assign(`/thank-you?p=${page.slug}`);
+    await submitLead(leadPayload);
   };
 
   return (
@@ -200,12 +193,15 @@ export default function LandingLeadForm({
             </div>
           </div>
 
+          {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
           <button
             type="submit"
+                    disabled={pending}
+                    aria-busy={pending}
             className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-dolce-green px-8 py-4 text-base font-bold text-white transition-all hover:bg-dolce-green-light active:scale-[0.99] sm:text-lg"
           >
             <CalendarCheck className="h-5 w-5" />
-            {submitLabel}
+            {pending ? "Sending…" : submitLabel}
           </button>
           <p className="mt-4 text-center text-xs leading-relaxed text-gray-400">
             * Required fields. We&apos;ll confirm your slot on a quick call. Your details

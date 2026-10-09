@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { headers } from "next/headers";
+import LeadConversion from "@/components/analytics/LeadConversion";
 import { CalendarCheck, CheckCircle2 } from "lucide-react";
 import { getLandingPage, landingBrandNames } from "@/lib/data/landing-pages";
 import { site } from "@/lib/site";
@@ -36,6 +38,7 @@ export default async function ThankYouPage({
   searchParams: Promise<{ p?: string }>;
 }) {
   const { p } = await searchParams;
+  const eventId = (await headers()).get("x-dolce-lead-event");
   const page = p ? getLandingPage(p) : undefined;
 
   const waLink = page
@@ -46,6 +49,7 @@ export default async function ThankYouPage({
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
+      {eventId && <LeadConversion eventId={eventId} />}
       <section className="flex flex-1 items-center justify-center bg-dolce-green px-4 py-20 text-center text-white sm:px-6">
         <div className="mx-auto max-w-2xl">
           <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
