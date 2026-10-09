@@ -1,0 +1,41 @@
+{
+  "environment": "Local production build. Chromium mobile 390x844, DPR 2, cold browser cache, 9 Mbps down / 1.5 Mbps up, 150 ms latency, CPU 4x slowdown. This is a laboratory check, not production field data.",
+  "results": [
+    {
+      "slug": "dermatology-clinic",
+      "lcpMs": 496,
+      "cls": 0,
+      "domContentLoadedMs": 398,
+      "heroUrl": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroTransferBytes": 54712,
+      "totalTransferredBytes": 356500
+    },
+    {
+      "slug": "hair-treatment",
+      "lcpMs": 496,
+      "cls": 0,
+      "domContentLoadedMs": 387,
+      "heroUrl": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroTransferBytes": 73722,
+      "totalTransferredBytes": 375510
+    },
+    {
+      "slug": "laser-hair-removal",
+      "lcpMs": 480,
+      "cls": 0,
+      "domContentLoadedMs": 387,
+      "heroUrl": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroTransferBytes": 57398,
+      "totalTransferredBytes": 359186
+    },
+    {
+      "slug": "skin-treatments",
+      "lcpMs": 476,
+      "cls": 0,
+      "domContentLoadedMs": 383,
+      "heroUrl": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroTransferBytes": 61062,
+      "totalTransferredBytes": 362850
+    }
+  ]
+}

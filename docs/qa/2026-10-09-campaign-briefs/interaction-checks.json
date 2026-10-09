@@ -1,0 +1,109 @@
+{
+  "results": [
+    {
+      "slug": "dermatology-clinic",
+      "width": 390,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "dermatology-clinic",
+      "width": 1440,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 2
+    },
+    {
+      "slug": "skin-treatments",
+      "width": 390,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "skin-treatments",
+      "width": 1440,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 2
+    },
+    {
+      "slug": "hair-treatment",
+      "width": 390,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "hair-treatment",
+      "width": 1440,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "passed",
+      "successRedirect": "mocked",
+      "requestCount": 2
+    },
+    {
+      "slug": "laser-hair-removal",
+      "width": 390,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "single supplied case",
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "laser-hair-removal",
+      "width": 1440,
+      "concernSync": true,
+      "servicePrefill": true,
+      "validation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "faq": true,
+      "carousel": "single supplied case",
+      "successRedirect": "mocked",
+      "requestCount": 2
+    }
+  ],
+  "errors": []
+}

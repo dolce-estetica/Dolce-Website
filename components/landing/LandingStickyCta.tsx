@@ -5,6 +5,7 @@ import { CalendarCheck, X } from "lucide-react";
 import { locations } from "@/lib/data/locations";
 import { captureUtm } from "@/lib/utm";
 import { useLeadSubmission } from "@/lib/use-lead-submission";
+import { useConcern } from "./ConcernContext";
 
 /**
  * Mobile booking bar with a simple slide-up form, hidden at the lg breakpoint.
@@ -42,6 +43,7 @@ export default function LandingStickyCta({
   variant = "green",
   concerns = [],
   defaultConcern,
+  gold = false,
 }: {
   slug?: string;
   label?: string;
@@ -50,6 +52,7 @@ export default function LandingStickyCta({
   concerns?: string[];
   /** Pre-selected concern, matching the main form's page default. */
   defaultConcern?: string;
+  gold?: boolean;
 }) {
   const v = VARIANTS[variant];
   const headline = label ?? "Book your consultation";
@@ -62,9 +65,9 @@ export default function LandingStickyCta({
     name: "",
     phone: "",
     email: "",
-    concern: defaultConcern ?? "",
     clinic: "",
   });
+  const { concern, setConcern } = useConcern(defaultConcern);
 
   // Bank the ad tags on landing, same as the main form, so a lead submitted
   // after the visitor navigated still carries its campaign.
@@ -94,8 +97,8 @@ export default function LandingStickyCta({
       source: `lp-${slug ?? "page"}-sticky-bar`,
       slug: slug ?? "page",
       clinic: form.clinic,
-      service: `${headline} — ${form.concern}`,
-      concern: form.concern,
+      service: `${headline} — ${concern}`,
+      concern,
       name: form.name.trim(),
       phone: form.phone,
       email: form.email || undefined,
@@ -137,7 +140,7 @@ export default function LandingStickyCta({
               onClick={openSheet}
               aria-expanded={sheetOpen}
               aria-controls={sheetId}
-              className={`inline-flex flex-none touch-manipulation items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-bold whitespace-nowrap shadow-lg transition-colors sm:px-10 ${v.btn}`}
+              className={`inline-flex min-h-11 flex-none touch-manipulation items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-bold whitespace-nowrap shadow-lg transition-colors sm:px-10 ${gold ? "lp-gold-button" : v.btn}`}
             >
               <CalendarCheck className="h-4 w-4" />
               Book Now
@@ -146,7 +149,7 @@ export default function LandingStickyCta({
               type="button"
               onClick={dismissBar}
               aria-label="Close booking bar"
-              className={`absolute right-0 flex h-10 w-10 flex-none touch-manipulation items-center justify-center rounded-full border border-[#E3E8DF] transition-colors hover:bg-dolce-green/5 ${v.title}`}
+              className={`absolute right-0 flex h-11 w-11 flex-none touch-manipulation items-center justify-center rounded-full border border-[#E3E8DF] transition-colors hover:bg-dolce-green/5 ${v.title}`}
             >
               <X className="h-4 w-4" />
             </button>
@@ -222,8 +225,8 @@ export default function LandingStickyCta({
                     aria-label="Primary concern"
                     required
                     className={`${sheetInput} appearance-none`}
-                    value={form.concern}
-                    onChange={(e) => setForm((f) => ({ ...f, concern: e.target.value }))}
+                    value={concern}
+                    onChange={(e) => setConcern(e.target.value)}
                   >
                     <option value="" disabled>
                       Select your concern *
@@ -258,9 +261,9 @@ export default function LandingStickyCta({
                     type="submit"
                     disabled={pending}
                     aria-busy={pending}
-                    className="inline-flex h-12 w-full touch-manipulation items-center justify-center rounded-full bg-dolce-green px-12 text-sm font-extrabold tracking-[0.22em] text-white uppercase transition-colors hover:bg-dolce-green-light"
+                    className={`inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-full px-6 py-3 text-sm font-extrabold transition-colors disabled:cursor-wait disabled:opacity-70 ${gold ? "lp-gold-button" : v.btn}`}
                   >
-                    {pending ? "Sending…" : "Submit"}
+                    {pending ? "Sending…" : "Book My Consultation"}
                   </button>
                 </div>
 

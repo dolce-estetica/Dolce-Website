@@ -12,7 +12,11 @@ import { reviews } from "./reviews";
  * why choose us → services → doctors → before/after → testimonials → lead
  * form → FAQ, with a sticky "Book Now" CTA and CTAs between sections.
  *
- * COMPLIANCE: the group rules from treatment-pages.ts apply here too:
+ * The four campaign blocks with `campaign` metadata use the client-supplied
+ * Google Docs revision from 9 October 2026. Source URLs and asset gaps are in
+ * docs/qa/2026-10-09-campaign-briefs/verification.md.
+ *
+ * Original spreadsheet copy guidelines (before the campaign revision):
  *   - NO prices, ranges or "onwards" anywhere. Cost questions are answered
  *     with what determines the cost + "quoted at consultation".
  *   - NO "permanent", "cure", "100%", "best", "No.1" or outcome guarantees.
@@ -37,7 +41,7 @@ import { reviews } from "./reviews";
 
 export type LandingBrand = "dolce" | "medlounges";
 
-export type LandingResultPair = { before: string; after: string; label: string };
+export type LandingResultPair = { before: string; after: string; label: string; caption?: string; timeline?: string };
 
 export type LandingPage = {
   slug: string;
@@ -45,6 +49,13 @@ export type LandingPage = {
   name: string;
   metaTitle: string;
   metaDescription: string;
+  /** Client Google Docs campaign refresh, October 2026. */
+  campaign?: {
+    whyHeading: string;
+    concernIntro: string;
+    formIntro: string;
+    locationsIntro: string;
+  };
   hero: {
     eyebrow: string;
     heading: string;
@@ -59,7 +70,7 @@ export type LandingPage = {
   services: {
     heading: string;
     intro: string;
-    items: { name: string; text: string }[];
+    items: { name: string; text: string; cta?: string; concern?: string }[];
   };
   /** "How it works", three numbered steps, optional supporting photo. */
   process: {
@@ -91,13 +102,6 @@ export const landingBrandNames: Record<LandingBrand, string> = {
 /* Google rating shown site-wide, itemised quotes.                     */
 /* ------------------------------------------------------------------ */
 
-const IMPACT = [
-  { value: "Doctor-led", label: "Every protocol, every clinic" },
-  { value: "4 clinics", label: "Kochi · Cherthala · Calicut · Mangalore" },
-  { value: "4.6★", label: "Google patient rating" },
-  { value: "Itemised", label: "Full quote before treatment" },
-];
-
 const WHY = [
   {
     title: "Doctor-Led Medical Precision",
@@ -124,6 +128,12 @@ export const landingPages: LandingPage[] = [
    * 1, DERMATOLOGY CLINIC (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Patients Trust Dolce Estetica",
+      "concernIntro": "Tap your concern and mention it on the call, so the right specialist is ready for you.",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "For appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "dermatology-clinic",
     brand: "dolce",
     name: "Dermatology Clinic",
@@ -131,45 +141,82 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "See a qualified dermatologist for skin, face, body, hair and scalp concerns. Doctor-led consultation before any treatment. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
-      eyebrow: "Doctor-led dermatology · 4 clinics",
-      heading: "Your skin deserves a specialist, not a guess.",
-      subheading:
-        "Acne, pigmentation, hair fall or anything else that bothers your skin, examined and explained properly by a dermatologist before any treatment.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/gallery/clinic-excellence.jpg" and alt "Dermatologist gently performing a skin treatment on a relaxed patient at Dolce Estetica".
-      image: "/lp/dermatology-hero.jpg",
-      imageAlt: "Woman with clear, glowing skin touching her cheek in warm sunlight",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "subheading": "Your trusted aesthetic clinic for: Expert Dermatology | Advanced Testing | Custom Treatments | Clear Pricing",
+      "image": "/lp/dermatology-hero.webp",
+      "imageAlt": "Woman with clear, glowing skin touching her cheek in warm sunlight",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "7+ Years", label: "Of dermatology expertise" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
-      { value: "4.6★", label: "Google rating from real patients" },
-      { value: "15,000+", label: "Happy patients treated" },
+      {
+        "value": "7+ Years",
+        "label": "Of dermatology expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "We do not delegate your care. You will always consult directly with a certified dermatologist before, during, and after your treatment"
+      },
+      {
+        "title": "AI-Assisted Diagnosis",
+        "text": "We look underneath the surface. Clinical AI imaging captures the microscopic details of your skin and scalp to eliminate any diagnostic guesswork"
+      },
+      {
+        "title": "Natural-Looking Results",
+        "text": "We respect your skin's biology. Our treatments are calibrated to enhance, not alter, Indian skin types with flat, upfront pricing and no surprises"
+      },
+      {
+        "title": "Modern Technology",
+        "text": "We do not compromise on safety. Our aesthetic clinic spaces are built for privacy and equipped exclusively with US-FDA-cleared devices"
+      }
+    ],
     services: {
-      heading: "What our doctors treat",
-      intro:
-        "One clinic for every skin, hair and body concern, medical and aesthetic, so you are not sent elsewhere when a problem needs a specialist's eye.",
-      items: [
+      "heading": "Tell Us Your Concern. We’ll Take It From Here",
+      "intro": "Looking for a dermatologist near me? Your skin, hair, and body are in trusted hands. Our doctors examine every concern before suggesting any treatment",
+      "items": [
         {
-          name: "Skin",
-          text: "Acne, pigmentation, eczema, psoriasis, fungal infection, allergies, warts, moles and long-term skin condition management.",
+          "name": "Skin",
+          "text": "Stop hiding breakouts and scars. We isolate the precise internal trigger to clear your skin from within",
+          "cta": "Get My Skin Checked",
+          "concern": "Acne or acne scars"
         },
         {
-          name: "Face",
-          text: "Dullness, uneven tone, fine lines, open pores, under-eye concerns and tailored facial rejuvenation plans.",
+          "name": "Face",
+          "text": "Your face deserves better. Receive a clinical, medical-grade roadmap to erase dullness and open pores",
+          "cta": "Fix My Face Concerns",
+          "concern": "Anti-ageing and fine lines"
         },
         {
-          name: "Body",
-          text: "Body pigmentation and detan, stretch marks, skin tags, back and chest acne, and overall body-skin health.",
+          "name": "Body",
+          "text": "Achieve completely even skin tone. Advanced clinical tech safely erases stubborn tan, stretch marks, and acne",
+          "cta": "Treat My Body Concerns",
+          "concern": "Pigmentation or dark patches"
         },
         {
-          name: "Hair & Scalp",
-          text: "Hair fall, thinning, dandruff, scalp itching and infections, diagnosed properly before anything is recommended.",
-        },
-      ],
+          "name": "Hair and Scalp",
+          "text": "True restoration happens beneath the surface. We medically evaluate your scalp health before prescribing anything",
+          "cta": "Stop My Hair Fall",
+          "concern": "Hair fall or thinning"
+        }
+      ]
     },
     process: {
       heading: "How your consultation works",
@@ -191,53 +238,58 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Every consultation at our clinics is doctor-led. Your dermatologist examines you, takes a full history and explains the diagnosis in plain language before any treatment is discussed.",
     results: {
-      heading: "Before & after, shown honestly",
-      text: "Real results from real Dolce patients, shared with their written consent. Every skin is different, so your own results depend on your diagnosis, skin type and the plan your doctor builds for you, which is why every treatment starts with an in-person assessment.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "Real patients, no filters. Explore real treatment results. Results vary by skin, hair, and diagnosis.",
+      "pairs": [
         {
-          before: "/lp/derma-skin-treat.webp",
-          after: "/lp/derma-skin-treat.webp",
-          label: "Skin & acne treatment results",
+          "before": "/lp/derma-skin-treat.webp",
+          "after": "/lp/derma-skin-treat.webp",
+          "label": "Skin & acne treatment results"
         },
         {
-          before: "/lp/dermatology-skin-treat.webp",
-          after: "/lp/dermatology-skin-treat.webp",
-          label: "Dermatological skin care results",
+          "before": "/lp/dermatology-skin-treat.webp",
+          "after": "/lp/dermatology-skin-treat.webp",
+          "label": "Dermatological skin care results"
         },
-      ],
+        {
+          "before": "/lp/results-hair-1-before.jpg",
+          "after": "/lp/results-hair-1-after.jpg",
+          "label": "Hair fall treatment"
+        }
+      ]
     },
     concerns: [
       "Acne or acne scars",
-      "Pigmentation / dark patches",
+      "Pigmentation or dark patches",
       "Hair fall or thinning",
-      "Scalp problem (dandruff, itching)",
+      "Scalp problems",
       "Skin allergy or rash",
-      "Anti-ageing / fine lines",
+      "Anti-ageing and fine lines",
       "Under-eye dark circles",
       "General skin check-up",
-      "Something else",
+      "Something else"
     ],
     faqs: [
       {
-        q: "Do I need an appointment, or can I walk in?",
-        a: "Consultations run by appointment at all four clinics, Edapally (Kochi), Cherthala, Calicut and Mangalore. Book on this page or on WhatsApp and we will find you the earliest slot.",
+        "q": "Is the first consultation free?",
+        "a": "The consultation fee at our dermatologist clinic depends on the treatment you have selected. After your assessment, you get a full written estimate before any treatment starts, with no hidden charges"
       },
       {
-        q: "What happens at a dermatology consultation?",
-        a: "The doctor examines your concern in good light, takes a full history, how long it has been there, what changes you have noticed, what runs in the family, and explains the diagnosis. Where an internal cause is possible, blood tests are ordered before any treatment plan.",
+        "q": "Not sure what I need?",
+        "a": "Tell us your concern and the doctor will recommend only what suits you. Whether you searched for a dermatologist near me or an aesthetic clinic, many visits end with simple medication or advice"
       },
       {
-        q: "How much does treatment cost?",
-        a: "It depends entirely on the diagnosis, treating a fungal infection and managing pigmentation are completely different plans. That is why we quote at the consultation, in full and in writing, after the doctor has seen you. Nothing begins before you have the complete figure.",
+        "q": "What should I bring?",
+        "a": "Skincare or hair products and medicines you have used in the last 6 months. Bring recent thyroid, hormone, or blood reports if you have them, so tests are not repeated."
       },
       {
-        q: "Will I be pushed into a treatment package?",
-        a: "No. Plenty of consultations end with simple medication, a home-care routine or simply reassurance. If a treatment is genuinely right for you the doctor will explain why; if it is not, we will tell you that too.",
+        "q": "Are lasers and peels safe for Indian skin?",
+        "a": "When chosen and done by a qualified doctor, at a dermatologist clinic, yes. Your doctor picks settings for your skin tone and tests a small area first when needed."
       },
       {
-        q: "Do you treat children and older patients?",
-        a: "Yes, all ages are seen, from childhood eczema and birthmark assessment to age-related skin concerns. Mention the patient's age when you book and we will allot a suitable slot.",
-      },
+        "q": "How long until I see results?",
+        "a": "It depends on the concern and treatment. Your doctor gives a realistic timeline for you at the consultation."
+      }
     ],
   },
 
@@ -245,6 +297,12 @@ export const landingPages: LandingPage[] = [
    * 2, HAIR TREATMENT (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Our Clients Choose Dolce Estetica",
+      "concernIntro": "Tap your concern so the right specialist is ready for you.",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "For hair treatment appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "hair-treatment",
     brand: "dolce",
     name: "Hair Treatment",
@@ -252,49 +310,88 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "Doctor-led assessment and treatment for hair fall, hair thinning, PRP therapy and scalp concerns. Find the cause before treating it. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
-      eyebrow: "Doctor-led hair care · 4 clinics",
-      heading: "Hair fall has a cause. We find it first.",
-      subheading:
-        "Thyroid, iron, post-delivery shedding or hereditary patterns. Our doctors diagnose the exact cause of your hair fall before treating it.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/lp/hair-treatment-hero.webp" and alt "Hair technician giving a seated South Indian woman a scalp and hair treatment at a clinic".
-      image: "/lp/hair-treatment-hero.jpg",
-      imageAlt: "Man parting his hair with both hands to examine his scalp and hairline",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "subheading": "Skip temporary surface fixes. Get doctor-led hair treatments backed by science for visible, lasting results",
+      "image": "/lp/hair-treatment-hero.webp",
+      "imageAlt": "Man parting his hair with both hands to examine his scalp and hairline",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "4.6★", label: "Google rating from real patients" },
-      { value: "7+ Years", label: "Of hair-treatment expertise" },
-      { value: "15,000+", label: "Happy patients treated" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
+      {
+        "value": "7+ Years",
+        "label": "Of dermatology expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "We do not delegate your care. You will always consult directly with a certified dermatologist for hair loss before, during, and after your treatment"
+      },
+      {
+        "title": "AI-Assisted Diagnosis",
+        "text": "We look underneath the surface. Clinical AI imaging captures the microscopic details of your skin and scalp to eliminate any diagnostic guesswork"
+      },
+      {
+        "title": "Natural-Looking Results",
+        "text": "We respect your hair's biology. Our treatments awaken dormant follicles naturally to restore density calibrated perfectly for Indian hair genetics"
+      },
+      {
+        "title": "Modern Technology",
+        "text": "We do not compromise on safety. Our spaces are built for privacy and equipped exclusively with US-FDA-cleared devices"
+      }
+    ],
     services: {
-      heading: "Hair & scalp treatments",
-      intro:
-        "Every plan starts with a scalp examination and, where indicated, blood investigations, because hair fall from an internal cause cannot be fixed at the scalp alone.",
-      items: [
+      "heading": "Your Hair Concern Gets Targeted Solutions",
+      "intro": "A surface-level fix will never solve an internal problem. That is why every hair loss treatment at Dolce Estetica begins with a deep-layer scalp analysis and medical blood diagnostics, led by a dermatologist for hair loss who treats the actual physiological trigger",
+      "items": [
         {
-          name: "Hair Fall",
-          text: "Root-cause diagnosis for sudden or chronic hair shedding, treating nutritional, hormonal, and scalp factors with medical protocols.",
+          "name": "Hair Fall",
+          "text": "Stop counting lost strands. With a specialist you get the targeted medical protocol isolates hidden hormonal and nutritional triggers to freeze hair fall right at the root",
+          "cta": "Stop My Hair Fall Now",
+          "concern": "Hair fall or thinning"
         },
         {
-          name: "Hair Thinning",
-          text: "Targeted therapies to arrest progressive follicle miniaturisation, rebuild hair shaft thickness, and restore density.",
+          "name": "Hair Thinning",
+          "text": "Protect your existing hair density before it is too late. Our targeted clinical therapies actively reverse follicle shrinking, thickening every single strand from the base",
+          "cta": "Reclaim My Hair Density",
+          "concern": "Hair fall or thinning"
         },
         {
-          name: "Hair Regrowth",
-          text: "Evidence-based regrowth plans combining doctor-prescribed topicals, growth factors, and cellular scalp stimulation.",
+          "name": "Hair Regrowth",
+          "text": "Wake Up Dormant Roots. Trust the evidence-based strategy that combines custom physician topicals with deep-tissue cellular scalp stimulation",
+          "cta": "Activate New Hair Growth",
+          "concern": "Hair fall or thinning"
         },
         {
-          name: "PRP Therapy",
-          text: "Concentrated platelet-rich plasma prepared in-clinic to reactivate dormant hair follicles and accelerate natural hair regrowth.",
+          "name": "PRP Therapy",
+          "text": "Tap into your body's natural healing power. In-clinic, high-concentration platelet-rich plasma safely reactivates sleeping follicles to fast-track visible volume",
+          "cta": "Boost My Follicles with PRP",
+          "concern": "Hair fall or thinning"
         },
         {
-          name: "Scalp Treatment",
-          text: "Deep scalp detox, micro-exfoliation, and anti-inflammatory care for dandruff, sebum imbalance, and scalp infections.",
-        },
-      ],
+          "name": "Scalp Treatment",
+          "text": "Healthy hair cannot grow in a toxic environment. Advanced clinical micro-exfoliation instantly wipes away stubborn dandruff scales, oil imbalances, and deep scalp irritation",
+          "cta": "Reset My Scalp Health",
+          "concern": "Scalp problems"
+        }
+      ]
     },
     process: {
       heading: "How hair fall treatment works",
@@ -316,56 +413,58 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Baldness and hair loss have multiple medical causes, and outcomes differ from person to person. Our doctors examine first, investigate where needed, and give you an honest view of what is realistic, no regrowth promises, ever.",
     results: {
-      heading: "Results, discussed honestly",
-      text: "Hair responds over months, not weeks, and no responsible clinic promises regrowth before knowing the cause. At your consultation the doctor will show you what realistic improvement looks like for your specific diagnosis, and photographs of consenting patients with similar cases, in person, never as stock or AI-generated images online.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "Every transformation maps a documented clinical journey, capturing actual follicular progression in its truest form",
+      "pairs": [
         {
-          before: "/lp/results-hair-1-before.jpg",
-          after: "/lp/results-hair-1-after.jpg",
-          label: "Hair fall treatment",
+          "before": "/lp/results-hair-1-before.jpg",
+          "after": "/lp/results-hair-1-after.jpg",
+          "label": "Hair fall treatment"
         },
         {
-          before: "/lp/results-hair-2-before.jpg",
-          after: "/lp/results-hair-2-after.jpg",
-          label: "Hair density improvement",
+          "before": "/lp/results-hair-2-before.jpg",
+          "after": "/lp/results-hair-2-after.jpg",
+          "label": "Hair density improvement"
         },
         {
-          before: "/lp/hair-treatment-before-after.webp",
-          after: "/lp/hair-treatment-before-after.webp",
-          label: "Hair restoration & regrowth results",
-        },
-      ],
+          "before": "/lp/hair-treatment-before-after.webp",
+          "after": "/lp/hair-treatment-before-after.webp",
+          "label": "Hair restoration & regrowth results"
+        }
+      ]
     },
     concerns: [
-      "Hair fall / shedding",
-      "Hair thinning / less density",
-      "Bald patches / receding line",
-      "Dandruff or itchy scalp",
-      "Oily / flaky scalp",
-      "Want to discuss PRP",
-      "Something else",
+      "Acne or acne scars",
+      "Pigmentation or dark patches",
+      "Hair fall or thinning",
+      "Scalp problems",
+      "Skin allergy or rash",
+      "Anti-ageing and fine lines",
+      "Under-eye dark circles",
+      "General skin check-up",
+      "Something else"
     ],
     faqs: [
       {
-        q: "Why see a doctor for hair fall instead of starting a treatment?",
-        a: "Because the mirror cannot tell the difference between low iron, a thyroid issue, post-delivery shedding and hereditary loss, and each is treated completely differently. Treating the scalp while an internal cause continues rarely works. The consultation finds your cause first.",
+        "q": "Why should I see a dermatologist for hair loss instead of just buying a proven hair fall product?",
+        "a": "Shampoos and oils only treat the outer layer of your hair, but thinning usually starts deep down due to stress, hormones, or nutritional gaps. Masking the symptoms won't solve the core issue. We find and fix the root cause first."
       },
       {
-        q: "What is PRP, and am I a candidate?",
-        a: "PRP (platelet-rich plasma) uses a concentrate from your own blood, administered as part of a medical hair plan. Whether it suits you depends on the diagnosis, it helps some patterns and is pointless for others. The doctor will tell you honestly which group you fall in before anything is suggested.",
+        "q": "Does PRP actually work for hair thinning, or is it just marketing hype?",
+        "a": "It works incredibly well, but only if your hair roots are still alive. PRP uses your own blood cells to jumpstart weak, shrinking follicles. If a root is completely dead, no amount of PRP will bring it back. If you aren't a good fit for it, we will tell you honestly on day one instead of asking for your money"
       },
       {
-        q: "How much does hair treatment cost?",
-        a: "It depends on the diagnosis, a nutritional correction, a scalp medication course and a PRP plan are all priced differently. You get the full, itemised figure in writing at your consultation, before anything begins. EMI options are available on courses.",
+        "q": "What is the true cost of hair loss treatment? Will I face hidden add-ons?",
+        "a": "The cost depends entirely on what is causing your hair loss and how many sessions you need. We don't believe in surprise bills or pushy upselling. You will get a flat, fully written estimate before any treatment begins, and that number will not change. What you see is exactly what you pay"
       },
       {
-        q: "How soon will I see a difference?",
-        a: "Honestly: months. Hair cycles are slow, and any clinic promising regrowth in weeks is selling, not treating. What you get from us is a diagnosis, a plan with realistic expectations for your case, and reviews at sensible intervals.",
+        "q": "Honestly, how long does it take to see visible hair regrowth?",
+        "a": "Hair grows slowly, so anyone promising overnight results is lying to you. Usually, it takes about 4 to 6 weeks just to get sudden shedding under control. So when you meet our doctors, they will explain the whole journey to you with accurate plan"
       },
       {
-        q: "Which doctors will I see?",
-        a: "Consultations are doctor-led at every clinic, Edapally (Kochi), Cherthala, Calicut and Mangalore. Your doctor examines your scalp, orders investigations where needed and stays with your case through follow-ups.",
-      },
+        "q": "Will my care be managed by an actual doctor, or delegated to a technician?",
+        "a": "You will be treated by a certified dermatologist from start to finish. Your scans, your treatments, and your check-ins are always handled directly by your doctor"
+      }
     ],
   },
 
@@ -373,6 +472,12 @@ export const landingPages: LandingPage[] = [
    * 3, LASER HAIR REMOVAL (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Our Clients Choose Dolce Estetica",
+      "concernIntro": "Tap your target area to let us know your concern, so the right laser specialist is fully ready for you.",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic location and preferred laser slot.",
+      "locationsIntro": "For laser appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "laser-hair-removal",
     brand: "dolce",
     name: "Laser Hair Removal",
@@ -380,53 +485,82 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "Doctor-supervised laser hair removal for face, underarms, arms, legs, bikini area and full body. Patch test and consultation first, transparent session pricing. Book your consultation.",
     hero: {
-      eyebrow: "Doctor-supervised · Face to full body",
-      heading: "Smooth skin, without the weekly routine.",
-      subheading:
-        "Laser hair reduction for the face, underarms, arms, legs, bikini area or full body, planned by a doctor and always starting with a patch test.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/lp/lhr.jpg" and alt "Practitioner performing laser hair removal with a handpiece".
-      image: "/lp/laser-hair-removal-hero.jpg",
-      imageAlt: "Therapist in gloves gliding a laser hair removal handpiece over a client's lower leg",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "subheading": "Achieve smooth, carefree skin with laser hair removal treatment made just for you",
+      "image": "/lp/laser-hair-removal-hero.webp",
+      "imageAlt": "Therapist in gloves gliding a laser hair removal handpiece over a client's lower leg",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
-      { value: "15,000+", label: "Happy patients treated" },
-      { value: "7+ Years", label: "Of laser-treatment expertise" },
-      { value: "4.6★", label: "Google rating from real patients" },
+      {
+        "value": "7+ Years",
+        "label": "Of dermatology expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "We do not delegate your skin safety. You will always consult directly with a certified dermatologist to assess your hair profile and skin tone before your session begins."
+      },
+      {
+        "title": "Precision Parameter Matching",
+        "text": "We eliminate the guesswork. Our doctors carefully tune the clinical lasers to match your exact hair density and skin tone, ensuring safe and effective results right at the root"
+      },
+      {
+        "title": "Natural, Smooth Results",
+        "text": "We respect your skin's biology. Our laser hair removal treatments permanently reduce growth while maintaining skin softness, backed by flat, upfront pricing and zero surprise bills."
+      },
+      {
+        "title": "Advanced Cooling Technology",
+        "text": "We do not compromise on comfort. We operate exclusively with gold-standard, US-FDA-cleared systems using advanced skin-chilling tech for a pain-free experience."
+      }
+    ],
     services: {
-      heading: "Areas we treat",
-      intro:
-        "Every plan begins with a consultation and patch test on your skin tone, Indian skin needs careful laser settings, and that is exactly what the doctor plans for.",
-      items: [
+      "heading": "Your Smooth Skin, On Your Schedule",
+      "intro": "Looking for laser hair reduction near me? Get permanent smoothness from head to toe. A dermatologist evaluates your skin type and hair density to customize the perfect laser parameters for you",
+      "items": [
         {
-          name: "Face",
-          text: "Upper lip, chin, sideburns, jawline and full-face reduction, the area most of our patients start with.",
+          "name": "Face & Delicate Areas",
+          "text": "Smooth, fuzz-free skin without the breakouts. Safely precision-target your upper lip, chin, or sidelocks; minus the pain of threading and waxing",
+          "cta": "Smooth My Face Areas",
+          "concern": "Upper Lip & Chin"
         },
         {
-          name: "Underarms",
-          text: "A quick, popular area that usually responds well, ideal as a first experience of laser hair reduction.",
+          "name": "Full Arms & Underarms",
+          "text": "Effortless, even-toned skin from shoulder to fingertips. Effectively clear hair across your arms, hands, and underarms without the hassle.",
+          "cta": "Clear My Arm Hair",
+          "concern": "Full Arms or Legs"
         },
         {
-          name: "Arms",
-          text: "Full arms and forearms reduction, planned as sensible session packages with precise coverage.",
+          "name": "Full Legs & Bikini",
+          "text": "Experience total freedom in your wardrobe. High-speed laser tech quickly and painlessly processes large surface zones",
+          "cta": "Smooth My Legs & Bikini Area",
+          "concern": "Bikini Line"
         },
         {
-          name: "Legs",
-          text: "Full legs or lower legs reduction, designed to deliver smooth, hair-free skin comfortably.",
-        },
-        {
-          name: "Bikini area",
-          text: "Bikini-line and Brazilian reduction, handled with trained staff, strict privacy and a woman-led clinic team where possible.",
-        },
-        {
-          name: "Full body",
-          text: "A complete head-to-toe plan with a per-session structure you can see in full before starting, the quote covers everything, nothing appears later.",
-        },
-      ],
+          "name": "Full Body Grooming",
+          "text": "The ultimate full-body transformation. A comprehensive, multi-zone full body laser hair removal protocol customized safely for both men and women across chests, backs, and abdomens.",
+          "cta": "View Full Body Packages",
+          "concern": "Full Body Laser"
+        }
+      ]
     },
     process: {
       heading: "How laser hair removal works",
@@ -448,47 +582,48 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Laser hair reduction is a medical procedure, settings that suit one skin tone can burn another. At Dolce Estetica the doctor sets your parameters after a patch test, and trained staff perform every session under clinical protocols.",
     results: {
-      heading: "What to expect, honestly",
-      text: "Laser hair reduction thickens and slows regrowth over a course of sessions, most patients need multiple sessions, spaced weeks apart, followed by occasional maintenance. It is reduction, not permanent removal of every last hair, and hormonal areas sometimes need more sessions. At your consultation we show you what this has realistically meant for patients with your hair and skin type, in person, never as stock or AI images.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "Real journey, no filters. See authentic laser progress from an existing Dolce patient. Your doctor will discuss session counts and realistic timelines at your consultation.",
+      "pairs": [
         {
-          before: "/lp/lhr-before-after.webp",
-          after: "/lp/lhr-before-after.webp",
-          label: "Laser hair reduction results",
-        },
-      ],
+          "before": "/lp/lhr-before-after.webp",
+          "after": "/lp/lhr-before-after.webp",
+          "label": "Laser hair reduction results"
+        }
+      ]
     },
     concerns: [
-      "Full body laser hair removal",
-      "Face, upper lip / chin / sideburns",
+      "Full Body Laser",
       "Underarms",
-      "Arms",
-      "Legs",
-      "Bikini / Brazilian",
-      "Touch-ups after sessions elsewhere",
-      "Not sure, advise me",
+      "Full Arms or Legs",
+      "Upper Lip & Chin",
+      "Bikini Line",
+      "Chest & Abdomen",
+      "Back Grooming",
+      "Facial Sidelocks",
+      "Consultation Only"
     ],
     faqs: [
       {
-        q: "Is laser hair removal permanent?",
-        a: "It is long-term reduction, not permanent removal of every hair. Most patients see a large, lasting reduction over a course of sessions, with fine regrowth handled by occasional maintenance. We will not promise you 'permanent', no honest clinic can, but we will show you what to expect for your hair and skin type.",
+        "q": "Does laser hair removal treatment hurt?",
+        "a": "Not at all. We use next-generation systems equipped with built-in sapphire cooling tech that instantly chills the skin surface, turning the laser pulses into a completely comfortable, pain-free sensation"
       },
       {
-        q: "Is it safe for Indian skin?",
-        a: "Yes, when the laser and its settings are chosen for your skin tone, which is exactly why we patch test first and why a doctor sets your parameters. Indian skin pigment absorbs laser energy differently, and the wrong setting is what causes burns and pigmentation.",
+        "q": "How many sessions will I actually need?",
+        "a": "Hair grows in cycles. For permanent reduction with full body laser hair removal, most areas require 6 to 8 sessions spaced a few weeks apart to catch every follicle in its active growth phase"
       },
       {
-        q: "How many sessions will I need?",
-        a: "Most areas need multiple sessions spaced several weeks apart, because hair grows in cycles and the laser only affects follicles in the active phase. Hormonal areas like the face sometimes need more. Your plan and the full cost are confirmed at the consultation before you start.",
+        "q": "Will I face hidden package charges?",
+        "a": "Never. We practice absolute pricing integrity. You receive a flat, fully written, itemized estimate based entirely on your chosen body areas before your first session begins; what you see is exactly what you pay."
       },
       {
-        q: "How much does it cost?",
-        a: "The cost depends on the areas treated, your hair type and the number of sessions in your plan. You receive the complete, itemised figure at your consultation, for the whole plan, not per session with extras hidden later. EMI options are available.",
+        "q": "Is it safe for all Indian skin tones?",
+        "a": "Yes, perfectly safe. Because our treatments are strictly dermatologist-led, your doctor custom-selects the exact laser wavelengths and pulse settings to protect your skin's melanin while destroying the hair root."
       },
       {
-        q: "Does it hurt?",
-        a: "Most patients describe it as a warm snap, uncomfortable rather than painful, and it varies by area. Modern lasers cool the skin as they work. We would rather you hear this honestly at a patch test than a sales promise, the patch test is exactly the moment to judge it for yourself.",
-      },
+        "q": "What should I do before my first session?",
+        "a": "Shave the target area 24 hours before your visit, but avoid waxing, plucking, or threading for at least 3 weeks, as the laser needs the hair root intact under the skin to work effectively."
+      }
     ],
   },
 
@@ -496,6 +631,12 @@ export const landingPages: LandingPage[] = [
    * 4, SKIN TREATMENTS (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Our Clients Choose Dolce Estetica",
+      "concernIntro": "Tap your concern and the right specialist will be there for you.",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "Looking for a skin clinic near me? For appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "skin-treatments",
     brand: "dolce",
     name: "Skin Treatments",
@@ -503,54 +644,94 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "Doctor-led skin treatments: acne, pigmentation, acne scars, anti-ageing, rejuvenation and chemical peels. Personalised plans at clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
-      eyebrow: "Doctor-led skin care · 4 clinics",
-      heading: "Skin concerns treated in the right order.",
-      subheading:
-        "Acne before scars, diagnosis before fading, assessment before lines. Every skin concern treated in the right order by a dermatologist.",
-      // Hero photo swapped to the client's 2026 banner set (1 Oct 2026).
-      // UNDO: restore image "/lp/skin.jpg" and alt "Woman receiving a facial skin treatment".
-      image: "/lp/skin-treatments-hero.jpg",
-      imageAlt:
-        "Woman with clear, glowing skin touching her cheek against a soft beige wall",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Transform Your Skin From the First Session",
+      "subheading": "No more filters, concealer, or second-guessing. Trust a skin doctor and doctor-led treatments for clear, glowing skin",
+      "image": "/lp/skin-treatments-hero.webp",
+      "imageAlt": "Woman with clear, glowing skin touching her cheek against a soft beige wall",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "15,000+", label: "Happy patients treated" },
-      { value: "4.6★", label: "Google rating from real patients" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
-      { value: "7+ Years", label: "Of skin-treatment expertise" },
+      {
+        "value": "7+ Years",
+        "label": "Of skin-treatment expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "Your plan is designed and supervised by a certified dermatologist, your skin specialist at every step. You consult the doctor directly before, during, and after every treatment"
+      },
+      {
+        "title": "AI-Assisted Skin Analysis",
+        "text": "We look beneath the surface. Clinical AI imaging reads your skin in fine detail, so your plan is based on diagnosis and not guesswork"
+      },
+      {
+        "title": "Safe for Indian Skin",
+        "text": "Indian skin pigments easily, so every treatment is chosen and made according to your skin tone, with strict sun protection and aftercare added"
+      },
+      {
+        "title": "Modern Technology",
+        "text": "We do not compromise on safety. Our clinics use modern, US-FDA-approved devices selected for effective, controlled treatments"
+      }
+    ],
     services: {
-      heading: "Treatments we offer",
-      intro:
-        "Medical-grade skin care planned around your diagnosis and your skin type, with strict sun protection built into every plan, because Indian skin pigments easily.",
-      items: [
+      "heading": "A Doctor-Led Plan for Every Skin Concern",
+      "intro": "If you are searching for a skin clinic near me, start with a diagnosis. Acne, pigmentation, and scars are different battles, so every plan at Dolce Estetica begins with a doctor's assessment and the right care in the right sequence",
+      "items": [
         {
-          name: "Acne",
-          text: "Active breakouts controlled first with medical peels and prescribed protocols, treating root causes to prevent future scarring.",
+          "name": "Acne",
+          "text": "Get breakouts under control first. Medical peels and prescribed protocols treat the root cause, so today's pimples do not become tomorrow's scars",
+          "cta": "Clear My Breakouts",
+          "concern": "Acne or breakouts"
         },
         {
-          name: "Pigmentation",
-          text: "Melasma, tan, dark patches and uneven tone diagnosed by depth and targeted with specialized brightening care.",
+          "name": "Pigmentation",
+          "text": "Understand your pigmentation before treating it. Your doctor assesses the type and depth of pigmentation, then recommends targeted clinical care to help restore a more even skin tone",
+          "cta": "Even Out My Skin Tone",
+          "concern": "Pigmentation, dark patches or tan"
         },
         {
-          name: "Acne Scars",
-          text: "Microneedling and fractional CO2 resurfacing for pitted scars, tailored to your skin texture and scar depth.",
+          "name": "Acne Scars",
+          "text": "Deep acne scars need more than surface-level care. Advanced microneedling and fractional CO₂ laser treatments work deeper into the skin to improve the appearance of pits, texture, and scar shadows",
+          "cta": "Smooth My Scars",
+          "concern": "Acne scars or pits"
         },
         {
-          name: "Anti-Ageing",
-          text: "Fine lines, laxity, and volume loss assessed by a doctor to refresh skin elasticity while keeping your natural features.",
+          "name": "Anti-Ageing",
+          "text": "Your skin changes with time. Our dermatologists assess your skin profile and recommend treatments to soften fine lines, restore natural-looking volume, and improve firmness",
+          "cta": "Refresh My Skin",
+          "concern": "Fine lines or anti-ageing"
         },
         {
-          name: "Skin Rejuvenation",
-          text: "Dullness and texture renewal plans built on clinical therapies and sustainable home care routines for lasting glow.",
+          "name": "Skin Rejuvenation",
+          "text": "Bring back your glow with clinical treatments and a home routine you can actually follow. Designed to improve dullness, uneven texture, and overall skin quality",
+          "cta": "Get My Glow Back",
+          "concern": "Dull skin or glow"
         },
         {
-          name: "Chemical Peel",
-          text: "Medical-grade peels selected for your skin tone and performed in-clinic with strict post-peel pigmentation defense.",
-        },
-      ],
+          "name": "Chemical Peel",
+          "text": "See the real results with custom medical-grade peels matched to your skin tone, safely performed in-clinic with dedicated post-care protection",
+          "cta": "Plan My Peel",
+          "concern": "Chemical peel enquiry"
+        }
+      ]
     },
     process: {
       heading: "How skin treatment works",
@@ -572,57 +753,57 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Every skin plan at Dolce Estetica is written by a doctor after examining your skin in proper light. Skin disorders are medical conditions, they deserve diagnosis before treatment, and honesty about what treatment can achieve.",
     results: {
-      heading: "Results, shown honestly",
-      text: "Improvement, not erasure, a course softens texture and shadow so scars become far less noticeable in normal light, and pigmentation lightens gradually with strict sun protection. Photos of consenting patients with concerns like yours are shown at your consultation, in person. We do not publish stock or AI-generated before/after images and we do not promise perfect skin to anyone.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "We never use stock or AI-generated before-and-after images. See how scars soften, pigmentation improves, and skin quality changes across real cases like yours",
+      "pairs": [
         {
-          before: "/lp/skin-treatments-before-after.webp",
-          after: "/lp/skin-treatments-before-after.webp",
-          label: "Skin treatment results",
+          "before": "/lp/skin-treatments-before-after.webp",
+          "after": "/lp/skin-treatments-before-after.webp",
+          "label": "Skin treatment results"
         },
         {
-          before: "/lp/derma-skin-treat.webp",
-          after: "/lp/derma-skin-treat.webp",
-          label: "Acne & pigmentation care",
+          "before": "/lp/derma-skin-treat.webp",
+          "after": "/lp/derma-skin-treat.webp",
+          "label": "Acne & pigmentation care"
         },
         {
-          before: "/lp/dermatology-skin-treat.webp",
-          after: "/lp/dermatology-skin-treat.webp",
-          label: "Dermatological skin care",
-        },
-      ],
+          "before": "/lp/dermatology-skin-treat.webp",
+          "after": "/lp/dermatology-skin-treat.webp",
+          "label": "Dermatological skin care"
+        }
+      ]
     },
     concerns: [
-      "Acne / breakouts",
-      "Pigmentation / dark patches / tan",
-      "Acne scars / pits",
-      "Fine lines / anti-ageing",
-      "Dull skin / glow",
-      "Open pores / texture",
+      "Acne or breakouts",
+      "Pigmentation, dark patches or tan",
+      "Acne scars or pits",
+      "Fine lines or anti-ageing",
+      "Dull skin or glow",
+      "Open pores or texture",
       "Chemical peel enquiry",
-      "Something else",
+      "Something else"
     ],
     faqs: [
       {
-        q: "Which treatment is right for my skin?",
-        a: "The one that matches your diagnosis, which is why a consultation comes first. Acne, marks and scarring are three different problems needing three different plans, and treating them in the wrong order makes things worse. The doctor examines your skin and tells you what sequence fits yours.",
+        "q": "Which treatment is right for my skin?",
+        "a": "The one that matches your diagnosis, which is why the consultation comes first. Acne, marks, and scars each need their own plan, and the order matters. Your skin doctor examines your skin and tells you exactly what to do first"
       },
       {
-        q: "Are chemical peels safe on Indian skin?",
-        a: "Yes, when the peel is chosen and timed for your skin tone, that is a medical decision, not a menu choice. Indian skin runs a real risk of post-treatment pigmentation, which is why every peel plan here comes with strict sun protection and aftercare built in.",
+        "q": "Are chemical peels safe on Indian skin?",
+        "a": "Yes, when the peel is chosen according to your skin tone. That is a medical decision, not a menu choice. Indian skin can become pigmented after treatment, so every peel plan comes with strict sun protection and aftercare."
       },
       {
-        q: "How much do skin treatments cost?",
-        a: "It depends on what you actually have, a few deep scars cost far less to treat than a full face, and a pigmentation course differs from an acne course. You get the complete, itemised quote in writing at your consultation, before anything begins. EMI options are available on courses.",
+        "q": "How much do skin treatments cost?",
+        "a": "It depends on what you actually have. A few deep scars cost far less to treat than a full face, and a pigmentation course differs from an acne course. You get a complete, itemised quote in writing before anything begins. EMI options are available on courses."
       },
       {
-        q: "How many sessions will I need?",
-        a: "Scar and pigmentation treatments work as courses spaced several weeks apart, with collagen continuing to remodel for months after, so the final result is judged well after the last session, not immediately. Your doctor gives you a realistic session estimate at the consultation.",
+        "q": "How many sessions will I need?",
+        "a": "Scars and pigmentation are treated as courses, spaced a few weeks apart. Your skin keeps rebuilding collagen for months after, so the final result shows well after your last session. Your doctor gives you a realistic estimate on day one."
       },
       {
-        q: "Can I get a 'glow' treatment before an event?",
-        a: "Yes, tell us the date when you book. Event skin prep works best started a few weeks ahead, and the doctor will plan what is safely possible in the time you have, rather than an aggressive treatment that risks pigmentation right before your function.",
-      },
+        "q": "Can I get a glow treatment before an event?",
+        "a": "Yes. Tell us the date when you book. Event prep works best when started a few weeks ahead, and your skin specialist will plan what is safe in the time you have, not an aggressive treatment that risks pigmentation right before your function"
+      }
     ],
   },
 

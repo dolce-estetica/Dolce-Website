@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "dermatology-clinic",
+    "width": 320,
+    "scrollWidth": 320,
+    "sheetHeight": 541.25,
+    "viewportHeight": 568,
+    "inputFontSize": "16px",
+    "phoneMode": "tel",
+    "scrolls": false,
+    "submitVisible": true
+  },
+  {
+    "slug": "hair-treatment",
+    "width": 320,
+    "scrollWidth": 320,
+    "sheetHeight": 541.25,
+    "viewportHeight": 568,
+    "inputFontSize": "16px",
+    "phoneMode": "tel",
+    "scrolls": false,
+    "submitVisible": true
+  },
+  {
+    "slug": "laser-hair-removal",
+    "width": 320,
+    "scrollWidth": 320,
+    "sheetHeight": 541.25,
+    "viewportHeight": 568,
+    "inputFontSize": "16px",
+    "phoneMode": "tel",
+    "scrolls": false,
+    "submitVisible": true
+  },
+  {
+    "slug": "skin-treatments",
+    "width": 320,
+    "scrollWidth": 320,
+    "sheetHeight": 541.25,
+    "viewportHeight": 568,
+    "inputFontSize": "16px",
+    "phoneMode": "tel",
+    "scrolls": false,
+    "submitVisible": true
+  }
+]

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 /** Folders under `public/` that hold versioned-by-hand artwork rather than code. */
-const ASSET_DIRS = ["assets", "bgs", "gallery", "team", "treatments"];
+const ASSET_DIRS = ["assets", "bgs", "gallery", "lp", "team", "treatments"];
 
 /** The 7 Google-Ads landing pages live at top-level paths; /lp/<slug> 301s to them. */
 const LP_SLUGS = [

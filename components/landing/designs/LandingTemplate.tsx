@@ -24,6 +24,8 @@ import { locations } from "@/lib/data/locations";
 import { site } from "@/lib/site";
 import LandingLeadForm from "../LandingLeadForm";
 import ConcernPicker from "../ConcernPicker";
+import { ConcernProvider, ConcernLink } from "../ConcernContext";
+import ResultsGallery from "../ResultsGallery";
 import GoogleReviewCard from "@/components/shared/GoogleReviewCard";
 import { ExternalLink } from "lucide-react";
 import LandingStickyCta from "../LandingStickyCta";
@@ -163,13 +165,12 @@ const PAGE_EXTRAS: Record<
     //   arms-legs pixabay.com/photos/stretching-498256 bikini  pixabay.com/photos/girl-358768
     //   full-body pixabay.com/photos/girl-677576     touchups pixabay.com/photos/woman-586185
     shortServiceImages: true,
+    fourColServices: true,
     serviceImages: [
       "/lp/lhr-face.webp",
       "/lp/lhr-underarms.jpg",
-      "/lp/vaser-arms.webp",
       "/lp/lhr-legs.png",
       "/lp/lhr-bikini.png",
-      "/treatments/deep-clense.webp",
     ],
     stickyLabel: "Book your laser consultation",
     stickyVariant: "green",
@@ -351,6 +352,9 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
   const extras = PAGE_EXTRAS[page.slug];
   const reviews = rotatedReviews(page.slug);
   const isMedlounges = page.brand === "medlounges";
+  const isCampaign = Boolean(page.campaign);
+  const defaultConcern = isCampaign ? undefined : extras.defaultConcern;
+  const pillars = isCampaign ? page.why.map((pillar, i) => ({ ...pillar, icon: WHY_PILLARS[i % WHY_PILLARS.length].icon })) : WHY_PILLARS;
 
   const faqSection = (
     <>      {/* ===== 6 — FAQ: cream rows, bronze chevron ===== */}
@@ -358,7 +362,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              Your questions, answered
+              {isCampaign ? "Quick Answers Before You Book" : "Your questions, answered"}
             </h2>
           </div>
           <div className="mt-10 space-y-3.5">
@@ -368,7 +372,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 className="group rounded-2xl px-6 py-5 ring-1 ring-[#E3E8DF] transition-shadow hover:shadow-md"
                 style={{ backgroundColor: CREAM }}
               >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-bold text-gray-800 [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-4 text-left text-base font-bold text-gray-800 [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <span
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"
@@ -389,7 +393,8 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
 
 
   return (
-    <>
+    <ConcernProvider defaultConcern={defaultConcern}>
+    <div className={isCampaign ? "lp-campaign" : undefined}>
       {/* White header across phone and desktop; the phone CTA stays in its bottom bar. */}
       <header className="z-[135] border-b border-[#E3E8DF] bg-white lg:sticky lg:top-0">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6">
@@ -405,7 +410,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
           </Link>
           <a
             href="#book"
-            className="hidden items-center gap-2 rounded-full bg-dolce-green px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light lg:inline-flex"
+            className="lp-header-cta hidden items-center gap-2 rounded-full bg-dolce-green px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light lg:inline-flex"
           >
             <CalendarCheck className="h-4 w-4" />
             Book Now
@@ -413,7 +418,26 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         </div>
       </header>
 
-      {/* Copy sits on white; original photographs stay clear of text and dark overlays. */}
+      {isCampaign ? (
+        <section className={`lp-hero relative isolate overflow-hidden bg-dolce-green ${page.slug === "hair-treatment" ? "lp-hero-hair" : ""}`}>
+          {/* These WebP heroes are already compressed and capped at 1600px.
+              Serve them directly to avoid a cold image-optimizer delay on the LCP. */}
+          <Image src={page.hero.image} alt={page.hero.imageAlt} fill preload unoptimized className={`object-cover ${extras.heroImagePosition ?? ""}`} />
+          <div className="lp-hero-overlay absolute inset-0" />
+          <div className="relative mx-auto flex min-h-[580px] max-w-7xl items-center px-5 py-14 sm:min-h-[620px] sm:px-8 lg:px-6">
+            <div className="lp-hero-copy max-w-2xl">
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-2 text-[10px] font-bold tracking-[0.1em] text-white sm:text-xs">
+                <ShieldCheck className="h-4 w-4 shrink-0" aria-hidden />{page.hero.eyebrow}
+              </p>
+              <h1 className="mt-6 font-display text-[clamp(2rem,7.8vw,3.75rem)] leading-[1.12] font-bold tracking-tight text-white">{page.hero.heading}</h1>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">{page.hero.subheading}</p>
+              <a href="#book" className="lp-gold-button mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-bold sm:w-auto">
+                Book My Consultation <ArrowRight className="h-5 w-5 shrink-0" aria-hidden />
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : (
       <section className="bg-white px-5 pt-8 pb-9 sm:px-6 sm:py-12 lg:py-16">
         <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
@@ -459,6 +483,8 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         </div>
       </section>
 
+      )}
+
       {/* ===== 2 — IMPACT STATS BAND: brand green, bronze numerals ===== */}
       <section aria-label="Our numbers" className="px-4 py-9 sm:px-6" style={{ backgroundColor: GREEN }}>
         <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-y-7 sm:grid-cols-4">
@@ -468,7 +494,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
               className={`flex flex-col items-center gap-1.5 px-3 text-center ${i > 0 ? "sm:border-l sm:border-white/10" : ""}`}
             >
               {(() => {
-                const STAT_ICONS: Record<string, typeof Star> = { "7+ Years": Stethoscope, "4 clinics": MapPin, "4.6★": Star, "15,000+": Smile };
+                const STAT_ICONS: Record<string, typeof Star> = { "7+ Years": Stethoscope, "4 Clinics": MapPin, "4 clinics": MapPin, "4.6★": Star, "15,000+": Smile };
                 const StatIcon = STAT_ICONS[item.value] ?? ShieldCheck;
                 return <StatIcon className="mb-1 h-5 w-5" style={{ color: SAND }} aria-hidden />;
               })()}
@@ -491,11 +517,11 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              {isMedlounges ? "Why you'll be in safe hands" : "Why you'll love Dolce Estetica"}
+              {page.campaign?.whyHeading ?? (isMedlounges ? "Why you'll be in safe hands" : "Why you'll love Dolce Estetica")}
             </h2>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY_PILLARS.map((pillar) => (
+            {pillars.map((pillar) => (
               <div
                 key={pillar.title}
                 className="flex flex-col items-center rounded-3xl bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-lg"
@@ -535,12 +561,12 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
               const img = extras.serviceImages?.[i];
               const Icon = extras.serviceIcons?.[i];
               return (
-                <a
+                <ConcernLink
                   key={item.name}
-                  href="#book"
+                  concern={item.concern}
                   className={`group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#E3E8DF] transition-all hover:-translate-y-1 hover:shadow-xl ${
                     page.services.items.length === 5
-                      ? "w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.85rem)] max-w-sm"
+                      ? "w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.85rem)]"
                       : ""
                   }`}
                 >
@@ -570,14 +596,14 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                     <h3 className="text-lg font-extrabold text-dolce-green">{item.name}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{item.text}</p>
                     <span
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-extrabold"
+                      className="lp-service-cta mt-5 inline-flex min-h-11 items-center justify-between gap-2 text-sm font-extrabold"
                       style={{ color: BRONZE_TEXT }}
                     >
-                      Book consultation
+                      {item.cta ?? "Book consultation"}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
-                </a>
+                </ConcernLink>
               );
             })}
           </div>
@@ -590,14 +616,14 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
 
       {/* ===== 7 — BEFORE/AFTER: "Real People Real Results", white surface ===== */}
       <section id="results" className="scroll-mt-6 lg:scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-3xl text-center">
+        <div className={`mx-auto text-center ${isCampaign ? "max-w-7xl" : "max-w-3xl"}`}>
           <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-            Real people, real results
+            {isCampaign ? page.results.heading : "Real people, real results"}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">{page.results.text}</p>
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">{page.results.text}</p>
           {page.results.pairs.length > 0 ? (
             <>
-              <div
+              {isCampaign ? <ResultsGallery pairs={page.results.pairs} /> : <div
                 className={`mx-auto mt-12 flex flex-wrap justify-center gap-6 ${
                   page.slug === "glutathione-treatment" ? "max-w-5xl" : "max-w-4xl"
                 }`}
@@ -665,16 +691,16 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                     </figcaption>
                   </figure>
                 ))}
-              </div>
+              </div>}
               <p className="mx-auto mt-8 max-w-xl text-xs leading-relaxed text-gray-500">
                 More before-and-afters, matched to your skin concern, are shown in person at your
                 consultation, with the doctor.
               </p>
               <a
                 href="#book"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-dolce-green-light"
+                className="lp-results-cta mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-dolce-green px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-dolce-green-light"
               >
-                See real cases at your consultation
+                {isCampaign ? "Get Similar Results" : "See real cases at your consultation"}
                 <ArrowRight className="h-4 w-4" />
               </a>
             </>
@@ -694,7 +720,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 href="#book"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-dolce-green-light"
               >
-                See real cases at your consultation
+                {isCampaign ? "Get Similar Results" : "See real cases at your consultation"}
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -707,7 +733,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              Hear it from our patients
+              {isCampaign ? "In Their Own Words" : "Hear it from our patients"}
             </h2>
           </div>
           {extras.homeReviews ? (
@@ -717,7 +743,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                   <span className="text-4xl font-bold text-dolce-ink sm:text-5xl">4.6</span>
                   <Stars rating={5} className="h-6 w-6" />
                 </div>
-                <p className="mt-2 text-sm text-gray-500">Based on Google patient reviews</p>
+                <p className="mt-2 text-sm text-gray-500">{isCampaign ? "4.6 on Google, from real patients." : "Based on Google patient reviews"}</p>
                 <a
                   href={site.googleReviewUrl}
                   target="_blank"
@@ -745,7 +771,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             <>
               <div className="mt-4 flex items-center justify-center gap-2.5">
                 <Stars rating={5} className="h-5 w-5" />
-                <p className="text-sm font-bold text-gray-700">4.6 on Google · loved by patients across Kerala</p>
+                <p className="text-sm font-bold text-gray-700">{isCampaign ? "4.6 on Google, from real patients." : "4.6 on Google · loved by patients across Kerala"}</p>
               </div>
               {/* Compact phone cards; preserve the existing 380px cards at sm+. */}
               <div className="scrollbar-hide -mx-4 mt-8 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-12 sm:px-0">
@@ -771,11 +797,10 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <section className="border-y border-[#E3E8DF] bg-white px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="font-display text-2xl font-extrabold tracking-tight text-dolce-green sm:text-3xl">
-              What would you like help with today?
+              {isCampaign ? "Not Sure Where To Start? Tell Us" : "What would you like help with today?"}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
-              Pick a concern below and mention it when our team calls, we&apos;ll have the
-              right specialist ready for you.
+              {page.campaign?.concernIntro ?? "Pick a concern below and mention it when our team calls, we’ll have the right specialist ready for you."}
             </p>
             <ConcernPicker concerns={page.concerns} />
           </div>
@@ -787,14 +812,14 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              {extras.formHeading}
+              {isCampaign ? "Start Your Consultation" : extras.formHeading}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
-              Fill this in and our team will call you back within 2 hours, at the clinic you prefer.
+              {page.campaign?.formIntro ?? "Fill this in and our team will call you back within 2 hours, at the clinic you prefer."}
             </p>
           </div>
           <div className="mt-10">
-            <LandingLeadForm page={page} submitLabel={extras.submitLabel} defaultConcern={extras.defaultConcern} />
+            <LandingLeadForm page={page} submitLabel={extras.submitLabel} defaultConcern={defaultConcern} />
           </div>
         </div>
       </section>
@@ -804,9 +829,10 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              Our clinics across South India
+              {isCampaign ? "Find Your Nearest Dolce Clinic" : "Our clinics across South India"}
             </h2>
           </div>
+          {page.campaign && <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-gray-600">{page.campaign.locationsIntro}</p>}
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {locations.map((loc) => (
               <a
@@ -849,18 +875,20 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       {/* ===== FAQ — always last before the disclaimer ===== */}
       {faqSection}
 
-      <p className="mx-auto max-w-6xl bg-white px-4 py-12 text-xs leading-relaxed text-gray-400 sm:px-6">
+      <p className="mx-auto max-w-6xl bg-white px-4 py-12 text-xs leading-relaxed text-gray-600 sm:px-6">
         {LP_DISCLAIMER}
       </p>
 
       {/* sticky bottom bar — light surface with a green action */}
       <LandingStickyCta
         slug={page.slug}
+        gold={isCampaign}
         label={extras.stickyLabel}
         variant={extras.stickyVariant}
         concerns={page.concerns}
-        defaultConcern={extras.defaultConcern}
+        defaultConcern={defaultConcern}
       />
-    </>
+    </div>
+    </ConcernProvider>
   );
 }

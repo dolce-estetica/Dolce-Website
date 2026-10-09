@@ -19,3 +19,115 @@
 .lp-theme h2 {
   text-wrap: balance;
 }
+
+/* October campaign briefs. Other campaigns keep their existing light theme. */
+.lp-campaign {
+  --lp-gold: #c8a66a;
+  --lp-gold-hover: #d8b97e;
+}
+
+.lp-campaign .lp-gold-button,
+.lp-campaign .lp-header-cta,
+.lp-campaign .lp-submit,
+.lp-campaign .lp-results-cta {
+  background: var(--lp-gold);
+  color: #183313;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.lp-campaign .lp-gold-button:hover,
+.lp-campaign .lp-header-cta:hover,
+.lp-campaign .lp-submit:hover,
+.lp-campaign .lp-results-cta:hover {
+  background: var(--lp-gold-hover);
+  box-shadow: 0 4px 16px #1c381614;
+}
+
+.lp-hero-overlay {
+  background: linear-gradient(90deg, rgb(13 37 21 / 94%) 0%, rgb(13 37 21 / 86%) 42%, rgb(13 37 21 / 35%) 76%, rgb(13 37 21 / 16%) 100%);
+}
+
+.lp-campaign .lp-hero :focus-visible {
+  outline-color: #f0d8a9;
+}
+
+.lp-campaign .lp-service-cta {
+  background: var(--lp-gold);
+  color: #183313 !important;
+  border-radius: 999px;
+  padding: 12px 16px;
+  line-height: 1.4;
+}
+
+.lp-campaign .lp-service-cta svg { flex-shrink: 0; }
+.lp-campaign input,
+.lp-campaign select { min-width: 0; }
+.lp-campaign #testimonials a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.lp-results-track {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #c8a66a #e3e8df;
+  padding: 4px 2px 16px;
+}
+
+.lp-result-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+  min-width: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #e3e8df;
+}
+
+.lp-result-label {
+  position: absolute;
+  top: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgb(13 37 21 / 85%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lp-gallery-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #bcc8b6;
+  border-radius: 50%;
+  background: #fff;
+  color: #1c3816;
+}
+.lp-gallery-arrow:hover:not(:disabled) { background: #eaf0e6; }
+.lp-gallery-arrow:disabled { opacity: 0.35; }
+.lp-results-single { max-width: 760px; margin-inline: auto; }
+
+@media (min-width: 1024px) {
+  .lp-results-track { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); overflow: visible; }
+  .lp-hero-hair .lp-hero-copy { margin-left: auto; max-width: 600px; }
+  .lp-hero-hair .lp-hero-overlay { background: linear-gradient(270deg, rgb(13 37 21 / 96%) 0%, rgb(13 37 21 / 90%) 42%, rgb(13 37 21 / 38%) 76%, rgb(13 37 21 / 16%) 100%); }
+}
+
+@media (max-width: 639px) {
+  .lp-hero-overlay { background: linear-gradient(180deg, rgb(13 37 21 / 58%) 0%, rgb(13 37 21 / 82%) 35%, rgb(13 37 21 / 95%) 100%); }
+  .lp-campaign .lp-hero > div:last-child { align-items: flex-end; }
+  .lp-campaign #why > div > div:last-child { gap: 16px; }
+  .lp-campaign #book > div > div:last-child > div { padding: 24px 20px; }
+}

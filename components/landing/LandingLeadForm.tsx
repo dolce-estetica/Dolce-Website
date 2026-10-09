@@ -6,6 +6,7 @@ import type { LandingPage } from "@/lib/data/landing-pages";
 import { locations } from "@/lib/data/locations";
 import { captureUtm } from "@/lib/utm";
 import { useLeadSubmission } from "@/lib/use-lead-submission";
+import { useConcern } from "./ConcernContext";
 
 const fieldClass =
   "w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3.5 text-base text-dolce-ink outline-none transition-colors placeholder:text-gray-400 focus:border-dolce-green focus:bg-white focus:ring-2 focus:ring-dolce-green/15";
@@ -38,7 +39,8 @@ export default function LandingLeadForm({
   /** pre-selected concern (page-appropriate default on some LPs) */
   defaultConcern?: string;
 }) {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", concern: defaultConcern ?? "", clinic: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", clinic: "" });
+  const { concern, setConcern } = useConcern(defaultConcern);
 
   // Bank the ad tags the moment the visitor lands, so a lead submitted from
   // any of the seven pages still carries the campaign even after the visitor
@@ -63,9 +65,9 @@ export default function LandingLeadForm({
       source: `lp-${page.slug}`,
       slug: page.slug,
       pageName: page.name,
-      concern: form.concern,
+      concern,
       clinic: form.clinic,
-      service: `${page.name} — ${form.concern}`,
+      service: `${page.name} — ${concern}`,
       name: form.name,
       phone: form.phone,
       email: form.email || undefined,
@@ -81,9 +83,7 @@ export default function LandingLeadForm({
       referrer: utm.referrer,
     };
 
-    // Fire-and-forget: the CRM has no CORS and its API key must never reach
-    // the browser, so the capture goes through our own server proxy. A proxy
-    // failure is logged server-side and must not block the redirect below.
+    // Only a confirmed CRM response permits the success redirect.
     await submitLead(leadPayload);
   };
 
@@ -131,7 +131,7 @@ export default function LandingLeadForm({
 
             <div>
               <label className={labelClass} htmlFor="lp-email">
-                Email Address
+                Email (optional)
               </label>
               <div className="relative">
                 <Mail className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -155,8 +155,8 @@ export default function LandingLeadForm({
                 id="lp-concern"
                 required
                 className={fieldClass}
-                value={form.concern}
-                onChange={(e) => set("concern")(e.target.value)}
+                value={concern}
+                onChange={(e) => setConcern(e.target.value)}
               >
                 <option value="" disabled>
                   Select your concern
@@ -198,7 +198,7 @@ export default function LandingLeadForm({
             type="submit"
                     disabled={pending}
                     aria-busy={pending}
-            className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-dolce-green px-8 py-4 text-base font-bold text-white transition-all hover:bg-dolce-green-light active:scale-[0.99] sm:text-lg"
+            className="lp-submit mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-dolce-green px-8 py-4 text-base font-bold text-white transition-all hover:bg-dolce-green-light active:scale-[0.99] disabled:cursor-wait disabled:opacity-70 sm:text-lg"
           >
             <CalendarCheck className="h-5 w-5" />
             {pending ? "Sending…" : submitLabel}
