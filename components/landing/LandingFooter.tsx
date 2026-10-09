@@ -9,14 +9,14 @@ import { InstagramIcon } from "@/components/shared/BrandIcons";
  */
 export default function LandingFooter() {
   return (
-    <footer className="w-full bg-dolce-green pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-8 text-white">
+    <footer className="w-full border-t border-[#E3E8DF] bg-white pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-8 text-dolce-green">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <Image
           src="/assets/logo.webp"
           alt="Dolce Estetica"
           width={400}
           height={148}
-          className="h-11 w-auto"
+          className="lp-brand-logo h-11 w-auto"
         />
 
         <div className="flex items-center gap-6">
@@ -25,20 +25,20 @@ export default function LandingFooter() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 transition-colors hover:bg-white/20"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E3E8DF] bg-[#FAFBF9] transition-colors hover:bg-dolce-green/5"
           >
             <InstagramIcon className="h-5 w-5" />
           </a>
           <Link
             href="/privacy-policy"
-            className="text-sm text-white/60 transition-colors hover:text-white"
+            className="text-sm text-gray-600 transition-colors hover:text-dolce-green"
           >
             Privacy Policy
           </Link>
         </div>
       </div>
 
-      <div className="mx-auto mt-6 max-w-6xl border-t border-white/10 px-4 pt-4 text-center text-xs text-white/40 sm:px-6">
+      <div className="mx-auto mt-6 max-w-6xl border-t border-[#E3E8DF] px-4 pt-4 text-center text-xs text-gray-500 sm:px-6">
         © {new Date().getFullYear()} Dolce Estetica. All rights reserved.
       </div>
     </footer>

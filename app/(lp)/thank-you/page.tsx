@@ -50,15 +50,15 @@ export default async function ThankYouPage({
   return (
     <main className="flex min-h-screen flex-col bg-white">
       {eventId && <LeadConversion eventId={eventId} />}
-      <section className="flex flex-1 items-center justify-center bg-dolce-green px-4 py-20 text-center text-white sm:px-6">
+      <section className="flex flex-1 items-center justify-center bg-white px-4 py-20 text-center text-dolce-green sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-            <CheckCircle2 className="h-9 w-9 text-dolce-sand" aria-hidden />
+          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-dolce-green/5">
+            <CheckCircle2 className="h-9 w-9 text-dolce-green" aria-hidden />
           </span>
           <h1 className="mt-6 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
             Request received.
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg">
             Thank you. Our team will call you back within 2 hours to confirm
             your consultation at the clinic you prefer.
           </p>
@@ -68,7 +68,7 @@ export default async function ThankYouPage({
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-dolce-green transition-colors hover:bg-dolce-sand"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light"
               >
                 <CalendarCheck className="h-4 w-4" aria-hidden />
                 Continue on WhatsApp
@@ -76,19 +76,19 @@ export default async function ThankYouPage({
             )}
             <a
               href={site.phoneHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-dolce-green transition-colors hover:bg-dolce-sand"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light"
             >
               <CalendarCheck className="h-4 w-4" aria-hidden />
               Call {site.phone}
             </a>
             <Link
               href="/"
-              className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full border border-dolce-green/20 px-8 py-4 text-sm font-bold text-dolce-green transition-colors hover:bg-dolce-green/5"
             >
               Back to homepage
             </Link>
           </div>
-          <p className="mx-auto mt-8 max-w-md text-xs leading-relaxed text-white/60">
+          <p className="mx-auto mt-8 max-w-md text-xs leading-relaxed text-gray-500">
             Your details are used only to arrange this consultation.
           </p>
         </div>

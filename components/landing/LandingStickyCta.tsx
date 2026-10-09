@@ -17,40 +17,24 @@ import { useLeadSubmission } from "@/lib/use-lead-submission";
  * URL instead of an in-sheet message. A signed server receipt permits the
  * success navigation and the page emits the generate_lead GTM data-layer event.
  */
+// Existing variants share the campaign's light theme, so no page opens a dark sheet.
+const LIGHT_THEME = {
+  bar: "bg-white",
+  title: "text-dolce-green",
+  sub: "text-gray-600",
+  fine: "text-gray-500",
+  btn: "bg-dolce-green text-white hover:bg-dolce-green-light",
+} as const;
 const VARIANTS = {
-  green: {
-    bar: "bg-dolce-green",
-    title: "text-white",
-    sub: "text-white/60",
-    fine: "text-white/80",
-    btn: "bg-white text-dolce-green hover:bg-dolce-sand",
-  },
-  dark: {
-    bar: "bg-[#0B140D]",
-    title: "text-white",
-    sub: "text-white/55",
-    fine: "text-white/75",
-    btn: "bg-[#E9F2EA] text-[#0B140D] hover:bg-white",
-  },
-  bronze: {
-    bar: "bg-[#8A7142]",
-    title: "text-white",
-    sub: "text-white/70",
-    fine: "text-white/85",
-    btn: "bg-white text-[#6E5930] hover:bg-dolce-sand/60",
-  },
-  slate: {
-    bar: "bg-[#141F1B]",
-    title: "text-white",
-    sub: "text-white/55",
-    fine: "text-white/75",
-    btn: "bg-[#8FD3C2] text-[#12332B] hover:bg-[#A9DFD1]",
-  },
+  green: LIGHT_THEME,
+  dark: LIGHT_THEME,
+  bronze: LIGHT_THEME,
+  slate: LIGHT_THEME,
 } as const;
 
 /* Reference-sheet inputs: white blocks, gently rounded, 16px text (no iOS zoom) */
 const sheetInput =
-  "h-12 w-full rounded-lg border-0 bg-white px-4 text-base text-dolce-ink outline-none transition-shadow placeholder:text-gray-400 focus:ring-2 focus:ring-white/70";
+  "h-12 w-full rounded-xl border border-[#DCE3D7] bg-[#FAFBF9] px-4 text-base text-dolce-ink outline-none transition-shadow placeholder:text-gray-500 focus:ring-2 focus:border-dolce-green focus:ring-dolce-green/20";
 
 export default function LandingStickyCta({
   slug,
@@ -145,7 +129,7 @@ export default function LandingStickyCta({
             setClosing(null);
           }
         }}
-        className={`border-t border-white/10 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.25)] sm:px-6 ${v.bar} ${closing === "bar" ? "lp-booking-exit" : ""}`}
+        className={`border-t border-[#E3E8DF] px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(28,56,22,0.08)] sm:px-6 ${v.bar} ${closing === "bar" ? "lp-booking-exit" : ""}`}
       >
           <div className="relative mx-auto flex max-w-6xl items-center justify-center gap-3">
             <button
@@ -162,7 +146,7 @@ export default function LandingStickyCta({
               type="button"
               onClick={dismissBar}
               aria-label="Close booking bar"
-              className={`absolute right-0 flex h-10 w-10 flex-none touch-manipulation items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10 ${v.title}`}
+              className={`absolute right-0 flex h-10 w-10 flex-none touch-manipulation items-center justify-center rounded-full border border-[#E3E8DF] transition-colors hover:bg-dolce-green/5 ${v.title}`}
             >
               <X className="h-4 w-4" />
             </button>
@@ -183,13 +167,13 @@ export default function LandingStickyCta({
                 setClosing(null);
               }
             }}
-            className={`relative max-h-[calc(100svh-1rem)] w-full overflow-y-auto overscroll-y-contain scroll-auto rounded-t-[1.75rem] px-5 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-12px_40px_rgba(0,0,0,0.3)] sm:px-6 sm:pt-8 ${v.bar} ${closing === "sheet" ? "lp-booking-exit" : "lp-booking-enter"}`}
+            className={`relative max-h-[calc(100svh-1rem)] w-full overflow-y-auto overscroll-y-contain scroll-auto rounded-t-[1.75rem] px-5 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_-12px_40px_rgba(28,56,22,0.12)] sm:px-6 sm:pt-8 ${v.bar} ${closing === "sheet" ? "lp-booking-exit" : "lp-booking-enter"}`}
           >
             <button
               type="button"
               onClick={closeSheet}
               aria-label="Close booking form"
-              className={`absolute top-2 right-2 flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 ${v.title}`}
+              className={`absolute top-2 right-2 flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-[#FAFBF9] transition-colors hover:bg-dolce-green/5 ${v.title}`}
             >
               <X className="h-4 w-4" />
             </button>
@@ -274,14 +258,14 @@ export default function LandingStickyCta({
                     type="submit"
                     disabled={pending}
                     aria-busy={pending}
-                    className="inline-flex h-12 touch-manipulation items-center justify-center rounded-lg bg-[#111111] px-12 text-sm font-extrabold tracking-[0.22em] text-white uppercase transition-colors hover:bg-black"
+                    className="inline-flex h-12 w-full touch-manipulation items-center justify-center rounded-full bg-dolce-green px-12 text-sm font-extrabold tracking-[0.22em] text-white uppercase transition-colors hover:bg-dolce-green-light"
                   >
                     {pending ? "Sending…" : "Submit"}
                   </button>
                 </div>
 
                 {error ? (
-                  <p className="mt-3 text-center text-xs font-semibold text-red-200" role="alert">
+                  <p className="mt-3 text-center text-xs font-semibold text-red-700" role="alert">
                     {error}
                   </p>
                 ) : (

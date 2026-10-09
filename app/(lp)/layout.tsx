@@ -1,3 +1,4 @@
+import "./landing.css";
 import type { Viewport } from "next";
 import { Lora, Plus_Jakarta_Sans } from "next/font/google";
 
@@ -9,6 +10,7 @@ import { Lora, Plus_Jakarta_Sans } from "next/font/google";
  */
 export const viewport: Viewport = {
   interactiveWidget: "resizes-content",
+  themeColor: "#ffffff",
 };
 
 /**
@@ -36,7 +38,7 @@ const lora = Lora({
 
 export default function LpLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${jakarta.variable} ${lora.variable}`}>
+    <div className={`lp-theme ${jakarta.variable} ${lora.variable}`}>
       {children}
     </div>
   );

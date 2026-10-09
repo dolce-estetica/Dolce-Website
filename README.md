@@ -102,10 +102,24 @@ The server sets a signed, HttpOnly five-minute receipt only after CRM success.
 `proxy.ts` consumes it on `/thank-you`; direct visits and refreshes return home.
 The page pushes one `generate_lead` event with a non-personal `event_id` to the
 existing GTM data layer. Configure a Custom Event trigger named `generate_lead`
-and a GA4 Event tag for that trigger in GTM-WFWG52WD. Do not also count a Thank You
+and a GA4 Event tag for that trigger in GTM-WSLPLPK8. Do not also count a Thank You
 pageview as a lead. Container publishing and Analytics conversion/key-event setup
 need authorized account access and must be verified separately.
 
 Verification: `bun test tests/lead-intake.test.ts`, `bunx tsc --noEmit`, and
 `bun run build`. Browser QA covers main/mobile, failure/success, refresh, Contact,
 Booking and attribution across navigation.
+
+## Campaign appearance and site-wide GTM
+
+The seven campaign landing pages use white surfaces with forest-green actions,
+headings and a compact impact band. The theme stylesheet is scoped to `.lp-theme`;
+main-site pages keep their existing design. Original campaign copy, imagery,
+fields and lead submission behavior remain unchanged. Phone booking sheets and
+the shared thank-you page use the same light palette.
+
+Every production route loads the approved GTM-WSLPLPK8 snippet in the head, with
+the noscript iframe as the first authored body child. The old container is
+replaced, not loaded alongside it. Local development suppresses production GTM.
+Publishing tags and confirming Analytics/Ads delivery are separate from installing
+the container.

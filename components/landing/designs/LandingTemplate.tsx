@@ -29,26 +29,8 @@ import { ExternalLink } from "lucide-react";
 import LandingStickyCta from "../LandingStickyCta";
 import { LP_DISCLAIMER, ReviewsFootnote, Stars, rotatedReviews } from "../kit";
 
-/**
- * CAMPAIGN TEMPLATE — the client's issue spec: a ditto copy of the reference
- * LP's STRUCTURE and styling (bodycraftclinics.com/laser-hair-reduction/),
- * in OUR palette instead of theirs (no pink/charcoal/coral):
- *
- *   hero (full-bleed photo, heavy scrim, centered stack, kicker → extrabold
- *   heading → subtext → 2 pill CTAs → 3 translucent trust chips, floating
- *   header) → impact band (brand green, bronze numerals) → WHY cards (white
- *   rounded-3xl on cream, circular bronze-line icon badge, centered) →
- *   services cards → THE PROCESS (STEP 01/02/03, bronze labels) → FAQ (cream
- *   rows, bronze chevron) → BEFORE/AFTER ("Real People Real Results", brand
- *   green) → REVIEWS (Google score, bronze stars) → final CTA band (brand
- *   green, bronze button) → lead form → locations → doctors.
- *
- * Palette (campaign-scoped, light): cream #FBF8F1 sections, white cards,
- * brand green #1c3816 bands (their "charcoal"), bronze #8A7142/#A88D5E accent
- * (their "coral"), all-sans Plus Jakarta extrabold headings, full-pill
- * buttons. Compliance: no prices, no superlatives, honest before/after.
- *
- * The sticky bottom Book Now bar is NOT touched here (client instruction).
+/** Shared campaign structure and content with a white-first, responsive theme.
+ * Green is reserved for actions, headings and the compact impact band.
  */
 
 type Icon = typeof Star;
@@ -318,8 +300,8 @@ const PAGE_EXTRAS: Record<
 };
 
 
-const CREAM = "#FBF8F1";
-const GREEN = "#1c3816"; // brand band color (their "charcoal")
+const CREAM = "#FAFBF9";
+const GREEN = "#1c3816"; // brand accent and compact impact band
 const BRONZE_TEXT = "#8A7142"; // accent on light backgrounds
 const SAND = "#C9B896"; // bright bronze for use on green / over the scrim
 
@@ -367,13 +349,12 @@ const GMB_PROFILE_LINKS: Record<string, string> = {
 
 export default function LandingTemplate({ page }: { page: LandingPage }) {
   const extras = PAGE_EXTRAS[page.slug];
-  const compactHero = extras.compactMobileHero ?? false;
   const reviews = rotatedReviews(page.slug);
   const isMedlounges = page.brand === "medlounges";
 
   const faqSection = (
     <>      {/* ===== 6 — FAQ: cream rows, bronze chevron ===== */}
-      <section id="faq" className="scroll-mt-4 bg-white px-4 py-16 sm:px-6 sm:py-24">
+      <section id="faq" className="scroll-mt-6 lg:scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -384,7 +365,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             {page.faqs.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-2xl px-6 py-5 ring-1 ring-[#E8E0CC] transition-shadow hover:shadow-md"
+                className="group rounded-2xl px-6 py-5 ring-1 ring-[#E3E8DF] transition-shadow hover:shadow-md"
                 style={{ backgroundColor: CREAM }}
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-bold text-gray-800 [&::-webkit-details-marker]:hidden">
@@ -409,9 +390,9 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
 
   return (
     <>
-      {/* ===== 0 — HEADER (DESKTOP): sticky at the top; hidden on phones, which use the bottom bar ===== */}
-      <header className="sticky top-0 z-[135] hidden border-b border-white/10 shadow-lg lg:block" style={{ backgroundColor: GREEN }}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      {/* White header across phone and desktop; the phone CTA stays in its bottom bar. */}
+      <header className="z-[135] border-b border-[#E3E8DF] bg-white lg:sticky lg:top-0">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6">
           <Link href="/" aria-label="Dolce Estetica home" className="flex items-center">
             <Image
               src="/assets/logo.webp"
@@ -419,12 +400,12 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
               width={400}
               height={148}
               priority
-              className="h-14 w-auto"
+              className="lp-brand-logo h-11 w-auto sm:h-14"
             />
           </Link>
           <a
             href="#book"
-            className="inline-flex items-center gap-2 rounded-full bg-[#8A7142] px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#6E5930]"
+            className="hidden items-center gap-2 rounded-full bg-dolce-green px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light lg:inline-flex"
           >
             <CalendarCheck className="h-4 w-4" />
             Book Now
@@ -432,81 +413,49 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         </div>
       </header>
 
-      {/* ===== 1 — HERO: full-bleed photo, heavy scrim, centered stack ===== */}
-      <section className={`relative isolate flex items-center justify-center overflow-hidden ${extras.heroMinHeightClass ?? "min-h-[92svh]"}`}>
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={page.hero.image}
-            alt={page.hero.imageAlt}
-            fill
-            priority
-            sizes="100vw"
-            className={`object-cover ${extras.heroImagePosition ?? ""}`}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(12,22,14,0.60) 0%, rgba(12,22,14,0.62) 55%, rgba(12,22,14,0.72) 100%)",
-            }}
-          />
-        </div>
-
-        {/* floating header (MOBILE ONLY — logo only, scrolls away with the hero;
-            the Book Now CTA lives in the desktop sticky header + bottom bar) */}
-        <header className="absolute inset-x-0 top-0 z-10 lg:hidden">
-          <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6">
-            <Link href="/" aria-label="Dolce Estetica home" className="flex items-center">
-              <Image
-                src="/assets/logo.webp"
-                alt={isMedlounges ? "MedLounges" : "Dolce Estetica"}
-                width={400}
-                height={148}
-                priority
-                className="h-12 w-auto drop-shadow-md sm:h-14"
-              />
-            </Link>
+      {/* Copy sits on white; original photographs stay clear of text and dark overlays. */}
+      <section className="bg-white px-5 pt-8 pb-9 sm:px-6 sm:py-12 lg:py-16">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <p className="text-[10px] leading-relaxed font-bold tracking-[0.17em] text-dolce-green uppercase sm:text-xs">
+              {extras.kicker}
+            </p>
+            <h1 className="mt-4 font-display text-[2rem] leading-[1.16] font-bold tracking-tight text-dolce-green sm:text-5xl lg:text-[3.25rem]">
+              {page.hero.heading}
+            </h1>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-lg">
+              {page.hero.subheading}
+            </p>
+            <div className="mt-7 sm:mt-8">
+              <a
+                href="#book"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-dolce-green px-6 py-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-dolce-green-light sm:w-auto sm:px-9 sm:text-base"
+              >
+                <CalendarCheck className="h-5 w-5" />
+                Book a Consultation
+              </a>
+            </div>
+            {!extras.hideHeroChips && (
+              <ul className="mt-6 flex flex-wrap items-center gap-2.5">
+                {page.hero.trustChips.slice(0, 3).map((chip) => (
+                  <li key={chip} className="inline-flex items-center gap-2 rounded-full border border-[#E3E8DF] bg-[#FAFBF9] px-3 py-2 text-xs font-semibold text-dolce-green">
+                    <ShieldCheck className="h-4 w-4 shrink-0" />
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        </header>
-
-        {/* centered content stack — compactHero tightens phones only so the
-            banner (not the copy) sets the crop; sm+ is the standard hero */}
-        <div className={`mx-auto max-w-3xl px-4 text-center sm:px-6 ${compactHero ? "pb-10 pt-20 sm:pb-16 sm:pt-24" : "pb-16 pt-24"}`}>
-          <p className="text-xs font-extrabold tracking-[0.3em] uppercase sm:text-sm" style={{ color: SAND }}>
-            {extras.kicker}
-          </p>
-          <h1 className={`font-display leading-[1.06] font-extrabold tracking-tight text-white lg:text-6xl ${compactHero ? "mt-3 text-3xl sm:mt-4 sm:text-5xl" : "mt-4 text-4xl sm:text-5xl"}`}>
-            {page.hero.heading}
-          </h1>
-          <p className={`mx-auto max-w-2xl leading-relaxed text-white/80 ${compactHero ? "mt-4 text-sm sm:mt-5 sm:text-lg" : "mt-5 text-base sm:text-lg"}`}>
-            {page.hero.subheading}
-          </p>
-
-          <div className={`flex justify-center ${compactHero ? "mt-6 sm:mt-8" : "mt-8"}`}>
-            <a
-              href="#book"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#8A7142] px-9 py-4 text-sm font-extrabold text-white shadow-xl transition-colors hover:bg-[#6E5930] sm:w-auto sm:text-base"
-            >
-              <CalendarCheck className="h-5 w-5" />
-              Book a Consultation
-            </a>
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-[#FAFBF9] sm:rounded-[2rem] lg:aspect-[5/4]">
+            <Image
+              src={page.hero.image}
+              alt={page.hero.imageAlt}
+              fill
+              priority
+              sizes="(min-width: 1280px) 612px, (min-width: 1024px) 48vw, 100vw"
+              className={`object-cover ${extras.heroImagePosition ?? ""}`}
+            />
           </div>
-
-          {/* 3 translucent trust chips inside the hero (skipped where requested) */}
-          {!extras.hideHeroChips && (
-            <ul className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
-              {page.hero.trustChips.slice(0, 3).map((chip) => (
-                <li
-                  key={chip}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold text-white/90 sm:text-sm"
-                >
-                  <ShieldCheck className="h-4 w-4" style={{ color: SAND }} />
-                  {chip}
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
       </section>
 
@@ -538,7 +487,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </section>
 
       {/* ===== 3 — WHY CARDS: white rounded-3xl on cream, circular bronze-line badge ===== */}
-      <section id="why" className="scroll-mt-4 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
+      <section id="why" className="scroll-mt-6 lg:scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -566,7 +515,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </section>
 
       {/* ===== 4 — SERVICES / OFFER CARDS ===== */}
-      <section id="services" className="scroll-mt-4 bg-white px-4 py-16 sm:px-6 sm:py-24">
+      <section id="services" className="scroll-mt-6 lg:scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -589,7 +538,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 <a
                   key={item.name}
                   href="#book"
-                  className={`group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-xl ${
+                  className={`group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-[#E3E8DF] transition-all hover:-translate-y-1 hover:shadow-xl ${
                     page.services.items.length === 5
                       ? "w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.85rem)] max-w-sm"
                       : ""
@@ -611,7 +560,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                     </div>
                   ) : (
                     <div
-                      className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[#FBF8F1] to-white"
+                      className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[#FAFBF9] to-white"
                       style={{ color: BRONZE_TEXT }}
                     >
                       {Icon && <Icon className="h-10 w-10" strokeWidth={1.5} />}
@@ -639,13 +588,13 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
 
       {/* 6 — FAQ, or doctors first on pages that prefer people before answers */}
 
-      {/* ===== 7 — BEFORE/AFTER: "Real People Real Results", brand green ===== */}
-      <section id="results" className="scroll-mt-4 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: GREEN }}>
+      {/* ===== 7 — BEFORE/AFTER: "Real People Real Results", white surface ===== */}
+      <section id="results" className="scroll-mt-6 lg:scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
             Real people, real results
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-white/75 sm:text-lg">{page.results.text}</p>
+          <p className="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">{page.results.text}</p>
           {page.results.pairs.length > 0 ? (
             <>
               <div
@@ -656,7 +605,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 {page.results.pairs.map((pair) => (
                   <figure
                     key={pair.label}
-                    className={`w-full overflow-hidden rounded-[2rem] bg-white shadow-2xl ${
+                    className={`w-full overflow-hidden rounded-[2rem] bg-white shadow-sm ${
                       page.slug === "glutathione-treatment"
                         ? "max-w-[270px] sm:max-w-[290px] sm:w-[calc(33.333%-1rem)]"
                         : pair.before === pair.after
@@ -717,33 +666,33 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                   </figure>
                 ))}
               </div>
-              <p className="mx-auto mt-8 max-w-xl text-xs leading-relaxed text-white/60">
+              <p className="mx-auto mt-8 max-w-xl text-xs leading-relaxed text-gray-500">
                 More before-and-afters, matched to your skin concern, are shown in person at your
                 consultation, with the doctor.
               </p>
               <a
                 href="#book"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#8A7142] px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-[#6E5930]"
+                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-dolce-green-light"
               >
                 See real cases at your consultation
                 <ArrowRight className="h-4 w-4" />
               </a>
             </>
           ) : (
-            <div className="mt-10 flex flex-col items-center gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-8 sm:p-10">
+            <div className="mt-10 flex flex-col items-center gap-5 rounded-[2rem] border border-[#E3E8DF] bg-white p-8 sm:p-10">
               <span
                 className="flex h-14 w-14 items-center justify-center rounded-full border-2"
-                style={{ borderColor: "#A88D5E", color: SAND }}
+                style={{ borderColor: "#A88D5E", color: BRONZE_TEXT }}
               >
                 <Images className="h-6 w-6" />
               </span>
-              <p className="text-sm leading-relaxed text-white/80 sm:text-base">
-                <strong className="text-white">Shown at your consultation.</strong> Photographs of
+              <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
+                <strong className="text-dolce-green">Shown at your consultation.</strong> Photographs of
                 consenting patients, in person, by the doctor. Never stock or AI-generated images.
               </p>
               <a
                 href="#book"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8A7142] px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-[#6E5930]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-dolce-green px-7 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-dolce-green-light"
               >
                 See real cases at your consultation
                 <ArrowRight className="h-4 w-4" />
@@ -754,7 +703,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </section>
 
       {/* ===== 8 — REVIEWS: Google score + bronze stars ===== */}
-      <section id="testimonials" className="scroll-mt-4 bg-white px-4 py-16 sm:px-6 sm:py-24">
+      <section id="testimonials" className="scroll-mt-6 lg:scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -819,12 +768,12 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
 
       {/* ===== 9 — PRE-FORM BAND: concerns picker (derm) or final CTA (others) ===== */}
       {extras.concernsCta && (
-        <section className="px-4 py-14 sm:px-6" style={{ backgroundColor: GREEN }}>
+        <section className="border-y border-[#E3E8DF] bg-white px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+            <h2 className="font-display text-2xl font-extrabold tracking-tight text-dolce-green sm:text-3xl">
               What would you like help with today?
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
               Pick a concern below and mention it when our team calls, we&apos;ll have the
               right specialist ready for you.
             </p>
@@ -834,7 +783,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       )}
 
       {/* ===== 10 — LEAD FORM ===== */}
-      <section id="book" className="scroll-mt-4 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
+      <section id="book" className="scroll-mt-6 lg:scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -851,7 +800,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       </section>
 
       {/* ===== 11 — LOCATIONS ===== */}
-      <section id="locations" className="scroll-mt-4 bg-white px-4 py-16 sm:px-6 sm:py-24">
+      <section id="locations" className="scroll-mt-6 lg:scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
@@ -865,7 +814,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
                 href={GMB_PROFILE_LINKS[loc.slug] ?? loc.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E8E0CC] transition-all hover:-translate-y-1 hover:shadow-lg"
+                className="group flex flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#E3E8DF] transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span
                   className="flex h-11 w-11 items-center justify-center rounded-full border-2"
@@ -904,7 +853,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         {LP_DISCLAIMER}
       </p>
 
-      {/* sticky bottom bar — untouched per client instruction */}
+      {/* sticky bottom bar — light surface with a green action */}
       <LandingStickyCta
         slug={page.slug}
         label={extras.stickyLabel}

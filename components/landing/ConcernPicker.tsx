@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 /**
- * The concern chips on the pre-form band (green section above #book).
+ * The concern chips on the pre-form section above #book.
  *
  * Clicking a chip scrolls to the booking form AND pre-selects that concern
  * in the lead form's <select id="lp-concern">. The select is a React
@@ -35,8 +35,8 @@ export default function ConcernPicker({ concerns }: { concerns: string[] }) {
             aria-pressed={active === c}
             className={`inline-flex touch-manipulation items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition-colors sm:text-sm ${
               active === c
-                ? "border-white bg-white text-[#1c3816]"
-                : "border-white/25 bg-white/10 text-white/90 hover:bg-white/20"
+                ? "border-dolce-green bg-dolce-green text-white"
+                : "border-[#DCE3D7] bg-white text-dolce-green hover:border-dolce-green hover:bg-[#FAFBF9]"
             }`}
           >
             {c}
