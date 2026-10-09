@@ -55,4 +55,34 @@ describe("website lead acceptance boundary", () => {
     const fresh = captureUtm("?utm_source=facebook&utm_campaign=second&fbclid=new");
     expect(fresh.gclid).toBeUndefined(); expect(fresh.term).toBeUndefined(); expect(fresh.fbclid).toBe("new");
   });
+  test("an expired session starts a fresh untagged visit and preserves its referrer", () => {
+    const now = Date.now;
+    const windowDescriptor = Object.getOwnPropertyDescriptor(globalThis, "window");
+    const documentDescriptor = Object.getOwnPropertyDescriptor(globalThis, "document");
+    const location = { pathname: "/old-entry", search: "" };
+    const document = { referrer: "" };
+    try {
+      Object.defineProperty(globalThis, "window", { configurable: true, value: { location } });
+      Object.defineProperty(globalThis, "document", { configurable: true, value: document });
+      Date.now = () => 1000;
+      captureUtm("?utm_source=google&gclid=expired-click");
+      Date.now = () => 2_000_000;
+      location.pathname = "/new-entry";
+      document.referrer = "https://chatgpt.com/";
+      const fresh = captureUtm("");
+      expect(fresh.gclid).toBeUndefined();
+      expect(fresh.landingPage).toBe("/new-entry");
+      location.pathname = "/contact";
+      document.referrer = "https://dolceestetica.com/new-entry";
+      const continued = captureUtm("");
+      expect(continued.landingPage).toBe("/new-entry");
+      expect(continued.referrer).toBe("https://chatgpt.com");
+    } finally {
+      Date.now = now;
+      if (windowDescriptor) Object.defineProperty(globalThis, "window", windowDescriptor);
+      else Reflect.deleteProperty(globalThis, "window");
+      if (documentDescriptor) Object.defineProperty(globalThis, "document", documentDescriptor);
+      else Reflect.deleteProperty(globalThis, "document");
+    }
+  });
 });

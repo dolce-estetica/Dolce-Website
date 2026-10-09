@@ -20,12 +20,13 @@ export function captureUtm(search = typeof window === "undefined" ? "" : window.
     if (parsed && typeof parsed.at === "number" && parsed.values && typeof parsed.values === "object") stored = parsed;
   } catch { /* Storage is optional; keep this page's in-memory snapshot. */ }
   const tagged = Object.keys(fresh).length > 0;
-  const values = tagged ? fresh : stored && Date.now() - stored.at < 1_800_000 ? stored.values : {};
+  const active = stored && Date.now() - stored.at < 1_800_000 ? stored : undefined;
+  const values = tagged ? fresh : active?.values || {};
   if (typeof window !== "undefined" && (tagged || !values.landingPage)) {
     values.landingPage = window.location.pathname;
     try { values.referrer = document.referrer ? new URL(document.referrer).origin : undefined; } catch { /* Ignore malformed referrers. */ }
   }
-  memory = { values, at: tagged ? Date.now() : stored?.at || Date.now() };
+  memory = { values, at: tagged ? Date.now() : active?.at || Date.now() };
   try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(memory)); } catch { /* Private browsing still submits. */ }
   return values;
 }

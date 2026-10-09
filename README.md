@@ -94,7 +94,9 @@ submission UUID provides CRM idempotency; retries do not create another interact
 
 UTM source, medium, campaign, term, content, gclid/fbclid, landing path and referrer
 origin survive untagged navigation for 30 minutes. A new tagged visit replaces the
-whole snapshot. No contact details enter the URL or analytics payload.
+whole snapshot. After expiry, an untagged visit starts a fresh 30-minute session
+and retains its new landing page and referrer across navigation. No contact
+details enter the URL or analytics payload.
 
 The server sets a signed, HttpOnly five-minute receipt only after CRM success.
 `proxy.ts` consumes it on `/thank-you`; direct visits and refreshes return home.
