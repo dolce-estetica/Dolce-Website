@@ -47,7 +47,7 @@ export type LandingResultPair = {
   label: string;
   caption?: string;
   timeline?: string;
-  /** Preserve the full combined photo and its original before/after arrangement. */
+  /** Width/height of the combined photo, or each photo in a separate pair. */
   aspectRatio?: number;
   labelLayout?: "stacked" | "embedded";
 };
@@ -927,7 +927,8 @@ export const landingPages: LandingPage[] = [
         {
           "before": "/lp/results-hydra-radiance-before.jpg",
           "after": "/lp/results-hydra-radiance-after.jpg",
-          "label": "Pre-event radiance & tone brightening"
+          "label": "Pre-event radiance & tone brightening",
+          "aspectRatio": 562 / 351
         }
       ]
     },

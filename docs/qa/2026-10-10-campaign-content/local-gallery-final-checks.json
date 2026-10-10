@@ -1,0 +1,492 @@
+{
+  "base": "http://localhost:3107",
+  "checks": [
+    {
+      "slug": "hydrafacial",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2.0346820809248554
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.5963302752293578
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.5963302752293578
+        }
+      ],
+      "cards": [
+        {
+          "height": 284,
+          "contentHeight": 283.609375
+        },
+        {
+          "height": 220,
+          "contentHeight": 219.671875
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "hydrafacial",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2.0392156862745097
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.597938144329897
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.597938144329897
+        }
+      ],
+      "cards": [
+        {
+          "height": 405,
+          "contentHeight": 405.484375
+        },
+        {
+          "height": 293,
+          "contentHeight": 293.109375
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "glutathione-treatment",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        }
+      ],
+      "cards": [
+        {
+          "height": 463,
+          "contentHeight": 463
+        },
+        {
+          "height": 463,
+          "contentHeight": 463
+        },
+        {
+          "height": 463,
+          "contentHeight": 463
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "glutathione-treatment",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        }
+      ],
+      "cards": [
+        {
+          "height": 526,
+          "contentHeight": 526.328125
+        },
+        {
+          "height": 526,
+          "contentHeight": 526.328125
+        },
+        {
+          "height": 526,
+          "contentHeight": 526.34375
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "vaser-liposuction",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        }
+      ],
+      "cards": [
+        {
+          "height": 463,
+          "contentHeight": 463
+        },
+        {
+          "height": 463,
+          "contentHeight": 463
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "vaser-liposuction",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1
+        }
+      ],
+      "cards": [
+        {
+          "height": 724,
+          "contentHeight": 723.5
+        },
+        {
+          "height": 724,
+          "contentHeight": 723.5
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "dermatology-clinic",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        }
+      ],
+      "cards": [
+        {
+          "height": 287,
+          "contentHeight": 287
+        },
+        {
+          "height": 287,
+          "contentHeight": 287
+        },
+        {
+          "height": 329,
+          "contentHeight": 328.5
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "dermatology-clinic",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        }
+      ],
+      "cards": [
+        {
+          "height": 323,
+          "contentHeight": 322.65625
+        },
+        {
+          "height": 323,
+          "contentHeight": 322.65625
+        },
+        {
+          "height": 371,
+          "contentHeight": 371.078125
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "hair-treatment",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.7981651376146789
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        }
+      ],
+      "cards": [
+        {
+          "height": 329,
+          "contentHeight": 328.5
+        },
+        {
+          "height": 329,
+          "contentHeight": 328.5
+        },
+        {
+          "height": 287,
+          "contentHeight": 287
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "hair-treatment",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 0.8015873015873016
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        }
+      ],
+      "cards": [
+        {
+          "height": 371,
+          "contentHeight": 371.078125
+        },
+        {
+          "height": 371,
+          "contentHeight": 371.078125
+        },
+        {
+          "height": 323,
+          "contentHeight": 322.671875
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "skin-treatments",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        }
+      ],
+      "cards": [
+        {
+          "height": 287,
+          "contentHeight": 287
+        },
+        {
+          "height": 287,
+          "contentHeight": 287
+        },
+        {
+          "height": 287,
+          "contentHeight": 287
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "skin-treatments",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        },
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 1.9950980392156863
+        }
+      ],
+      "cards": [
+        {
+          "height": 323,
+          "contentHeight": 322.65625
+        },
+        {
+          "height": 323,
+          "contentHeight": 322.65625
+        },
+        {
+          "height": 323,
+          "contentHeight": 322.671875
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "laser-hair-removal",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        }
+      ],
+      "cards": [
+        {
+          "height": 287,
+          "contentHeight": 287
+        }
+      ],
+      "carousel": true
+    },
+    {
+      "slug": "laser-hair-removal",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": [
+        {
+          "loaded": true,
+          "fit": "contain",
+          "frameRatio": 2
+        }
+      ],
+      "cards": [
+        {
+          "height": 477,
+          "contentHeight": 476.5
+        }
+      ],
+      "carousel": true
+    }
+  ],
+  "errors": []
+}

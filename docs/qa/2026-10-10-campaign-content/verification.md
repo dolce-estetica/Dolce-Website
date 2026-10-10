@@ -23,3 +23,7 @@ Original result photos, Google reviews and clinic addresses are preserved. Combi
 All valid lead requests and success pages were mocked in browser tests. No test contacts were sent to the production CRM. Existing server tests cover the CRM acceptance and signed-receipt boundary; this is not a real CRM delivery test.
 
 Run `check.cjs` with `PLAYWRIGHT_MODULE` pointing to an installed Playwright package, `BASE_URL` for the server and `QA_OUT` for evidence. `performance-check.cjs` performs a cold-browser-cache mobile 4G laboratory measurement; results are not field performance guarantees. Live verification is performed after the release deployment.
+
+## Final gallery refinement
+
+The separate HydraFacial photographs also use their natural landscape proportions, removing the unused space produced by portrait frames. Gallery cards fit their own content. A further 14 checks across all seven galleries (390px and 1440px) passed: full photos loaded without cropping, cards fit their content, no horizontal page overflow, and mobile carousel navigation works. Production build, TypeScript and changed-file ESLint passed again.
