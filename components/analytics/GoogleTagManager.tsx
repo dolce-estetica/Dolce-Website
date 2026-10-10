@@ -15,7 +15,7 @@ export function GoogleTagManagerScript() {
   );
 }
 
-/** First authored body child, for browsers with JavaScript disabled. */
+/** First body element for Search Console verification; see patches/README.md. */
 export function GoogleTagManagerNoscript() {
   if (process.env.NODE_ENV !== "production") return null;
   return (

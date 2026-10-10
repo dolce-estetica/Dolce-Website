@@ -1,0 +1,132 @@
+{
+  "base": "http://localhost:3107",
+  "passed": 18,
+  "checks": [
+    {
+      "page": "/",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    },
+    {
+      "page": "/hydrafacial",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/hydrafacial",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/hydrafacial",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    },
+    {
+      "page": "/glutathione-treatment",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/glutathione-treatment",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/glutathione-treatment",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    },
+    {
+      "page": "/vaser-liposuction",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/vaser-liposuction",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/vaser-liposuction",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    },
+    {
+      "page": "/contact",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/contact",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/contact",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    },
+    {
+      "page": "/booking",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Mozilla/5.0"
+    },
+    {
+      "page": "/booking",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Google-Site-Verification/1.0"
+    },
+    {
+      "page": "/booking",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1,
+      "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)"
+    }
+  ]
+}

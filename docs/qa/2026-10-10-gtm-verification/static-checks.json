@@ -1,0 +1,240 @@
+{
+  "base": "production build",
+  "passed": 39,
+  "checks": [
+    {
+      "page": ".next/server/app/_not-found.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/about.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog/acne-scar-types-and-which-treatment-suits.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog/laser-hair-reduction-aftercare-indian-skin.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog/laser-hair-reduction-on-tanned-skin.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog/welcome-to-dolce-estetica.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog/why-melasma-keeps-coming-back.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/blog.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/career.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/clinics/calicut.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/clinics/cherthala.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/clinics/edapally-kochi.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/clinics/mangalore.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/clinics.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/contact.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/dermatology-clinic.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/event-and-media.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/faq.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/glutathione-treatment.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/hair-fall-consultation.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/hair-treatment.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/hydrafacial.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/index.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/laser-hair-removal.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/longevity.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/skin-treatments.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/acne-and-scar-care.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/anti-ageing-skin-boosters.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/body-contouring.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/botox-fillers-and-threads.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/hair-restoration-prp-gfc.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/iv-therapy-and-wellness.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/laser-hair-reduction.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/medical-weight-management.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/pigmentation-and-peels.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/scalp-and-hair-treatments.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments/skin-brightening-medifacials.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/treatments.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    },
+    {
+      "page": ".next/server/app/vaser-liposuction.html",
+      "container": "GTM-WSLPLPK8",
+      "firstBodyElement": "noscript",
+      "headLoaderCount": 1
+    }
+  ]
+}

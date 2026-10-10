@@ -1,0 +1,28 @@
+diff --git a/dist/esm/lib/metadata/metadata.js b/dist/esm/lib/metadata/metadata.js
+index 41b1d00cfdf11f4586de91cada6f3a894b12c48a..ba689e7fe12301a6bf55d756de46257d540dc3eb 100644
+--- a/dist/esm/lib/metadata/metadata.js
++++ b/dist/esm/lib/metadata/metadata.js
+@@ -65,8 +65,7 @@ export function createMetadataComponents({ tree, pathname, parsedQuery, metadata
+                 children: /*#__PURE__*/ _jsx(Metadata, {})
+             });
+         }
+-        return /*#__PURE__*/ _jsx("div", {
+-            hidden: true,
++        return /*#__PURE__*/ _jsx(_Fragment, {
+             children: /*#__PURE__*/ _jsx(MetadataBoundary, {
+                 children: /*#__PURE__*/ _jsx(Suspense, {
+                     name: "Next.Metadata",
+diff --git a/dist/lib/metadata/metadata.js b/dist/lib/metadata/metadata.js
+index 8a0f52e412db636917a7171ecae60823eb4bee71..49237745d4f36d6c248eeae61392fd9560c8ff03 100644
+--- a/dist/lib/metadata/metadata.js
++++ b/dist/lib/metadata/metadata.js
+@@ -110,8 +110,7 @@ function createMetadataComponents({ tree, pathname, parsedQuery, metadataContext
+                 children: /*#__PURE__*/ (0, _jsxruntime.jsx)(Metadata, {})
+             });
+         }
+-        return /*#__PURE__*/ (0, _jsxruntime.jsx)("div", {
+-            hidden: true,
++        return /*#__PURE__*/ (0, _jsxruntime.jsx)(_jsxruntime.Fragment, {
+             children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_boundarycomponents.MetadataBoundary, {
+                 children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_react.Suspense, {
+                     name: "Next.Metadata",

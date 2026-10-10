@@ -1,0 +1,183 @@
+{
+  "base": "http://localhost:3107",
+  "results": [
+    {
+      "route": "/",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Dolce Estetica | Aesthetics & Wellness Clinic",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Experience the pinnacle of aesthetic care at Dolce Estetica. We specialize in non-surgical facial rejuvenation, body contouring, and holistic wellness treatments.",
+      "h1": "Dolce Estetica — doctor-led aesthetic medicine, wellness and longevity clinics in India",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/hydrafacial",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "HydraFacial in Kochi, Calicut, Cherthala & Mangalore | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/hydrafacial",
+      "description": "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/glutathione-treatment",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Glutathione IV Treatment, Skin Brightening | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/glutathione-treatment",
+      "description": "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/vaser-liposuction",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "VASER Liposuction, Body Contouring | MedLounges (Dolce Estetica Group)",
+      "canonical": "https://dolceestetica.com/vaser-liposuction",
+      "description": "VASER liposuction for abdomen, waist, arms, thighs, back and body contouring. Surgeon consultation, honest candidacy assessment and full cost in writing. Medlounges, the body contouring brand of the Dolce Estetica group.",
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Contact | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Locate our premium clinics across India or send an inquiry to the Dolce Estetica team.",
+      "h1": "Get in Touch",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/booking",
+      "width": 390,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Book an Appointment | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Select your preferred service and clinic location to begin your journey with Dolce Estetica.",
+      "h1": "Book Your Appointment",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/ → /about",
+      "width": 390,
+      "clientNavigation": true,
+      "noDuplicateGtm": true,
+      "metadataUpdated": true
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Dolce Estetica | Aesthetics & Wellness Clinic",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Experience the pinnacle of aesthetic care at Dolce Estetica. We specialize in non-surgical facial rejuvenation, body contouring, and holistic wellness treatments.",
+      "h1": "Dolce Estetica — doctor-led aesthetic medicine, wellness and longevity clinics in India",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/hydrafacial",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "HydraFacial in Kochi, Calicut, Cherthala & Mangalore | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/hydrafacial",
+      "description": "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/glutathione-treatment",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Glutathione IV Treatment, Skin Brightening | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/glutathione-treatment",
+      "description": "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/vaser-liposuction",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "VASER Liposuction, Body Contouring | MedLounges (Dolce Estetica Group)",
+      "canonical": "https://dolceestetica.com/vaser-liposuction",
+      "description": "VASER liposuction for abdomen, waist, arms, thighs, back and body contouring. Surgeon consultation, honest candidacy assessment and full cost in writing. Medlounges, the body contouring brand of the Dolce Estetica group.",
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Contact | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Locate our premium clinics across India or send an inquiry to the Dolce Estetica team.",
+      "h1": "Get in Touch",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/booking",
+      "width": 1440,
+      "firstBodyElement": "NOSCRIPT",
+      "loaderCount": 1,
+      "startEvents": 1,
+      "title": "Book an Appointment | Dolce Estetica",
+      "canonical": "https://dolceestetica.com/",
+      "description": "Select your preferred service and clinic location to begin your journey with Dolce Estetica.",
+      "h1": "Book Your Appointment",
+      "overflow": false,
+      "gtmStatus": 200
+    },
+    {
+      "route": "/ → /about",
+      "width": 1440,
+      "clientNavigation": true,
+      "noDuplicateGtm": true,
+      "metadataUpdated": true
+    },
+    {
+      "route": "/",
+      "javaScript": false,
+      "noscriptFirst": true,
+      "fallbackIframePresent": true,
+      "pageVisible": true
+    }
+  ],
+  "errors": []
+}
