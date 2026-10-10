@@ -12,9 +12,9 @@ import { reviews } from "./reviews";
  * why choose us → services → doctors → before/after → testimonials → lead
  * form → FAQ, with a sticky "Book Now" CTA and CTAs between sections.
  *
- * The four campaign blocks with `campaign` metadata use the client-supplied
- * Google Docs revision from 9 October 2026. Source URLs and asset gaps are in
- * docs/qa/2026-10-09-campaign-briefs/verification.md.
+ * Campaign blocks use the client-supplied Google Docs revisions from
+ * 9–10 October 2026. Source URLs and verification notes are in
+ * docs/qa/2026-10-09-campaign-briefs and docs/qa/2026-10-10-campaign-content.
  *
  * Original spreadsheet copy guidelines (before the campaign revision):
  *   - NO prices, ranges or "onwards" anywhere. Cost questions are answered
@@ -41,7 +41,16 @@ import { reviews } from "./reviews";
 
 export type LandingBrand = "dolce" | "medlounges";
 
-export type LandingResultPair = { before: string; after: string; label: string; caption?: string; timeline?: string };
+export type LandingResultPair = {
+  before: string;
+  after: string;
+  label: string;
+  caption?: string;
+  timeline?: string;
+  /** Preserve the full combined photo and its original before/after arrangement. */
+  aspectRatio?: number;
+  labelLayout?: "stacked" | "embedded";
+};
 
 export type LandingPage = {
   slug: string;
@@ -53,6 +62,7 @@ export type LandingPage = {
   campaign?: {
     whyHeading: string;
     concernIntro: string;
+    formHeading?: string;
     formIntro: string;
     locationsIntro: string;
   };
@@ -95,31 +105,6 @@ export const landingBrandNames: Record<LandingBrand, string> = {
   dolce: "Dolce Estetica",
   medlounges: "MedLounges",
 };
-
-/* ------------------------------------------------------------------ */
-/* Shared blocks, identical facts across every page, so they are      */
-/* defined once. Verifiable only: doctor-led, 4 real clinics, the      */
-/* Google rating shown site-wide, itemised quotes.                     */
-/* ------------------------------------------------------------------ */
-
-const WHY = [
-  {
-    title: "Doctor-Led Medical Precision",
-    text: "Every treatment plan is designed, supervised, and delivered by certified medical doctors. We use evidence-based protocols to ensure your safety and give you natural, predictable results.",
-  },
-  {
-    title: "Advanced Cellular Diagnostics",
-    text: "We test instead of guessing. With AI skin assessments and cellular diagnostics, we uncover the root causes of aging and skin concerns to treat them from deep within.",
-  },
-  {
-    title: "Synergy of Aesthetics & Longevity",
-    text: "We combine outer skin and hair rejuvenation with inner metabolic health and cellular biohacks, helping you look vibrant and feel energized every day.",
-  },
-  {
-    title: "Premium State-of-the-Art Infrastructure",
-    text: "Our modern clinics feature US-FDA approved medical technology and international clinical standards in a relaxing, tranquil environment across South India.",
-  },
-];
 
 const TESTIMONIALS: Review[] = reviews;
 
@@ -811,6 +796,13 @@ export const landingPages: LandingPage[] = [
    * 5, HYDRAFACIAL (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Our Clients Choose Dolce Estetica",
+      "concernIntro": "Tap your concern and the right specialist will be there for you.",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "For appointments at any of our clinics. Book here and we will find you the earliest slot"
+    },
     slug: "hydrafacial",
     brand: "dolce",
     name: "HydraFacial",
@@ -818,50 +810,88 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
     hero: {
-      eyebrow: "Signature skin renewal · 4 clinics",
-      heading: "The facial that works while you watch.",
-      subheading:
-        "Deep cleansing, painless extraction and hydration in one session. Walk in dull, walk out glowing, with no downtime.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/lp/hydrafacial-hero.webp" and alt "Therapist performing a HydraFacial with a serum handpiece on a relaxed South Indian patient in a bright clinic".
-      image: "/lp/hydrafacial-hero.jpg",
-      imageAlt:
-        "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "subheading": "Cleanse, extract, hydrate, glow. All-in-one doctor-led session",
+      "image": "/lp/hydrafacial-hero-campaign.webp",
+      "imageAlt": "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "7+ Years", label: "Of aesthetic expertise" },
-      { value: "15,000+", label: "Happy patients treated" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
-      { value: "4.6★", label: "Google rating from real patients" },
+      {
+        "value": "7+ Years",
+        "label": "Of aesthetic expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "We do not delegate your care. A certified dermatologist assesses your skin before your session, so the treatment fits your skin as it is that day"
+      },
+      {
+        "title": "AI-Assisted Skin Analysis",
+        "text": "We look beneath the surface. Clinical AI imaging reads your skin in fine detail, so your HydraFacial is matched to what your skin actually needs"
+      },
+      {
+        "title": "Skin-Friendly Care",
+        "text": "We respect your skin's condition. Serums and boosters are chosen for your skin type and tone, with sun protection built into your aftercare"
+      },
+      {
+        "title": "Modern Technology",
+        "text": "We do not compromise on safety. Our spaces are built for privacy and equipped with US-FDA-cleared devices"
+      }
+    ],
     services: {
-      heading: "What we treat",
-      intro:
-        "A three-step medical-grade treatment, cleanse and peel, extract and hydrate, protect and finish, tailored to your skin's condition on the day.",
-      items: [
+      "heading": "A HydraFacial Matched to Your Skin Concern",
+      "intro": "Every HydraFacial at Dolce Estetica starts with a doctor's skin assessment, then personalizes three steps according to your skin: cleanse and peel, extract and hydrate, protect and finish",
+      "items": [
         {
-          name: "Deep Cleansing",
-          text: "Gentle exfoliation and vortex extraction loosen dead skin cells, unclog congested pores, and remove impurities without irritation.",
+          "name": "Deep Cleansing",
+          "text": "Clear out the build-up. Gentle exfoliation and vortex extraction loosen dead skin cells, unclog congested pores, and lift out impurities without irritation",
+          "cta": "Deep Cleanse My Skin",
+          "concern": "Blackheads or clogged pores"
         },
         {
-          name: "Hydration",
-          text: "Antioxidant and hyaluronic serums are infused deep into freshly cleaned skin to restore moisture and long-lasting glow.",
+          "name": "Hydration",
+          "text": "Give thirsty skin a drink. Antioxidant and hyaluronic serums are infused into freshly cleaned skin to restore moisture and a healthy glow",
+          "cta": "Hydrate My Skin",
+          "concern": "Dehydrated skin"
         },
         {
-          name: "Acne",
-          text: "Targeted decongestion and salicylic infusions for breakout-prone skin, calming active inflammation without harsh scrubbing.",
+          "name": "Acne",
+          "text": "Calm breakout-prone skin. Targeted decongestion and salicylic infusions help with congestion and active inflammation, without harsh scrubbing",
+          "cta": "Treat My Breakouts",
+          "concern": "Oily or acne-prone skin"
         },
         {
-          name: "Pigmentation",
-          text: "Brightening boosters and active serums selected for your skin tone, layered on freshly exfoliated skin to lighten dark spots.",
+          "name": "Pigmentation",
+          "text": "Brighten uneven tone. Boosters and active serums chosen for your skin tone are layered on freshly exfoliated skin to help lighten dark spots",
+          "cta": "Brighten My Skin Tone",
+          "concern": "Pigmentation or uneven tone"
         },
         {
-          name: "Skin Rejuvenation",
-          text: "Cellular renewal and nourishing peptides that restore smooth texture, elasticity, and immediate pre-event radiance.",
-        },
-      ],
+          "name": "Skin Rejuvenation",
+          "text": "Refresh dull, tired skin. Cellular renewal and nourishing peptides support smoother texture and a fresh, event-ready look",
+          "cta": "Refresh My Skin",
+          "concern": "Dull skin or want a glow"
+        }
+      ]
     },
     process: {
       heading: "How HydraFacial works",
@@ -885,52 +915,53 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Even a 'lunchtime facial' deserves clinical judgment, active acne, sensitive skin and certain conditions change what the treatment should include. Your skin is assessed before the session and the serums are chosen for you, not from a fixed menu.",
     results: {
-      heading: "Results, what to expect",
-      text: "Most patients leave the clinic visibly brighter and smoother, HydraFacial is loved precisely because the glow is immediate, with no redness or downtime. The effect builds over a course of sessions and holds best with a maintenance cadence your doctor will suggest. Photos of consenting patients are shown at the clinic, never stock or AI-generated images online.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "Many of our clients notice fresher, brighter-looking skin right after a session, with no redness or downtime. Results build over a course and vary from person to person",
+      "pairs": [
         {
-          before: "/lp/hydrafacial-before-after.webp",
-          after: "/lp/hydrafacial-before-after.webp",
-          label: "HydraFacial skin rejuvenation results",
+          "before": "/lp/hydrafacial-before-after.webp",
+          "after": "/lp/hydrafacial-before-after.webp",
+          "label": "HydraFacial skin rejuvenation results",
+          "aspectRatio": 2.0392561983471076
         },
         {
-          before: "/lp/results-hydra-radiance-before.jpg",
-          after: "/lp/results-hydra-radiance-after.jpg",
-          label: "Pre-event radiance & tone brightening",
-        },
-      ],
+          "before": "/lp/results-hydra-radiance-before.jpg",
+          "after": "/lp/results-hydra-radiance-after.jpg",
+          "label": "Pre-event radiance & tone brightening"
+        }
+      ]
     },
     concerns: [
-      "Dull skin / want a glow",
-      "Blackheads / clogged pores",
-      "Oily / acne-prone skin",
+      "Dull skin or want a glow",
+      "Blackheads or clogged pores",
+      "Oily or acne-prone skin",
       "Dehydrated skin",
-      "Pigmentation / uneven tone",
-      "Pre-event / bridal prep",
+      "Pigmentation or uneven tone",
+      "Pre-event or bridal prep",
       "Monthly maintenance plan",
-      "Not sure, advise me",
+      "Not sure, advise me"
     ],
     faqs: [
       {
-        q: "Is there any downtime after a HydraFacial?",
-        a: "No, that is the point of the treatment. Skin may look slightly flushed for an hour or two; most patients return straight to work or an event the same day. Sun protection afterwards is the only strict instruction.",
+        "q": "Is there any downtime after a HydraFacial?",
+        "a": "No. Your skin may look slightly flushed for an hour or two, and most people go straight back to work or an event the same day. The only strict rule afterwards is sun protection"
       },
       {
-        q: "How often should I get a HydraFacial?",
-        a: "For maintenance, roughly monthly keeps results compounding; for a specific concern like congestion or dullness, your doctor may suggest a short course first. The cadence is confirmed at your skin assessment, not sold as a default package.",
+        "q": "How often should I get a HydraFacial?",
+        "a": "For maintenance, roughly once a month keeps skin looking fresh. For a specific concern like congestion or dullness, your doctor may suggest a short course first. The plan is set after your skin assessment, never sold as a default package"
       },
       {
-        q: "Can I have a HydraFacial if I have acne?",
-        a: "Often yes, the deep-cleansing step helps congested skin, but active, inflamed acne changes what the session should include. That is why the skin is assessed first, so the treatment helps your breakouts instead of aggravating them.",
+        "q": "Can I get a HydraFacial if I have acne?",
+        "a": "Often yes, because the deep-cleansing step helps congested skin. But active, inflamed acne changes what the session should include. That is why your doctor assesses your skin first, so the treatment helps your breakouts instead of irritating them"
       },
       {
-        q: "How much does a HydraFacial cost?",
-        a: "It depends on the version suited to your skin and whether it is a single session or a course. The full, itemised figure is given at your consultation, before the first session, not after. Courses can be taken on EMI.",
+        "q": "How much does a HydraFacial cost?",
+        "a": "It depends on the version that suits your skin and whether you need a single session or a course. You get the full, itemised figure in writing at your consultation, before your first session"
       },
       {
-        q: "How is this different from a regular salon facial?",
-        a: "A salon facial mostly massages and temporarily freshens the surface. A HydraFacial physically extracts impurities from pores and infuses serums into cleaned skin, and it happens in a clinic where a doctor has assessed your skin first and can spot anything that needs medical treatment rather than a facial.",
-      },
+        "q": "How is this different from a regular salon facial?",
+        "a": "A salon facial mostly massages and freshens the surface. A HydraFacial extracts impurities from pores and infuses serums into cleaned skin, and it happens in a clinic where a doctor has assessed your skin first and can spot anything that needs medical treatment instead of a facial"
+      }
     ],
   },
 
@@ -938,6 +969,13 @@ export const landingPages: LandingPage[] = [
    * 6, GLUTATHIONE IV TREATMENT (Dolce)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Our Clients Choose Dolce Estetica",
+      "concernIntro": "Tap your concern and the right specialist will be ready for you.",
+      "formHeading": "Start Your Suitability Assessment",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "For appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "glutathione-treatment",
     brand: "dolce",
     name: "Glutathione Treatment (IV Drip)",
@@ -945,46 +983,82 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
-      eyebrow: "Doctor-administered IV therapy",
-      heading: "Brightness that starts in the bloodstream.",
-      subheading:
-        "The body's own master antioxidant, delivered by IV drip under a doctor's supervision, as part of a plan that treats the cause of your dullness.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/assets/about.webp" and alt "Soft, luminous skin after a glow treatment, the radiance glutathione therapy aims for".
-      image: "/lp/glutathione-treatment-hero.jpg",
-      imageAlt:
-        "Woman reclining in a clinic chair receiving a glutathione IV drip while a nurse inserts the line",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "subheading": "For skin that looks tired before you do. Doctor-assessed, gradual, and natural-looking",
+      "image": "/lp/glutathione-treatment-hero-campaign.webp",
+      "imageAlt": "Woman reclining in a clinic chair receiving a glutathione IV drip while a nurse inserts the line",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "4.6★", label: "Google rating from real patients" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
-      { value: "7+ Years", label: "Of IV-therapy expertise" },
-      { value: "15,000+", label: "Happy patients treated" },
+      {
+        "value": "7+ Years",
+        "label": "IV-therapy expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Doctor-Led Care",
+        "text": "We do not delegate your care. A certified doctor reviews your history and confirms suitability before your first drip, and supervises every session"
+      },
+      {
+        "title": "AI-Assisted Skin Analysis",
+        "text": "We look beneath the surface. Clinical AI imaging reads your skin in fine detail, so your plan is built on what your skin actually shows"
+      },
+      {
+        "title": "Honest Expectations",
+        "text": "We respect your natural skin tone. Glutathione supports brightness and evenness. It does not change your fundamental skin colour, and we say so on day one"
+      },
+      {
+        "title": "Clinical Setting",
+        "text": "We do not compromise on care. Every session happens in-clinic, under supervision, in spaces built for privacy"
+      }
+    ],
     services: {
-      heading: "What the treatment addresses",
-      intro:
-        "IV glutathione works from within. It sits alongside, never instead of, proper diagnosis and sun protection. Your doctor confirms suitability before the first session.",
-      items: [
+      "heading": "Glutathione Planned Around Your Skin Concern",
+      "intro": "Glutathione IV works from within, and it sits alongside proper diagnosis and sun protection, never instead of them. Every plan at Dolce Estetica starts with a doctor's assessment, so you know if it suits you before anything begins",
+      "items": [
         {
-          name: "Skin brightening",
-          text: "Glutathione supports a brighter, more luminous appearance over a course of sessions, gradual and natural-looking, never a sudden shade change.",
+          "name": "Skin Brightening",
+          "text": "Support a brighter, more luminous look. Brightness builds gradually over a course of sessions, natural-looking and never a sudden shade change",
+          "cta": "Brighten My Skin Naturally",
+          "concern": "Dull skin or want brightness"
         },
         {
-          name: "Pigmentation support",
-          text: "Used alongside prescribed pigmentation treatment, it helps even out tone from within while topical care works from the surface.",
+          "name": "Pigmentation Support",
+          "text": "Work from within while topical care works on the surface. Used alongside prescribed pigmentation treatment to help even out tone",
+          "cta": "Support My Pigmentation Care",
+          "concern": "Pigmentation or dark patches"
         },
         {
-          name: "Uneven skin tone",
-          text: "For patchiness and tone differences across the face and body, planned as part of a full even-tone protocol.",
+          "name": "Uneven Skin Tone",
+          "text": "Patchy or uneven across the face and body? Glutathione is planned as one part of a complete even-tone protocol",
+          "cta": "Even Out My Skin Tone",
+          "concern": "Uneven skin tone"
         },
         {
-          name: "Dull & tired skin",
-          text: "Stress, sleep and pollution deplete antioxidants, IV therapy replenishes them directly, with hydration included in every session.",
-        },
-      ],
+          "name": "Dull and Tired Skin",
+          "text": "Stress, poor sleep, and pollution drain your skin's antioxidants. IV therapy replenishes them directly, with hydration in every session",
+          "cta": "Revive My Tired Skin",
+          "concern": "Dull skin or want brightness"
+        }
+      ]
     },
     process: {
       heading: "How glutathione IV therapy works",
@@ -1006,55 +1080,61 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "IV therapy is a medical procedure: suitability, dose and session gaps are decided by a doctor, and every session happens in-clinic under supervision, never as a home kit or a salon add-on.",
     results: {
-      heading: "Results, the honest version",
-      text: "Glutathione IV is gradual: brightness builds over a course of sessions and holds with maintenance and strict sun protection. It does not change your fundamental skin colour, and results genuinely vary between people, anyone promising a specific shade change is guessing. Your doctor will set realistic expectations for your skin at the first consultation, and show you what it has meant for consenting patients in person.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "Glutathione IV is gradual. The results are seen in brightness building over a course of sessions, and it holds best with maintenance and strict sun protection. Results vary from person to person, and your doctor sets realistic expectations at your first consultation",
+      "pairs": [
         {
-          before: "/lp/glutathione-result-1.jpeg",
-          after: "/lp/glutathione-result-1.jpeg",
-          label: "Skin tone brightening & radiance",
+          "before": "/lp/glutathione-result-1.jpeg",
+          "after": "/lp/glutathione-result-1.jpeg",
+          "label": "Skin tone brightening & radiance",
+          "aspectRatio": 1,
+          "labelLayout": "embedded"
         },
         {
-          before: "/lp/glutathione-result-2.jpeg",
-          after: "/lp/glutathione-result-2.jpeg",
-          label: "Pigmentation & spot reduction",
+          "before": "/lp/glutathione-result-2.jpeg",
+          "after": "/lp/glutathione-result-2.jpeg",
+          "label": "Pigmentation & spot reduction",
+          "aspectRatio": 1,
+          "labelLayout": "embedded"
         },
         {
-          before: "/lp/glutathione-result-3.jpeg",
-          after: "/lp/glutathione-result-3.jpeg",
-          label: "In-clinic IV therapy results",
-        },
-      ],
+          "before": "/lp/glutathione-result-3.jpeg",
+          "after": "/lp/glutathione-result-3.jpeg",
+          "label": "In-clinic IV therapy results",
+          "aspectRatio": 1,
+          "labelLayout": "embedded"
+        }
+      ]
     },
     concerns: [
-      "Dull skin / want brightness",
+      "Dull skin or want brightness",
       "Uneven skin tone",
-      "Pigmentation / dark patches",
+      "Pigmentation or dark patches",
       "Tanned skin",
-      "Overall glow + wellness",
-      "Not sure, advise me",
+      "Overall glow and wellness",
+      "Not sure, advise me"
     ],
     faqs: [
       {
-        q: "Is glutathione IV safe?",
-        a: "When a doctor has assessed you first, checking your history and confirming suitability, and every session happens in a clinic under supervision. That is exactly how it is done here. It is not for everyone, and the consultation is where that is decided honestly.",
+        "q": "Is glutathione IV safe?",
+        "a": "It is given only after a doctor reviews your history and confirms it suits you, and every session happens in a clinic under supervision. It is not for everyone, and the consultation is where we tell you honestly"
       },
       {
-        q: "Will it make me fair?",
-        a: "No, and we will not pretend otherwise. Glutathione supports brightness, evenness and a healthier appearance of the skin you have, it does not change your fundamental skin colour. Clinics promising a specific shade change are selling, not practising medicine.",
+        "q": "Will it make me fair?",
+        "a": "No, and we will not pretend otherwise. Glutathione supports brightness, evenness, and a healthier look for the skin you have. It does not change your fundamental skin colour"
       },
       {
-        q: "How many sessions will I need?",
-        a: "Brightness typically builds over a course of sessions spaced days to weeks apart, followed by maintenance. The exact plan depends on your skin, your goal and how your body responds, your doctor maps it out at the first consultation, with the full cost itemised before you begin.",
+        "q": "How many sessions will I need?",
+        "a": "Brightness builds over a course of sessions spaced days to weeks apart, followed by maintenance. The plan depends on your skin, your goal, and how your body responds. Your doctor maps it out at the first consultation, with the full cost itemised in writing before you begin"
       },
       {
-        q: "Are there side effects?",
-        a: "IV therapy carries the usual small risks of any IV procedure, which is why it is doctor-led in a clinic setting, and why the assessment first matters. Most patients find sessions comfortable and uneventful; the doctor will walk you through everything before your first session.",
+        "q": "Are there side effects?",
+        "a": "IV therapy carries the usual small risks of any IV procedure, which is why it is doctor-led and done in a clinic. Your doctor walks you through everything before your first session"
       },
       {
-        q: "Can I do glutathione alongside my pigmentation treatment?",
-        a: "Often yes, IV therapy is planned as a complement to topical and in-clinic pigmentation care, plus the sun protection both depend on. Bring your current products and history to the consultation and the doctor will build one coherent plan.",
-      },
+        "q": "Can I do glutathione alongside my pigmentation treatment?",
+        "a": "Often yes. IV therapy is planned as a complement to topical and in-clinic pigmentation care, plus the sun protection both depend on. Bring your current products and history to the consultation, and your doctor will build one clear plan"
+      }
     ],
   },
 
@@ -1062,6 +1142,13 @@ export const landingPages: LandingPage[] = [
    * 7, VASER LIPOSUCTION (MedLounges)
    * ================================================================== */
   {
+    campaign: {
+      "whyHeading": "Why Patients Choose Dolce Estetica",
+      "concernIntro": "Tap your concern and the right specialist will be ready for you.",
+      "formHeading": "Start Your Surgeon Consultation",
+      "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
+      "locationsIntro": "For appointments at any of our clinics. Book here and we will find your earliest slot."
+    },
     slug: "vaser-liposuction",
     brand: "medlounges",
     name: "VASER Liposuction",
@@ -1069,54 +1156,94 @@ export const landingPages: LandingPage[] = [
     metaDescription:
       "VASER liposuction for abdomen, waist, arms, thighs, back and body contouring. Surgeon consultation, honest candidacy assessment and full cost in writing. Medlounges, the body contouring brand of the Dolce Estetica group.",
     hero: {
-      eyebrow: "Medlounges · Surgical body contouring",
-      heading: "Reshape what diet and gym won't move.",
-      subheading:
-        "VASER ultrasound targets stubborn fat on the abdomen, waist, arms, thighs and back. A surgical contouring procedure, planned by a surgeon who tells you honestly whether it is right for you.",
-      // Hero photo swapped to the client's 2026 banner set (30 Sep 2026).
-      // UNDO: restore image "/lp/vaser-lipo-hero.webp" and alt "Toned, contoured abdomen after body sculpting, photographed against a dark studio background".
-      image: "/lp/vaser-liposuction-hero.jpg",
-      imageAlt:
-        "Woman's toned, contoured waistline and abdomen in warm studio light",
-      trustChips: ["4 clinics in South India", "4.6★ Google-rated care", "Consultation before treatment"],
+      "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
+      "heading": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "subheading": "Fat that diet and the gym won't move, reshaped with precision",
+      "image": "/lp/vaser-liposuction-hero-campaign.webp",
+      "imageAlt": "Woman's toned, contoured waistline and abdomen in warm studio light",
+      "trustChips": [
+        "4 clinics in South India",
+        "4.6★ Google-rated care",
+        "Consultation before treatment"
+      ]
     },
     impact: [
-      { value: "15,000+", label: "Happy patients treated" },
-      { value: "7+ Years", label: "Of surgical expertise" },
-      { value: "4.6★", label: "Google rating from real patients" },
-      { value: "4 clinics", label: "Kochi, Cherthala, Calicut and Mangalore" },
+      {
+        "value": "7+ Years",
+        "label": "Of surgical expertise"
+      },
+      {
+        "value": "4 Clinics",
+        "label": "Kochi, Cherthala, Calicut and Mangalore"
+      },
+      {
+        "value": "4.6★",
+        "label": "Google rating from real patients"
+      },
+      {
+        "value": "15,000+",
+        "label": "Patients treated"
+      }
     ],
-    why: WHY,
+    why: [
+      {
+        "title": "Surgeon-Led Care",
+        "text": "We do not delegate your care. A qualified surgeon plans your procedure, tells you honestly if you are a candidate, and stays with you through recovery"
+      },
+      {
+        "title": "AI-Assisted Analysis",
+        "text": "We plan with detail, not guesswork. Clinical AI-assisted analysis supports your surgeon in understanding your body and your goals"
+      },
+      {
+        "title": "Honest Candidacy Check",
+        "text": "We respect your body and your time. If VASER is not right for you, we tell you at the consultation, before you spend anything"
+      },
+      {
+        "title": "Modern Technology",
+        "text": "We do not compromise on care. Our spaces are built for privacy and equipped with US-FDA-approved devices"
+      }
+    ],
     services: {
-      heading: "Areas we contour",
-      intro:
-        "VASER's ultrasound energy targets fat selectively, sparing nerves, blood vessels and connective tissue, which allows defined contouring, including delicate areas.",
-      items: [
+      "heading": "Where Do You Want to Contour?",
+      "intro": "Every plan at Dolce Estetica starts with a surgeon's consultation and candidacy check, so you know if it suits your body before you decide.",
+      "items": [
         {
-          name: "Abdomen",
-          text: "Upper and lower abdominal fat, including stubborn bands that resist diet and exercise.",
+          "name": "Abdomen",
+          "text": "Target the stubborn belly fat that diet and exercise have not moved, from the upper and lower abdomen to stubborn bands",
+          "cta": "Contour My Abdomen",
+          "concern": "Abdomen or belly fat"
         },
         {
-          name: "Waist",
-          text: "Love handles and flank areas reshaped with ultrasound precision to sculpt the torso.",
+          "name": "Waist",
+          "text": "Reshape love handles and flanks with ultrasound precision, for a more defined torso",
+          "cta": "Shape My Waist",
+          "concern": "Waist or love handles"
         },
         {
-          name: "Arms",
-          text: "Selective arm fat liquefaction and tightening, preserving nerves and connective tissue.",
+          "name": "Arms",
+          "text": "Selective fat removal for the upper arms, planned to preserve nerves and connective tissue",
+          "cta": "Sculpt My Arms",
+          "concern": "Arms"
         },
         {
-          name: "Thighs",
-          text: "Inner and outer thigh sculpting planned to maintain natural, balanced proportions.",
+          "name": "Thighs",
+          "text": "Inner and outer thigh contouring, planned to keep your proportions natural and balanced",
+          "cta": "Balance My Thighs",
+          "concern": "Thighs"
         },
         {
-          name: "Back",
-          text: "Upper and lower back contouring, targeting bra-line bulges and stubborn rolls.",
+          "name": "Back",
+          "text": "Smooth bra-line bulges and stubborn rolls across the upper and lower back",
+          "cta": "Smooth My Back",
+          "concern": "Back or bra area"
         },
         {
-          name: "Body Contouring",
-          text: "Comprehensive multi-area surgical contouring planned safely in one structured session.",
-        },
-      ],
+          "name": "Body Contouring",
+          "text": "Treating more than one area? Multi-area contouring is planned in one structured, surgeon-led session",
+          "cta": "Plan My Full Contour",
+          "concern": "Multiple areas or full contouring"
+        }
+      ]
     },
     process: {
       heading: "How VASER liposuction works",
@@ -1140,51 +1267,54 @@ export const landingPages: LandingPage[] = [
     doctorsNote:
       "Every VASER journey starts with a surgeon's consultation: examination, health assessment, and an honest discussion of candidacy, realistic outcomes and recovery. Medlounges and Dolce Estetica are run by the same medical leadership, patients of either are cared for across the group.",
     results: {
-      heading: "Results & recovery, the honest version",
-      text: "VASER liposuction permanently removes the treated fat cells, but the result is a reshaped contour, not weight loss, and keeping it depends on your lifestyle. Swelling masks the final shape for weeks, with full definition appearing over months as it settles. Photos of consenting patients are shown at the surgical consultation, in person, never as stock or AI-generated images online.",
-      pairs: [
+      "heading": "Real Results, Zero Filters",
+      "text": "VASER reshapes your contour. It is not weight loss, and keeping the result depends on a stable, healthy lifestyle. Swelling hides the final shape for weeks, and definition appears gradually over months. Outcomes vary from person to person",
+      "pairs": [
         {
-          before: "/lp/vaser-lipo-contour-1.jpeg",
-          after: "/lp/vaser-lipo-contour-1.jpeg",
-          label: "Abdomen & waist VASER contouring",
+          "before": "/lp/vaser-lipo-contour-1.jpeg",
+          "after": "/lp/vaser-lipo-contour-1.jpeg",
+          "label": "Abdomen & waist VASER contouring",
+          "aspectRatio": 1
         },
         {
-          before: "/lp/vaser-lipo-contour-2.jpeg",
-          after: "/lp/vaser-lipo-contour-2.jpeg",
-          label: "Full body & flank VASER contouring",
-        },
-      ],
+          "before": "/lp/vaser-lipo-contour-2.jpeg",
+          "after": "/lp/vaser-lipo-contour-2.jpeg",
+          "label": "Arm VASER contouring",
+          "aspectRatio": 1,
+          "labelLayout": "stacked"
+        }
+      ]
     },
     concerns: [
-      "Abdomen / belly fat",
-      "Waist / love handles",
+      "Abdomen or belly fat",
+      "Waist or love handles",
       "Arms",
       "Thighs",
-      "Back / bra area",
-      "Multiple areas / full contouring",
-      "Not sure, advise me",
+      "Back or bra area",
+      "Multiple areas or full contouring",
+      "Not sure, advise me"
     ],
     faqs: [
       {
-        q: "Am I a candidate for VASER liposuction?",
-        a: "The best candidates are close to a stable weight, healthy, and bothered by specific areas of stubborn fat that diet and exercise have not moved. It is not a weight-loss treatment and not right for everyone, the surgeon's consultation exists precisely to answer this question honestly for your body and health.",
+        "q": "Am I a candidate for VASER liposuction?",
+        "a": "Usually, people close to a stable weight, in good health, and bothered by specific areas of stubborn fat. It is not a weight-loss treatment and it is not right for everyone. The surgeon's consultation exists to answer this honestly for your body and your health"
       },
       {
-        q: "How is VASER different from regular liposuction?",
-        a: "VASER uses ultrasound energy to loosen fat cells before removal, which allows finer, more selective contouring and is designed to spare nerves, vessels and connective tissue, meaning smoother results and, typically, more comfortable recovery than conventional liposuction.",
+        "q": "How is VASER different from regular liposuction?",
+        "a": "VASER uses ultrasound energy to loosen fat cells before removal, which allows finer, more selective contouring. It is designed to spare nerves, vessels, and connective tissue, and recovery is typically more comfortable than conventional liposuction"
       },
       {
-        q: "How long is recovery?",
-        a: "Most patients are up and walking within a day or two and back to desk work within about a week, with compression garments worn for several weeks as advised. Swelling settles progressively, the final contour emerges over months, and your surgeon maps this timeline for you personally before surgery.",
+        "q": "How long is recovery?",
+        "a": "Many patients are up and walking within a day or two and back to desk work within about a week, with compression garments worn for several weeks as advised. Swelling settles gradually and the final contour emerges over months. Your surgeon maps your timeline before surgery"
       },
       {
-        q: "How much does VASER liposuction cost?",
-        a: "It depends on the number and size of areas treated, anaesthesia and theatre time. After the surgeon's consultation you receive one complete, itemised surgical quote covering everything, procedure, facility, anaesthesia and aftercare, so nothing appears after your decision. EMI options are available.",
+        "q": "How much does VASER liposuction cost?",
+        "a": "It depends on the number and size of areas treated, anaesthesia, and theatre time. After your consultation, you get one complete, itemised written quote covering the procedure, facility, anaesthesia, and aftercare, so nothing appears after you decide. EMI options are available"
       },
       {
-        q: "Is the fat gone permanently?",
-        a: "The fat cells removed in the treated areas do not return. The remaining cells can still enlarge if weight is gained, so the result holds best with a stable, healthy lifestyle, which is why we frame VASER as contouring, not a fix. We would rather you hear that now than after surgery.",
-      },
+        "q": "Is the fat gone permanently?",
+        "a": "The fat cells removed from the treated areas do not return. The remaining cells can still grow if weight is gained, so results hold best with a stable, healthy lifestyle. We would rather you hear this now than after surgery"
+      }
     ],
   },
 ];

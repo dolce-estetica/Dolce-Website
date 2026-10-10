@@ -1,0 +1,1728 @@
+{
+  "base": "http://localhost:3107",
+  "checks": [
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 282,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 282,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 337,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 337,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 352,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 352,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 392,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 392,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 714,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 714,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "vaser-liposuction",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Advanced VASER Liposuction - Less Downtime, Defined Results",
+      "formHeading": "Start Your Surgeon Consultation",
+      "submitLabel": "Book Surgeon Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/vaser-liposuction-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 624,
+          "height": 624,
+          "fit": "contain"
+        },
+        {
+          "width": 624,
+          "height": 624,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        63.1875,
+        63.1875,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 282,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 282,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 282,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 337,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 337,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 337,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 352,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 352,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 352,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 392,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 392,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 392,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 714,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 714,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 714,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "glutathione-treatment",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
+      "formHeading": "Start Your Suitability Assessment",
+      "submitLabel": "Book My Assessment",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        63.1875,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/glutathione-treatment-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 407.328125,
+          "height": 407.328125,
+          "fit": "contain"
+        },
+        {
+          "width": 407.328125,
+          "height": 407.328125,
+          "fit": "contain"
+        },
+        {
+          "width": 407.34375,
+          "height": 407.34375,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 138.28125,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 173.75,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 165.25,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 208.125,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 172.609375,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 217.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 192.21875,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 242.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 350.125,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 443.75,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hydrafacial",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "formHeading": "Start Your HydraFacial Consultation",
+      "submitLabel": "Book My Session",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hydrafacial-hero-campaign.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 624,
+          "height": 305.984375,
+          "fit": "contain"
+        },
+        {
+          "width": 624,
+          "height": 387.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 173.75,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 208.125,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 217.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 242.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 443.75,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "dermatology-clinic",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "South India's #1 Destination for Cosmetic & Holistic Wellness",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/dermatology-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 407.328125,
+          "height": 203.65625,
+          "fit": "contain"
+        },
+        {
+          "width": 407.328125,
+          "height": 203.65625,
+          "fit": "contain"
+        },
+        {
+          "width": 407.34375,
+          "height": 252.078125,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        63.1875,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 173.75,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 173.75,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 208.125,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 208.125,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 217.5,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 217.5,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 242.5,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 242.5,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 443.75,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 443.75,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "hair-treatment",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/hair-treatment-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 407.328125,
+          "height": 252.078125,
+          "fit": "contain"
+        },
+        {
+          "width": 407.328125,
+          "height": 252.078125,
+          "fit": "contain"
+        },
+        {
+          "width": 407.34375,
+          "height": 203.671875,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        },
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        },
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        },
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        },
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        },
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "skin-treatments",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Transform Your Skin From the First Session",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/skin-treatments-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 407.328125,
+          "height": 203.65625,
+          "fit": "contain"
+        },
+        {
+          "width": 407.328125,
+          "height": 203.65625,
+          "fit": "contain"
+        },
+        {
+          "width": 407.34375,
+          "height": 203.671875,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 80,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        63.1875,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 282,
+          "height": 141,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 375,
+      "scrollWidth": 375,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 337,
+          "height": 168.5,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 352,
+          "height": 176,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 430,
+      "scrollWidth": 430,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 56,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": true,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 392,
+          "height": 196,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 714,
+          "height": 357,
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "slug": "laser-hair-removal",
+      "status": 200,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "formHeading": "Start Your Consultation",
+      "submitLabel": "Book My Consultation",
+      "submitHeight": 60,
+      "submitFullWidth": true,
+      "formFields": 5,
+      "singleMobileServiceColumn": false,
+      "serviceCtaHeights": [
+        44,
+        44,
+        63.1875,
+        44
+      ],
+      "phoneType": "tel",
+      "phoneInputMode": "tel",
+      "hero": "http://localhost:3107/lp/laser-hair-removal-hero.webp",
+      "heroLoaded": true,
+      "designNotes": false,
+      "smallChips": 0,
+      "locations": 4,
+      "results": [
+        {
+          "width": 754,
+          "height": 377,
+          "fit": "contain"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,84 @@
+{
+  "base": "http://localhost:3107",
+  "interactions": [
+    {
+      "slug": "vaser-liposuction",
+      "width": 390,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 2,
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "vaser-liposuction",
+      "width": 1440,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 2,
+      "successRedirect": "mocked",
+      "requestCount": 2
+    },
+    {
+      "slug": "glutathione-treatment",
+      "width": 390,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 3,
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "glutathione-treatment",
+      "width": 1440,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 3,
+      "successRedirect": "mocked",
+      "requestCount": 2
+    },
+    {
+      "slug": "hydrafacial",
+      "width": 390,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 2,
+      "successRedirect": "mocked",
+      "requestCount": 3
+    },
+    {
+      "slug": "hydrafacial",
+      "width": 1440,
+      "concernSync": true,
+      "allServicePrefills": true,
+      "phoneValidation": true,
+      "failureRetainsValues": true,
+      "attribution": true,
+      "allFaqs": true,
+      "carousel": 2,
+      "successRedirect": "mocked",
+      "requestCount": 2
+    }
+  ],
+  "errors": []
+}

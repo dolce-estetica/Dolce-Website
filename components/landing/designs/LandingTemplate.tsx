@@ -812,7 +812,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-dolce-green sm:text-4xl">
-              {isCampaign ? "Start Your Consultation" : extras.formHeading}
+              {page.campaign?.formHeading ?? (isCampaign ? "Start Your Consultation" : extras.formHeading)}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
               {page.campaign?.formIntro ?? "Fill this in and our team will call you back within 2 hours, at the clinic you prefer."}
@@ -884,6 +884,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
         slug={page.slug}
         gold={isCampaign}
         label={extras.stickyLabel}
+        submitLabel={extras.submitLabel}
         variant={extras.stickyVariant}
         concerns={page.concerns}
         defaultConcern={defaultConcern}

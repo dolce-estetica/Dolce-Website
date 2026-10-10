@@ -39,10 +39,14 @@ export default function ResultsGallery({ pairs }: { pairs: LandingResultPair[] }
         {pairs.map((pair, index) => (
           <figure key={pair.label} className="lp-result-card" role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${pairs.length}: ${pair.label}`}>
             {pair.before === pair.after ? (
-              <div className="relative aspect-[2/1] bg-white">
+              <div className="relative bg-white" style={{ aspectRatio: pair.aspectRatio ?? 2 }}>
                 <Image src={pair.before} alt={`Before and after: ${pair.label}`} fill sizes="(min-width: 1024px) 580px, (min-width: 640px) 90vw, 100vw" className="object-contain" />
-                <span className="lp-result-label left-3">Before</span>
-                <span className="lp-result-label right-3">After</span>
+                {pair.labelLayout !== "embedded" && (
+                  <>
+                    <span className="lp-result-label left-3">Before</span>
+                    <span className="lp-result-label right-3" style={pair.labelLayout === "stacked" ? { top: "calc(50% + 12px)" } : undefined}>After</span>
+                  </>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-1 bg-white">

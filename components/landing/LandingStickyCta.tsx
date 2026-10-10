@@ -44,6 +44,7 @@ export default function LandingStickyCta({
   concerns = [],
   defaultConcern,
   gold = false,
+  submitLabel = "Book My Consultation",
 }: {
   slug?: string;
   label?: string;
@@ -53,6 +54,7 @@ export default function LandingStickyCta({
   /** Pre-selected concern, matching the main form's page default. */
   defaultConcern?: string;
   gold?: boolean;
+  submitLabel?: string;
 }) {
   const v = VARIANTS[variant];
   const headline = label ?? "Book your consultation";
@@ -263,7 +265,7 @@ export default function LandingStickyCta({
                     aria-busy={pending}
                     className={`inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-full px-6 py-3 text-sm font-extrabold transition-colors disabled:cursor-wait disabled:opacity-70 ${gold ? "lp-gold-button" : v.btn}`}
                   >
-                    {pending ? "Sending…" : "Book My Consultation"}
+                    {pending ? "Sending…" : submitLabel}
                   </button>
                 </div>
 
