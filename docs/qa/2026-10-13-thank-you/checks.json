@@ -1,0 +1,386 @@
+{
+  "checks": [
+    {
+      "type": "responsive",
+      "width": 320,
+      "height": 844,
+      "scrollWidth": 320,
+      "scrollHeight": 1354,
+      "cardHeight": 1092.59375,
+      "sideBySide": false,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 238,
+          "height": 68,
+          "left": 41,
+          "right": 279
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 238,
+          "height": 50,
+          "left": 41,
+          "right": 279
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 74.53125,
+          "right": 245.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 375,
+      "height": 844,
+      "scrollWidth": 375,
+      "scrollHeight": 1262,
+      "cardHeight": 1000.59375,
+      "sideBySide": false,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 293,
+          "height": 48,
+          "left": 41,
+          "right": 334
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 293,
+          "height": 50,
+          "left": 41,
+          "right": 334
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 102.03125,
+          "right": 272.953125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 1262,
+      "cardHeight": 1000.59375,
+      "sideBySide": false,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 308,
+          "height": 48,
+          "left": 41,
+          "right": 349
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 308,
+          "height": 50,
+          "left": 41,
+          "right": 349
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 109.53125,
+          "right": 280.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 640,
+      "height": 844,
+      "scrollWidth": 640,
+      "scrollHeight": 1301,
+      "cardHeight": 1000.1875,
+      "sideBySide": false,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 494,
+          "height": 48,
+          "left": 73,
+          "right": 567
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 494,
+          "height": 50,
+          "left": 73,
+          "right": 567
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 234.53125,
+          "right": 405.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 768,
+      "height": 844,
+      "scrollWidth": 768,
+      "scrollHeight": 1301,
+      "cardHeight": 1000.1875,
+      "sideBySide": false,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 622,
+          "height": 48,
+          "left": 73,
+          "right": 695
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 622,
+          "height": 50,
+          "left": 73,
+          "right": 695
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 298.53125,
+          "right": 469.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 1024,
+      "height": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "cardHeight": 513.1875,
+      "sideBySide": true,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 365.578125,
+          "height": 48,
+          "left": 585.40625,
+          "right": 950.984375
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 365.578125,
+          "height": 50,
+          "left": 585.40625,
+          "right": 950.984375
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 426.53125,
+          "right": 597.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 1366,
+      "height": 768,
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "cardHeight": 513.1875,
+      "sideBySide": true,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 395.34375,
+          "height": 48,
+          "left": 758.640625,
+          "right": 1153.984375
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 395.34375,
+          "height": 50,
+          "left": 758.640625,
+          "right": 1153.984375
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 597.53125,
+          "right": 768.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 1440,
+      "height": 768,
+      "scrollWidth": 1440,
+      "scrollHeight": 768,
+      "cardHeight": 513.1875,
+      "sideBySide": true,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 395.34375,
+          "height": 48,
+          "left": 795.640625,
+          "right": 1190.984375
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 395.34375,
+          "height": 50,
+          "left": 795.640625,
+          "right": 1190.984375
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 634.53125,
+          "right": 805.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "responsive",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "cardHeight": 513.1875,
+      "sideBySide": true,
+      "links": [
+        {
+          "text": "Continue on WhatsApp",
+          "width": 395.34375,
+          "height": 48,
+          "left": 1035.640625,
+          "right": 1430.984375
+        },
+        {
+          "text": "Call +91 79944 55019",
+          "width": 395.34375,
+          "height": 50,
+          "left": 1035.640625,
+          "right": 1430.984375
+        },
+        {
+          "text": "Back to homepage",
+          "width": 170.921875,
+          "height": 44,
+          "left": 874.53125,
+          "right": 1045.453125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "type": "submission",
+      "source": "dermatology-clinic",
+      "url": "http://localhost:3101/thank-you?p=dermatology-clinic",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "hair-treatment",
+      "url": "http://localhost:3101/thank-you?p=hair-treatment",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "laser-hair-removal",
+      "url": "http://localhost:3101/thank-you?p=laser-hair-removal",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "skin-treatments",
+      "url": "http://localhost:3101/thank-you?p=skin-treatments",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "hydrafacial",
+      "url": "http://localhost:3101/thank-you?p=hydrafacial",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "glutathione-treatment",
+      "url": "http://localhost:3101/thank-you?p=glutathione-treatment",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "vaser-liposuction",
+      "url": "http://localhost:3101/thank-you?p=vaser-liposuction",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "contact",
+      "url": "http://localhost:3101/thank-you?p=contact",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "booking",
+      "url": "http://localhost:3101/thank-you?p=booking",
+      "conversions": 1
+    },
+    {
+      "type": "submission",
+      "source": "mobile-sheet",
+      "url": "http://localhost:3101/thank-you?p=hair-treatment",
+      "conversions": 1
+    },
+    {
+      "type": "refresh",
+      "redirectedHome": true
+    },
+    {
+      "type": "directVisit",
+      "redirectedHome": true
+    },
+    {
+      "type": "rejectedSubmission",
+      "keepsForm": true,
+      "successReceipt": false
+    },
+    {
+      "type": "keyboardFocus",
+      "color": "rgb(230, 211, 173)",
+      "width": "2px"
+    },
+    {
+      "type": "homeNavigation",
+      "floatingContactsRestored": true
+    }
+  ],
+  "errors": [],
+  "acceptedLocalCrmRequests": 11,
+  "productionCrmRequests": 0
+}

@@ -11,8 +11,8 @@ export default function FloatingActions() {
   const pathname = usePathname();
 
   // Ad landing pages (now at top-level /<slug>) carry their own sticky Book
-  // Now bar; the global floating shortcuts would crowd it there.
-  if (pathname.startsWith("/lp") || landingPages.some((p) => `/${p.slug}` === pathname)) {
+  // Now bar; the confirmation page also has its own contact actions.
+  if (pathname === "/thank-you" || pathname.startsWith("/lp") || landingPages.some((p) => `/${p.slug}` === pathname)) {
     return null;
   }
 
