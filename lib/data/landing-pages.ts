@@ -630,8 +630,8 @@ export const landingPages: LandingPage[] = [
       "Doctor-led skin treatments: acne, pigmentation, acne scars, anti-ageing, rejuvenation and chemical peels. Personalised plans at clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Transform Your Skin From the First Session",
-      "subheading": "No more filters, concealer, or second-guessing. Trust a skin doctor and doctor-led treatments for clear, glowing skin",
+      "heading": "Skin Specialists Behind Your Filter-Free Glow",
+      "subheading": "Skip the cover-ups. Doctor-led treatments for clear-looking, healthy, glowing skin",
       "image": "/lp/skin-treatments-hero.webp",
       "imageAlt": "Woman with clear, glowing skin touching her cheek against a soft beige wall",
       "trustChips": [
@@ -811,7 +811,7 @@ export const landingPages: LandingPage[] = [
       "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Hydrate Deeply With Hydra-Medi Facial, No Downtime",
+      "heading": "Hydra-Medi Facial Specialists Near You",
       "subheading": "Cleanse, extract, hydrate, glow. All-in-one doctor-led session",
       "image": "/lp/hydrafacial-hero-campaign.webp",
       "imageAlt": "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
