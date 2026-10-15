@@ -127,8 +127,8 @@ export const landingPages: LandingPage[] = [
       "See a qualified dermatologist for skin, face, body, hair and scalp concerns. Doctor-led consultation before any treatment. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "South India's #1 Destination for Cosmetic & Holistic Wellness",
-      "subheading": "Your trusted aesthetic clinic for: Expert Dermatology | Advanced Testing | Custom Treatments | Clear Pricing",
+      "heading": "South India's Trusted Destination for Cosmetic & Holistic Wellness",
+      "subheading": "Get expert dermatology, advanced testing, custom treatments and clear pricing from our aesthetic clinic",
       "image": "/lp/dermatology-hero.webp",
       "imageAlt": "Woman with clear, glowing skin touching her cheek in warm sunlight",
       "trustChips": [
@@ -296,8 +296,8 @@ export const landingPages: LandingPage[] = [
       "Doctor-led assessment and treatment for hair fall, hair thinning, PRP therapy and scalp concerns. Find the cause before treating it. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Best Personalized Hair Loss Treatment | Advanced Hair Care",
-      "subheading": "Skip temporary surface fixes. Get doctor-led hair treatments backed by science for visible, lasting results",
+      "heading": "Hair & Scalp Specialists Who Treat the Root Cause",
+      "subheading": "Go beyond surface-level fixes. Doctor-led care for visible and lasting results",
       "image": "/lp/hair-treatment-hero.webp",
       "imageAlt": "Man parting his hair with both hands to examine his scalp and hairline",
       "trustChips": [
@@ -985,8 +985,8 @@ export const landingPages: LandingPage[] = [
       "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Glutathione IV Drip Therapy - For Luminous, Brighter-Looking Skin",
-      "subheading": "For skin that looks tired before you do. Doctor-assessed, gradual, and natural-looking",
+      "heading": "Your Trusted Destination for Doctor-Led Glutathione IV Drips",
+      "subheading": "Personalised care starts with a conversation about your skin goals and treatment options",
       "image": "/lp/glutathione-treatment-hero-campaign.webp",
       "imageAlt": "Woman reclining in a clinic chair receiving a glutathione IV drip while a nurse inserts the line",
       "trustChips": [
