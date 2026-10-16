@@ -471,7 +471,7 @@ export const landingPages: LandingPage[] = [
       "Doctor-supervised laser hair removal for face, underarms, arms, legs, bikini area and full body. Patch test and consultation first, transparent session pricing. Book your consultation.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Full Body Laser Hair Reduction – Painless, FDA-Approved",
+      "heading": "Your Trusted Destination for Safe & Permanent Laser Hair Reduction",
       "subheading": "Achieve smooth, carefree skin with laser hair removal treatment made just for you",
       "image": "/lp/laser-hair-removal-hero.webp",
       "imageAlt": "Therapist in gloves gliding a laser hair removal handpiece over a client's lower leg",
