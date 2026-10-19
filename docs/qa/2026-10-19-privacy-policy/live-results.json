@@ -1,0 +1,15 @@
+{
+  "committed": "f41c869",
+  "pushed": "main -> origin/main",
+  "deploy": "railway auto-deploy",
+  "checks": {
+    "https://dolceestetica.com/privacy-policy": 200,
+    "title": "Privacy Policy | Dolce Estetica",
+    "h1": "Privacy Policy",
+    "h2_sections": 10,
+    "last_updated_text": "Last updated: 19 October 2026",
+    "sitemap_xml_contains_privacy_policy": true,
+    "desktop_1440_horizontal_overflow": false,
+    "mobile_390_horizontal_overflow": false
+  }
+}
