@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { CalendarCheck, Mail, Phone, User } from "lucide-react";
 import type { LandingPage } from "@/lib/data/landing-pages";
-import { locations } from "@/lib/data/locations";
+import { landingLocations } from "@/lib/data/landing-locations";
 import { captureUtm } from "@/lib/utm";
 import { useLeadSubmission } from "@/lib/use-lead-submission";
 import { useConcern } from "./ConcernContext";
@@ -183,7 +183,7 @@ export default function LandingLeadForm({
                 <option value="" disabled>
                   Select a clinic
                 </option>
-                {locations.map((loc) => (
+                {landingLocations.map((loc) => (
                   <option key={loc.slug} value={loc.city}>
                     {loc.city}
                   </option>

@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { notFound } from "next/navigation";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingTemplate from "@/components/landing/designs/LandingTemplate";
+import { landingLocations } from "@/lib/data/landing-locations";
 import { getLandingPage, landingBrandNames, landingPages, type LandingPage } from "@/lib/data/landing-pages";
 import { site } from "@/lib/site";
 
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     "Cherthala",
     "Calicut",
     "Mangalore",
+    "Pala",
     "South India",
     "Doctor Led",
     brandName,
@@ -191,48 +193,16 @@ export default async function LandingPageRoute({ params }: Props) {
       bestRating: "5",
       worstRating: "1",
     },
-    department: [
-      {
-        "@type": "MedicalClinic",
-        name: `${brandName} - Edapally, Kochi`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Kochi",
-          addressRegion: "Kerala",
-          addressCountry: "IN",
-        },
+    department: landingLocations.map((location) => ({
+      "@type": "MedicalClinic",
+      name: `${brandName} - ${location.city}`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: location.slug === "edapally-kochi" ? "Kochi" : location.slug === "calicut" ? "Kozhikode" : location.city,
+        addressRegion: location.state,
+        addressCountry: "IN",
       },
-      {
-        "@type": "MedicalClinic",
-        name: `${brandName} - Cherthala`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Cherthala",
-          addressRegion: "Kerala",
-          addressCountry: "IN",
-        },
-      },
-      {
-        "@type": "MedicalClinic",
-        name: `${brandName} - Calicut`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Kozhikode",
-          addressRegion: "Kerala",
-          addressCountry: "IN",
-        },
-      },
-      {
-        "@type": "MedicalClinic",
-        name: `${brandName} - Mangalore`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Mangalore",
-          addressRegion: "Karnataka",
-          addressCountry: "IN",
-        },
-      },
-    ],
+    })),
   };
 
   // 5. FAQPage Schema

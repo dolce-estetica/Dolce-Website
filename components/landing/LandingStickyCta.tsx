@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useState } from "react";
 import { CalendarCheck, X } from "lucide-react";
-import { locations } from "@/lib/data/locations";
+import { landingLocations } from "@/lib/data/landing-locations";
 import { captureUtm } from "@/lib/utm";
 import { useLeadSubmission } from "@/lib/use-lead-submission";
 import { useConcern } from "./ConcernContext";
@@ -249,7 +249,7 @@ export default function LandingStickyCta({
                     <option value="" disabled>
                       Select your clinic *
                     </option>
-                    {locations.map((loc) => (
+                    {landingLocations.map((loc) => (
                       <option key={loc.slug} value={loc.city}>
                         {loc.city}
                       </option>

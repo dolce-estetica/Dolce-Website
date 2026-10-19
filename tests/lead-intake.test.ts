@@ -42,6 +42,26 @@ describe("website lead acceptance boundary", () => {
     expect(page.headers.get("x-middleware-request-x-dolce-lead-event")).toBe(input.submissionId);
     expect(page.cookies.get(RECEIPT_COOKIE)?.value).toBe("");
   });
+  test("Pala enquiries target the Pala CRM branch and unknown clinics never reach CRM", async () => {
+    process.env.CRM_LEAD_INTAKE_API_KEY = "local-test-key";
+    const forwarded: Record<string, unknown>[] = [];
+    globalThis.fetch = (async (_url: unknown, init: RequestInit) => {
+      forwarded.push(JSON.parse(String(init.body)));
+      return Response.json({ success: true, lead: { id: "crm-test-pala-lead" } });
+    }) as unknown as typeof fetch;
+
+    const response = await POST(request({ ...input, clinic: "Pala" }));
+    expect(response.status).toBe(200);
+    expect(forwarded).toHaveLength(1);
+    expect(forwarded[0].centreId).toBe("40404fba-7d83-470d-99ff-f81afcd2a159");
+    expect(forwarded[0].initialMessage).toContain("Pala");
+    expect(response.cookies.get(RECEIPT_COOKIE)).toBeDefined();
+
+    const invalid = await POST(request({ ...input, clinic: "Unknown clinic" }));
+    expect(invalid.status).toBe(400);
+    expect(invalid.cookies.get(RECEIPT_COOKIE)).toBeUndefined();
+    expect(forwarded).toHaveLength(1);
+  });
   test("legacy client cookie, altered signature and expired receipts do not grant Thank You", () => {
     process.env.CRM_LEAD_INTAKE_API_KEY = "local-test-key";
     const cookie = signLeadReceipt(input.submissionId, "local-test-key", 1000);

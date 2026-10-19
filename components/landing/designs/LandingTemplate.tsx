@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   CalendarCheck,
@@ -20,7 +19,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import type { LandingPage } from "@/lib/data/landing-pages";
-import { locations } from "@/lib/data/locations";
+import { landingLocations } from "@/lib/data/landing-locations";
 import { site } from "@/lib/site";
 import LandingLeadForm from "../LandingLeadForm";
 import ConcernPicker from "../ConcernPicker";
@@ -398,7 +397,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
       {/* White header across phone and desktop; the phone CTA stays in its bottom bar. */}
       <header className="z-[135] border-b border-[#E3E8DF] bg-white lg:sticky lg:top-0">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6">
-          <Link href="/" aria-label="Dolce Estetica home" className="flex items-center">
+          <div className="flex items-center">
             <Image
               src="/assets/logo.webp"
               alt={isMedlounges ? "MedLounges" : "Dolce Estetica"}
@@ -407,7 +406,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
               priority
               className="lp-brand-logo h-11 w-auto sm:h-14"
             />
-          </Link>
+          </div>
           <a
             href="#book"
             className="lp-header-cta hidden items-center gap-2 rounded-full bg-dolce-green px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-dolce-green-light lg:inline-flex"
@@ -494,7 +493,7 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
               className={`flex flex-col items-center gap-1.5 px-3 text-center ${i > 0 ? "sm:border-l sm:border-white/10" : ""}`}
             >
               {(() => {
-                const STAT_ICONS: Record<string, typeof Star> = { "7+ Years": Stethoscope, "4 Clinics": MapPin, "4 clinics": MapPin, "4.6★": Star, "15,000+": Smile };
+                const STAT_ICONS: Record<string, typeof Star> = { "7+ Years": Stethoscope, "5 Clinics": MapPin, "5 clinics": MapPin, "4.6★": Star, "15,000+": Smile };
                 const StatIcon = STAT_ICONS[item.value] ?? ShieldCheck;
                 return <StatIcon className="mb-1 h-5 w-5" style={{ color: SAND }} aria-hidden />;
               })()}
@@ -833,8 +832,8 @@ export default function LandingTemplate({ page }: { page: LandingPage }) {
             </h2>
           </div>
           {page.campaign && <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-gray-600">{page.campaign.locationsIntro}</p>}
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {locations.map((loc) => (
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {landingLocations.map((loc) => (
               <a
                 key={loc.slug}
                 href={GMB_PROFILE_LINKS[loc.slug] ?? loc.mapsLink}

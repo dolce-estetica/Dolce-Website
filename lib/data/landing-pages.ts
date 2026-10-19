@@ -124,7 +124,7 @@ export const landingPages: LandingPage[] = [
     name: "Dermatology Clinic",
     metaTitle: "Dermatologist Consultation | Dolce Estetica, Skin, Hair & Body",
     metaDescription:
-      "See a qualified dermatologist for skin, face, body, hair and scalp concerns. Doctor-led consultation before any treatment. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "See a qualified dermatologist for skin, face, body, hair and scalp concerns. Doctor-led consultation before any treatment. Clinics in Kochi, Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
       "heading": "South India's Trusted Destination for Cosmetic & Holistic Wellness",
@@ -132,7 +132,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/dermatology-hero.webp",
       "imageAlt": "Woman with clear, glowing skin touching her cheek in warm sunlight",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -143,8 +143,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of dermatology expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -293,7 +293,7 @@ export const landingPages: LandingPage[] = [
     name: "Hair Treatment",
     metaTitle: "Hair Fall & Hair Loss Treatment | Dolce Estetica, Doctor-Led Care",
     metaDescription:
-      "Doctor-led assessment and treatment for hair fall, hair thinning, PRP therapy and scalp concerns. Find the cause before treating it. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "Doctor-led assessment and treatment for hair fall, hair thinning, PRP therapy and scalp concerns. Find the cause before treating it. Clinics in Kochi, Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
       "heading": "Hair & Scalp Specialists Who Treat the Root Cause",
@@ -301,7 +301,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/hair-treatment-hero.webp",
       "imageAlt": "Man parting his hair with both hands to examine his scalp and hairline",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -312,8 +312,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of dermatology expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -466,7 +466,7 @@ export const landingPages: LandingPage[] = [
     slug: "laser-hair-removal",
     brand: "dolce",
     name: "Laser Hair Removal",
-    metaTitle: "Laser Hair Removal in Kochi, Calicut, Cherthala & Mangalore | Dolce",
+    metaTitle: "Laser Hair Removal in Kochi, Calicut, Cherthala, Mangalore & Pala | Dolce",
     metaDescription:
       "Doctor-supervised laser hair removal for face, underarms, arms, legs, bikini area and full body. Patch test and consultation first, transparent session pricing. Book your consultation.",
     hero: {
@@ -476,7 +476,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/laser-hair-removal-hero.webp",
       "imageAlt": "Therapist in gloves gliding a laser hair removal handpiece over a client's lower leg",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -487,8 +487,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of dermatology expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -627,7 +627,7 @@ export const landingPages: LandingPage[] = [
     name: "Skin Treatments",
     metaTitle: "Skin Treatments, Acne, Pigmentation, Anti-Ageing | Dolce Estetica",
     metaDescription:
-      "Doctor-led skin treatments: acne, pigmentation, acne scars, anti-ageing, rejuvenation and chemical peels. Personalised plans at clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "Doctor-led skin treatments: acne, pigmentation, acne scars, anti-ageing, rejuvenation and chemical peels. Personalised plans at clinics in Kochi, Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
       "heading": "Skin Specialists Behind Your Filter-Free Glow",
@@ -635,7 +635,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/skin-treatments-hero.webp",
       "imageAlt": "Woman with clear, glowing skin touching her cheek against a soft beige wall",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -646,8 +646,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of skin-treatment expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -806,9 +806,9 @@ export const landingPages: LandingPage[] = [
     slug: "hydrafacial",
     brand: "dolce",
     name: "HydraFacial",
-    metaTitle: "HydraFacial in Kochi, Calicut, Cherthala & Mangalore | Dolce Estetica",
+    metaTitle: "HydraFacial in Kochi, Calicut, Cherthala, Mangalore & Pala | Dolce Estetica",
     metaDescription:
-      "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut and Mangalore.",
+      "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
       "heading": "Hydra-Medi Facial Specialists Near You",
@@ -816,7 +816,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/hydrafacial-hero-campaign.webp",
       "imageAlt": "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -827,8 +827,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of aesthetic expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -982,7 +982,7 @@ export const landingPages: LandingPage[] = [
     name: "Glutathione Treatment (IV Drip)",
     metaTitle: "Glutathione IV Treatment, Skin Brightening | Dolce Estetica",
     metaDescription:
-      "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut and Mangalore.",
+      "Doctor-administered glutathione IV drips for dull skin, uneven tone and pigmentation support. Assessed by a doctor before the first session. Clinics in Kochi, Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
       "heading": "Your Trusted Destination for Doctor-Led Glutathione IV Drips",
@@ -990,7 +990,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/glutathione-treatment-hero-campaign.webp",
       "imageAlt": "Woman reclining in a clinic chair receiving a glutathione IV drip while a nurse inserts the line",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -1001,8 +1001,8 @@ export const landingPages: LandingPage[] = [
         "label": "IV-therapy expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",
@@ -1163,7 +1163,7 @@ export const landingPages: LandingPage[] = [
       "image": "/lp/vaser-liposuction-hero-campaign.webp",
       "imageAlt": "Woman's toned, contoured waistline and abdomen in warm studio light",
       "trustChips": [
-        "4 clinics in South India",
+        "5 clinics in South India",
         "4.6★ Google-rated care",
         "Consultation before treatment"
       ]
@@ -1174,8 +1174,8 @@ export const landingPages: LandingPage[] = [
         "label": "Of surgical expertise"
       },
       {
-        "value": "4 Clinics",
-        "label": "Kochi, Cherthala, Calicut and Mangalore"
+        "value": "5 Clinics",
+        "label": "Kochi, Cherthala, Calicut, Mangalore and Pala"
       },
       {
         "value": "4.6★",

@@ -45,7 +45,7 @@ export default async function ThankYouPage({
       {eventId && <LeadConversion eventId={eventId} />}
       <header className="border-b border-dolce-green/10 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
-          <Link href="/" aria-label="Dolce Estetica home" className="shrink-0 rounded-sm">
+          <div className="shrink-0 rounded-sm">
             <Image
               src="/assets/logo.webp"
               alt="Dolce Estetica"
@@ -54,7 +54,7 @@ export default async function ThankYouPage({
               preload
               className="lp-brand-logo h-10 w-auto sm:h-11"
             />
-          </Link>
+          </div>
           <p className="hidden text-sm text-dolce-green/65 sm:block">{site.tagline}</p>
         </div>
       </header>

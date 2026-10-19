@@ -12,6 +12,7 @@ export const CENTRE_IDS: Record<string, string> = {
   Cherthala: "44fa87da-021f-4192-ba87-ffeb6ed15f6f", // Dolce Cherthala
   Calicut: "c5bb384f-d045-46ff-b924-67b4593047d0", // Dolce Estetica Calicut
   Mangalore: "cf261530-f443-49fa-af7b-c922b0871985", // Dolce Mangalore
+  Pala: "40404fba-7d83-470d-99ff-f81afcd2a159", // Dolce Pala (PALA)
   // "Not sure, help me choose" routes to the head branch (Edapally).
 };
 
