@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { centreIdForClinic, DEFAULT_CENTRE_KEY } from "@/lib/centre-map";
 import { normalizeLeadPhone, validateLead } from "@/lib/lead-validation";
 import { RECEIPT_COOKIE, signLeadReceipt } from "@/lib/lead-receipt";
+import { crmIntakeUrl } from "@/lib/crm-url";
 
 const CRM_BASE_URL = process.env.CRM_BASE_URL ?? "https://crm.dolceestetica.com";
 const text = (value: unknown, max = 120) => typeof value === "string" ? value.trim().slice(0, max) || undefined : undefined;
@@ -31,6 +32,13 @@ export async function POST(request: NextRequest) {
   if (!centreId) return failure("Please select a valid clinic.", 400);
   const apiKey = process.env.CRM_LEAD_INTAKE_API_KEY;
   if (!apiKey) return failure("Online booking is temporarily unavailable. Please call us or try again later.", 503);
+  let intakeUrl: URL;
+  try {
+    intakeUrl = crmIntakeUrl(CRM_BASE_URL);
+  } catch (error) {
+    console.error("[lead-intake] refusing unsafe CRM base URL", { reason: (error as Error).message });
+    return failure("Online booking is temporarily unavailable. Please call us or try again later.", 503);
+  }
   const submissionId = text(body.submissionId, 36) || randomUUID();
   if (!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(submissionId)) return failure("Invalid submission reference.", 400);
   const slot = [text(body.date, 40), text(body.time, 40)].filter(Boolean).join(", ");
@@ -46,7 +54,7 @@ export async function POST(request: NextRequest) {
     externalReference: `website:${submissionId}`,
   };
   try {
-    const response = await fetch(`${CRM_BASE_URL}/api/leads/intake`, {
+    const response = await fetch(intakeUrl, {
       method: "POST", headers: { "Content-Type": "application/json", "x-api-key": apiKey },
       body: JSON.stringify(intake), cache: "no-store", signal: AbortSignal.timeout(20_000),
     });
