@@ -793,26 +793,26 @@ export const landingPages: LandingPage[] = [
   },
 
   /* ==================================================================
-   * 5, HYDRAFACIAL (Dolce)
+   * 5, AQUALUXE MEDIFACIAL (Dolce, existing /hydrafacial campaign URL)
    * ================================================================== */
   {
     campaign: {
       "whyHeading": "Why Our Clients Choose Dolce Estetica",
       "concernIntro": "Tap your concern and the right specialist will be there for you.",
-      "formHeading": "Start Your HydraFacial Consultation",
+      "formHeading": "Start Your Aqualuxe Consultation",
       "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
       "locationsIntro": "For appointments at any of our clinics. Book here and we will find you the earliest slot"
     },
     slug: "hydrafacial",
     brand: "dolce",
-    name: "HydraFacial",
-    metaTitle: "HydraFacial in Kochi, Calicut, Cherthala, Mangalore & Pala | Dolce Estetica",
+    name: "Aqualuxe Medifacial",
+    metaTitle: "Aqualuxe Medifacial in Kochi, Calicut, Cherthala, Mangalore & Pala | Dolce Estetica",
     metaDescription:
-      "Doctor-led HydraFacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut, Mangalore and Pala.",
+      "Doctor-led Aqualuxe Medifacial treatments for deep cleansing, hydration, acne-prone skin, pigmentation and rejuvenation. Clinics at Edapally (Kochi), Cherthala, Calicut, Mangalore and Pala.",
     hero: {
       "eyebrow": "15,000+ PATIENTS TRUST DOLCE",
-      "heading": "Hydra-Medi Facial Specialists Near You",
-      "subheading": "Cleanse, extract, hydrate, glow. All-in-one doctor-led session",
+      "heading": "South India’s Exclusive Aqualuxe Medifacial Is Now Near You",
+      "subheading": "Cleanse, extract, hydrate, glow. All-in-one doctor-led session using our own Aqualuxe technology",
       "image": "/lp/hydrafacial-hero-campaign.webp",
       "imageAlt": "Therapist gliding a hydrafacial handpiece across a relaxed client's cheek in a bright clinic",
       "trustChips": [
@@ -846,7 +846,7 @@ export const landingPages: LandingPage[] = [
       },
       {
         "title": "AI-Assisted Skin Analysis",
-        "text": "We look beneath the surface. Clinical AI imaging reads your skin in fine detail, so your HydraFacial is matched to what your skin actually needs"
+        "text": "We look beneath the surface. Clinical AI imaging reads your skin in fine detail, so your Aqualuxe Medifacial is matched to what your skin actually needs"
       },
       {
         "title": "Skin-Friendly Care",
@@ -858,18 +858,18 @@ export const landingPages: LandingPage[] = [
       }
     ],
     services: {
-      "heading": "A HydraFacial Matched to Your Skin Concern",
-      "intro": "Every HydraFacial at Dolce Estetica starts with a doctor's skin assessment, then personalizes three steps according to your skin: cleanse and peel, extract and hydrate, protect and finish",
+      "heading": "Aqualuxe Medifacial for Your Skin Concerns",
+      "intro": "Every Medifacial at Dolce Estetica starts with a doctor's skin assessment, then personalizes three steps according to your skin: cleanse and peel, extract and hydrate, protect and finish",
       "items": [
         {
-          "name": "Deep Cleansing",
+          "name": "Congested Pores & Build-up",
           "text": "Clear out the build-up. Gentle exfoliation and vortex extraction loosen dead skin cells, unclog congested pores, and lift out impurities without irritation",
-          "cta": "Deep Cleanse My Skin",
+          "cta": "Clear My Pores",
           "concern": "Blackheads or clogged pores"
         },
         {
-          "name": "Hydration",
-          "text": "Give thirsty skin a drink. Antioxidant and hyaluronic serums are infused into freshly cleaned skin to restore moisture and a healthy glow",
+          "name": "Dehydrated Skin",
+          "text": "Give thirsty skin a drink. The Aqualuxe system infuses moisture-rich serums into freshly cleaned skin for a lasting glow",
           "cta": "Hydrate My Skin",
           "concern": "Dehydrated skin"
         },
@@ -887,7 +887,7 @@ export const landingPages: LandingPage[] = [
         },
         {
           "name": "Skin Rejuvenation",
-          "text": "Refresh dull, tired skin. Cellular renewal and nourishing peptides support smoother texture and a fresh, event-ready look",
+          "text": "Refresh dull, fatigued skin. Advanced cellular renewal and potent nourishing peptides promote refined texture and a luminous, event-ready complexion customized by our signature Aqualuxe technology",
           "cta": "Refresh My Skin",
           "concern": "Dull skin or want a glow"
         }
@@ -944,24 +944,24 @@ export const landingPages: LandingPage[] = [
     ],
     faqs: [
       {
-        "q": "Is there any downtime after a HydraFacial?",
-        "a": "No. Your skin may look slightly flushed for an hour or two, and most people go straight back to work or an event the same day. The only strict rule afterwards is sun protection"
+        "q": "Is there any downtime after an Aqualuxe Medifacial?",
+        "a": "No. Your skin may look slightly flushed for an hour or two, and most people go straight back to work or an event the same day. The only strict rule afterwards is sun protection."
       },
       {
-        "q": "How often should I get a HydraFacial?",
-        "a": "For maintenance, roughly once a month keeps skin looking fresh. For a specific concern like congestion or dullness, your doctor may suggest a short course first. The plan is set after your skin assessment, never sold as a default package"
+        "q": "How often should I get an Aqualuxe Medifacial?",
+        "a": "For maintenance, roughly once a month keeps skin looking fresh. For a specific concern like congestion or dullness, your doctor may suggest a short course first. The plan is set after your skin assessment, never sold as a default package."
       },
       {
-        "q": "Can I get a HydraFacial if I have acne?",
-        "a": "Often yes, because the deep-cleansing step helps congested skin. But active, inflamed acne changes what the session should include. That is why your doctor assesses your skin first, so the treatment helps your breakouts instead of irritating them"
+        "q": "Can I get an Aqualuxe Medifacial if I have acne?",
+        "a": "Often yes, because the deep-cleansing step helps congested skin. But active, inflamed acne changes what the session should include. That is why your doctor assesses your skin first, so the treatment helps your breakouts instead of irritating them."
       },
       {
-        "q": "How much does a HydraFacial cost?",
-        "a": "It depends on the version that suits your skin and whether you need a single session or a course. You get the full, itemised figure in writing at your consultation, before your first session"
+        "q": "How much does an Aqualuxe Medifacial cost?",
+        "a": "It depends on the specific customisation that suits your skin and whether you need a single session or a course. You get the full, itemised figure in writing at your consultation, before your first session."
       },
       {
         "q": "How is this different from a regular salon facial?",
-        "a": "A salon facial mostly massages and freshens the surface. A HydraFacial extracts impurities from pores and infuses serums into cleaned skin, and it happens in a clinic where a doctor has assessed your skin first and can spot anything that needs medical treatment instead of a facial"
+        "a": "A salon facial mostly massages and freshens the surface. The Aqualuxe Medifacial extracts impurities from pores and infuses custom clinical serums into deeply cleaned skin. Plus, it happens entirely in a medical clinic where a doctor assesses your skin first."
       }
     ],
   },

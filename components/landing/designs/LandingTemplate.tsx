@@ -228,9 +228,9 @@ const PAGE_EXTRAS: Record<
       src: "/lp/facial-massage.jpg",
       alt: "Relaxing facial treatment in progress at Dolce Estetica",
     },
-    stickyLabel: "Book your HydraFacial session",
+    stickyLabel: "Book your Aqualuxe session",
     stickyVariant: "green",
-    formHeading: "Book your HydraFacial session",
+    formHeading: "Book your Aqualuxe session",
     submitLabel: "Book My Session",
   },
   "glutathione-treatment": {
