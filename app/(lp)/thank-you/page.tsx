@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import LeadConversion from "@/components/analytics/LeadConversion";
-import { ArrowLeft, ArrowUpRight, Check, Clock3, Phone, ShieldCheck } from "lucide-react";
-import { WhatsAppIcon } from "@/components/shared/BrandIcons";
-import { getLandingPage, landingBrandNames } from "@/lib/data/landing-pages";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { InstagramIcon } from "@/components/shared/BrandIcons";
 import { site } from "@/lib/site";
 
 /**
@@ -14,129 +13,87 @@ import { site } from "@/lib/site";
  * Shared confirmation for campaign, contact and booking forms. The proxy
  * requires and consumes a signed CRM receipt; LeadConversion emits the single
  * generate_lead event. A pageview alone must not count as a conversion.
- * The optional campaign slug personalises the WhatsApp message. Other forms
- * use a generic message without putting contact details in the URL.
+ * Visitors stay on this confirmation until they choose to explore Instagram
+ * or the website. There is no automatic onward redirect.
  */
 
 export const metadata: Metadata = {
-  title: "Request received",
+  title: "Thank You | Dolce Estetica",
   description:
-    "Your consultation request has been received. Our team will call you back within 2 hours to confirm your appointment at the clinic you prefer.",
+    "We have received your request! We will reach out within 2 hours to personalize your experience and confirm your appointment.",
   robots: { index: false, follow: false },
   alternates: { canonical: "https://dolceestetica.com/thank-you" },
 };
 
-export default async function ThankYouPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ p?: string }>;
-}) {
-  const { p } = await searchParams;
+export default async function ThankYouPage() {
   const eventId = (await headers()).get("x-dolce-lead-event");
-  const page = p ? getLandingPage(p) : undefined;
-
-  const waMessage = page
-    ? `Hello ${landingBrandNames[page.brand]}, I just requested a ${page.name.toLowerCase()} consultation online.`
-    : `Hello ${site.name}, I just submitted an enquiry on your website.`;
-  const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <div className="flex min-h-svh flex-col bg-[#F6F7F3] text-dolce-green">
+    <div className="flex min-h-svh flex-col bg-[#F8F8F4] text-dolce-green">
       {eventId && <LeadConversion eventId={eventId} />}
-      <header className="border-b border-dolce-green/10 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
-          <div className="shrink-0 rounded-sm">
-            <Image
-              src="/assets/logo.webp"
-              alt="Dolce Estetica"
-              width={400}
-              height={148}
-              preload
-              className="lp-brand-logo h-10 w-auto sm:h-11"
-            />
-          </div>
-          <p className="hidden text-sm text-dolce-green/65 sm:block">{site.tagline}</p>
-        </div>
+      <header className="flex justify-center px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-3 sm:pt-8 sm:pb-6">
+        <Image
+          src="/assets/logo.webp"
+          alt={site.name}
+          width={400}
+          height={148}
+          preload
+          className="lp-brand-logo h-9 w-auto sm:h-12"
+        />
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-4 py-8 sm:px-8 sm:py-12 lg:py-6">
-        <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-dolce-green/10 bg-white shadow-[0_16px_64px_-32px_rgba(28,56,22,0.3)] lg:grid-cols-[1.15fr_1fr]">
-          <section aria-labelledby="confirmation-heading" className="flex flex-col items-start p-6 sm:p-10 lg:py-8">
-            <span className="flex size-16 items-center justify-center rounded-full border border-dolce-green/10 bg-[#EDF3E9]">
-              <Check className="size-8" strokeWidth={1.8} aria-hidden />
-            </span>
-            <p className="mt-6 text-xs font-bold tracking-[0.18em] text-dolce-moss uppercase">Request received</p>
-            <h1 id="confirmation-heading" className="mt-3 max-w-md font-display text-[2rem] leading-[1.15] font-semibold tracking-tight sm:text-[2.75rem]">
-              Thank you for reaching out.
-            </h1>
-            <p className="mt-5 max-w-sm text-base leading-7 text-gray-600">
-              We’ve received your request. Our team will help you take the next
-              step and arrange your consultation.
-            </p>
+      <main className="flex flex-1 items-center justify-center px-4 py-1 sm:px-8 sm:py-4">
+        <section
+          aria-labelledby="confirmation-heading"
+          className="flex w-full max-w-[420px] flex-col items-center rounded-3xl border border-[#E4E7DD] bg-white px-4 py-6 text-center shadow-[0_12px_48px_-24px_rgba(28,56,22,0.16)] sm:max-w-[720px] sm:px-8 sm:py-12 md:px-12"
+        >
+          <span className="flex size-12 items-center justify-center rounded-full border border-[#DCE5D5] bg-[#F1F5ED] sm:size-16">
+            <Check className="size-6 sm:size-8" strokeWidth={1.6} aria-hidden />
+          </span>
+          <h1
+            id="confirmation-heading"
+            className="mt-5 max-w-[560px] font-display text-[clamp(1.5rem,6.7vw,1.875rem)] leading-[1.25] font-medium tracking-[-0.035em] sm:mt-6 sm:text-[2.5rem]"
+          >
+            Thank You for Choosing Dolce Estetica!
+          </h1>
+          <p className="mt-4 text-[15px] leading-6 font-medium sm:mt-5 sm:text-base sm:leading-7">
+            We have received your request!
+          </p>
+          <p className="mt-2 max-w-[460px] text-[15px] leading-6 text-[#626B5E] sm:text-base sm:leading-7">
+            We will reach out <strong className="font-semibold text-dolce-green">within 2 hours</strong> to
+            personalize your experience and confirm your appointment.
+          </p>
 
-            <div className="mt-6 flex w-full items-center gap-4 rounded-2xl border border-[#E3E8DF] bg-[#F6F7F3] p-4">
-              <Clock3 className="size-6 shrink-0 text-dolce-moss" aria-hidden />
-              <div>
-                <p className="text-sm text-gray-600">Expect a call from our team</p>
-                <p className="mt-1 font-display text-lg font-semibold">Within 2 hours</p>
-              </div>
-            </div>
-
-            <p className="mt-6 flex max-w-sm items-start gap-2.5 text-xs leading-5 text-gray-500">
-              <ShieldCheck className="mt-0.5 size-4 shrink-0 text-dolce-moss" aria-hidden />
-              Your details are used only to arrange this consultation.
-            </p>
-          </section>
-
-          <aside aria-labelledby="next-steps-heading" className="flex flex-col bg-dolce-green p-6 text-white sm:p-10 lg:py-8">
-            <h2 id="next-steps-heading" className="font-display text-xl font-semibold sm:text-2xl">What happens next?</h2>
-            <ol className="mt-7 space-y-6">
-              <li className="flex items-start gap-4">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/20 text-xs font-semibold text-[#E6D3AD]" aria-hidden>01</span>
-                <div>
-                  <h3 className="text-sm leading-6 font-semibold">We’ll give you a call</h3>
-                  <p className="mt-1 text-sm leading-6 text-white/75">Our team will contact you on the number you shared.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/20 text-xs font-semibold text-[#E6D3AD]" aria-hidden>02</span>
-                <div>
-                  <h3 className="text-sm leading-6 font-semibold">Confirm your consultation</h3>
-                  <p className="mt-1 text-sm leading-6 text-white/75">We’ll help arrange your appointment at the clinic you prefer.</p>
-                </div>
-              </li>
-            </ol>
-
-            <div className="mt-8 border-t border-white/15 pt-6">
-              <p className="text-sm text-white/75">Prefer to speak with us now?</p>
+          <div className="mt-6 w-full border-t border-[#E8EBE3] pt-5 sm:mt-9 sm:pt-8">
+            <h2 className="text-[13px] leading-6 font-normal text-[#626B5E] sm:text-sm">
+              Explore Dolce Estetica while you wait:
+            </h2>
+            <nav aria-label="Explore Dolce Estetica" className="mt-4 grid gap-3 sm:mt-5 sm:grid-cols-2">
               <a
-                href={waLink}
+                href="https://www.instagram.com/dolceestetica_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#E6D3AD] px-4 py-3.5 text-center text-sm font-semibold text-dolce-green transition-colors hover:bg-[#F0E2C9] focus-visible:!outline-[#E6D3AD]"
+                className="flex min-h-13 items-center justify-center gap-2.5 rounded-xl bg-dolce-green px-4 py-3.5 text-sm font-medium text-white transition-colors hover:bg-dolce-green-light"
               >
-                <WhatsAppIcon className="size-5 shrink-0" />
-                Continue on WhatsApp
+                <InstagramIcon className="size-[18px] shrink-0" />
+                Follow us on Instagram
                 <ArrowUpRight className="size-4 shrink-0" aria-hidden />
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
-              <a
-                href={site.phoneHref}
-                className="mt-3 flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl border border-white/30 px-4 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:!outline-[#E6D3AD]"
+              <Link
+                href="/"
+                className="flex min-h-13 items-center justify-center gap-2.5 rounded-xl border border-[#DCE2D6] px-4 py-3.5 text-sm font-medium transition-colors hover:bg-[#F5F7F1]"
               >
-                <Phone className="size-4 shrink-0" aria-hidden />
-                Call {site.phone}
-              </a>
-            </div>
-          </aside>
-        </div>
-        <Link href="/" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-dolce-green/75 transition-colors hover:text-dolce-green sm:mt-6">
-          <ArrowLeft className="size-4" aria-hidden />
-          Back to homepage
-        </Link>
+                Visit Our Website
+                <ArrowRight className="size-4 shrink-0" aria-hidden />
+              </Link>
+            </nav>
+          </div>
+        </section>
       </main>
 
-      <footer className="px-5 pt-2 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-center text-xs leading-5 text-gray-500">
-        {site.name} · {site.tagline}
+      <footer className="px-5 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-center text-[11px] leading-5 tracking-[0.14em] text-[#72796C] uppercase sm:pt-6">
+        {site.tagline}
       </footer>
     </div>
   );
