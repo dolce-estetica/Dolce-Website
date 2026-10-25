@@ -34,7 +34,8 @@ export default function ContactForm() {
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
-      landing_page: utm.landingPage,
+      // This form's own page, not the session's frozen first page (see LandingLeadForm).
+      landing_page: window.location.pathname,
       referrer: utm.referrer,
     };
 

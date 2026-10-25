@@ -42,6 +42,25 @@ describe("website lead acceptance boundary", () => {
     expect(page.headers.get("x-middleware-request-x-dolce-lead-event")).toBe(input.submissionId);
     expect(page.cookies.get(RECEIPT_COOKIE)?.value).toBe("");
   });
+  test("untagged desktop and sticky landing forms preserve page identity without inventing a marketing source", async () => {
+    process.env.CRM_LEAD_INTAKE_API_KEY = "local-test-key";
+    const forwarded: Record<string, unknown>[] = [];
+    globalThis.fetch = (async (_url: unknown, init: RequestInit) => {
+      forwarded.push(JSON.parse(String(init.body)));
+      return Response.json({ success: true, lead: { id: "crm-test-lead" } });
+    }) as unknown as typeof fetch;
+    for (const source of ["lp-hair-treatment", "lp-hair-treatment-sticky-bar"]) {
+      const response = await POST(request({ ...input, source, landing_page: "/hair-treatment" }));
+      expect(response.status).toBe(200);
+      const payload = forwarded.at(-1)!;
+      expect(payload.source).toBe(source);
+      expect(payload.channel).toBe("website");
+      expect(payload.landingPage).toBe("/hair-treatment");
+      expect(payload.utmSource).toBeUndefined();
+      expect(payload.utmMedium).toBeUndefined();
+      expect(payload.utmCampaign).toBeUndefined();
+    }
+  });
   test("Pala enquiries target the Pala CRM branch and unknown clinics never reach CRM", async () => {
     process.env.CRM_LEAD_INTAKE_API_KEY = "local-test-key";
     const forwarded: Record<string, unknown>[] = [];

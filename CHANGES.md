@@ -1,3 +1,25 @@
+# DOLCE Website — Lead forms report the page they were submitted on (26 Oct 2026)
+
+## FIXED — cross-page sessions recorded the wrong landing page in the CRM
+
+A visitor who opened one landing page and then submitted the form on another was recorded in
+the CRM under the **first** page of the session. Proven with the 24 Oct test receipts: LHR
+page opened at 08:37, derma submissions at 08:38/08:40 carried `landing_page=/laser-hair-removal`,
+and the 09:07 submission — after the 30-minute snapshot expired — carried the correct
+`/dermatology-clinic`. The CRM's `source` (`lp-<page-slug>`) was correct throughout; only the
+landing-page evidence was stale.
+
+Cause: all four lead forms (`LandingLeadForm`, `LandingStickyCta`, `BookingForm`,
+`ContactForm`) sent `landing_page: utm.landingPage` — the session snapshot in `lib/utm.ts`,
+which deliberately freezes the first tagged/untagged page for 30 minutes so a campaign's
+parameters survive internal navigation. That freeze is right for UTMs and click IDs, wrong
+for the page identity of a submission.
+
+Each form now sends `landing_page: window.location.pathname` — the page the form actually
+sits on. Session entry-page semantics in `captureUtm` are unchanged (still covered by its
+own tests). Campaign credit still rides on the UTMs. Verified: `bun test tests/` 9/9 pass,
+`tsc --noEmit` clean. Not yet deployed — needs commit + push for Railway.
+
 # DOLCE Website — Agentic Browsing 2/2 (17 Aug 2026)
 
 Lighthouse's Agentic Browsing category is **100% (2 pass / 0 fail) on all 14 routes**. It has

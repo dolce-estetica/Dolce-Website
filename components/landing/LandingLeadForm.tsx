@@ -79,7 +79,10 @@ export default function LandingLeadForm({
       utm_content: utm.content,
       gclid: utm.gclid,
       fbclid: utm.fbclid,
-      landing_page: utm.landingPage,
+      // This form's own page — NOT utm.landingPage: that snapshot freezes the
+      // session's FIRST page, so a visitor who browsed here from another
+      // landing page would be recorded under the wrong page in the CRM.
+      landing_page: window.location.pathname,
       referrer: utm.referrer,
     };
 
