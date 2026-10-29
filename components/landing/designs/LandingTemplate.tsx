@@ -203,7 +203,7 @@ const PAGE_EXTRAS: Record<
     formHeading: "Book your skin consultation",
     submitLabel: "Book My Consultation",
   },
-  hydrafacial: {
+  aqualuxe: {
     kicker: "Cleanse • Extract • Hydrate • One session",
     timelineProcess: true,
     timelineIcons: [Stethoscope, Sparkles, ShieldCheck],

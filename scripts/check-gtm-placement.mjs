@@ -35,7 +35,7 @@ async function htmlFiles(dir) {
 const base = process.argv[2];
 const checks = [];
 if (base) {
-  for (const route of ['/', '/hydrafacial', '/glutathione-treatment', '/vaser-liposuction', '/contact', '/booking']) {
+  for (const route of ['/', '/aqualuxe', '/glutathione-treatment', '/vaser-liposuction', '/contact', '/booking']) {
     for (const userAgent of ['Mozilla/5.0', 'Google-Site-Verification/1.0', 'Googlebot/2.1 (+http://www.google.com/bot.html)']) {
       const response = await fetch(new URL(route, base), { headers: { 'user-agent': userAgent } });
       assert.equal(response.status, 200, `${route}: HTTP ${response.status}`);

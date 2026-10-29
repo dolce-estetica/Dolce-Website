@@ -793,7 +793,7 @@ export const landingPages: LandingPage[] = [
   },
 
   /* ==================================================================
-   * 5, AQUALUXE MEDIFACIAL (Dolce, existing /hydrafacial campaign URL)
+   * 5, AQUALUXE MEDIFACIAL (Dolce, /aqualuxe campaign URL)
    * ================================================================== */
   {
     campaign: {
@@ -803,7 +803,7 @@ export const landingPages: LandingPage[] = [
       "formIntro": "Our team calls you back within 2 hours to confirm your clinic and slot",
       "locationsIntro": "For appointments at any of our clinics. Book here and we will find you the earliest slot"
     },
-    slug: "hydrafacial",
+    slug: "aqualuxe",
     brand: "dolce",
     name: "Aqualuxe Medifacial",
     metaTitle: "Aqualuxe Medifacial in Kochi, Calicut, Cherthala, Mangalore & Pala | Dolce Estetica",

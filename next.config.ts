@@ -3,13 +3,13 @@ import type { NextConfig } from "next";
 /** Folders under `public/` that hold versioned-by-hand artwork rather than code. */
 const ASSET_DIRS = ["assets", "bgs", "gallery", "lp", "team", "treatments"];
 
-/** The 7 Google-Ads landing pages live at top-level paths; /lp/<slug> 301s to them. */
+/** The 7 Google-Ads landing pages live at top-level paths; /lp/<slug> redirects to them. */
 const LP_SLUGS = [
   "dermatology-clinic",
   "hair-treatment",
   "laser-hair-removal",
   "skin-treatments",
-  "hydrafacial",
+  "aqualuxe",
   "glutathione-treatment",
   "vaser-liposuction",
 ];
@@ -19,11 +19,16 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ['tumbling-hurray-clamshell.ngrok-free.dev'],
 
   async redirects() {
-    return LP_SLUGS.map((slug) => ({
-      source: `/lp/${slug}`,
-      destination: `/${slug}`,
-      permanent: true,
-    }));
+    return [
+      // Keep existing campaign links and their query parameters working.
+      { source: "/hydrafacial", destination: "/aqualuxe", permanent: true },
+      { source: "/lp/hydrafacial", destination: "/aqualuxe", permanent: true },
+      ...LP_SLUGS.map((slug) => ({
+        source: `/lp/${slug}`,
+        destination: `/${slug}`,
+        permanent: true,
+      })),
+    ];
   },
 
   images: {

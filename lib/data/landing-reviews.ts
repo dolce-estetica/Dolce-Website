@@ -48,7 +48,7 @@ const TOPIC_AUTHORS: Record<string, string[]> = {
     "Ajaykumar Mg", // pigmentation treatment
     "ANCY ALPHA ACADEMY", // skin tone improvement
   ],
-  hydrafacial: [
+  aqualuxe: [
     "Gopika S Nair", // hydrafacial
     "Divya Soman", // hydrafacial
   ],
@@ -230,7 +230,7 @@ export const PAGE_REVIEWS: Record<string, Review[]> = {
   "hair-treatment": padWithGeneral(topicReviews("hair-treatment")),
   "laser-hair-removal": padWithGeneral(topicReviews("laser-hair-removal")),
   "skin-treatments": padWithGeneral(topicReviews("skin-treatments")),
-  hydrafacial: padWithGeneral(topicReviews("hydrafacial")),
+  aqualuxe: padWithGeneral(topicReviews("aqualuxe")),
   "glutathione-treatment": padWithGeneral(topicReviews("glutathione-treatment")),
   "vaser-liposuction": padWithGeneral([
     ...topicReviews("vaser-liposuction"),
