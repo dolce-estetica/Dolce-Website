@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { InstagramIcon } from "@/components/shared/BrandIcons";
+import { site } from "@/lib/site";
 
 /**
  * Minimal footer for the ad landing pages, per client instruction:
@@ -21,7 +22,7 @@ export default function LandingFooter() {
 
         <div className="flex items-center gap-6">
           <a
-            href="https://www.instagram.com/dolceesteticaclinic/"
+            href={site.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"

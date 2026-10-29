@@ -70,7 +70,7 @@ export default async function ThankYouPage() {
             </h2>
             <nav aria-label="Explore Dolce Estetica" className="mt-4 grid gap-3 sm:mt-5 sm:grid-cols-2">
               <a
-                href="https://www.instagram.com/dolceestetica_/"
+                href={site.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex min-h-13 items-center justify-center gap-2.5 rounded-xl bg-dolce-green px-4 py-3.5 text-sm font-medium text-white transition-colors hover:bg-dolce-green-light"

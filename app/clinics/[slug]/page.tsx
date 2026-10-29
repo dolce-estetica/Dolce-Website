@@ -68,7 +68,7 @@ export default async function ClinicPage({ params }: Props) {
     },
     sameAs: [
       "https://www.facebook.com/dolceesteticaclinic/",
-      "https://www.instagram.com/dolceesteticaclinic/",
+      site.social.instagram,
       ...(l.operatingAs ? ["https://medlounges.com"] : []),
     ],
   };

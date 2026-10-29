@@ -33,7 +33,7 @@ export default function StructuredData() {
     })),
     sameAs: [
       "https://www.facebook.com/dolceesteticaclinic/",
-      "https://www.instagram.com/dolceesteticaclinic/",
+      site.social.instagram,
     ],
   };
 

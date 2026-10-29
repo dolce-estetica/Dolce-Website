@@ -15,7 +15,7 @@ export const site = {
   social: {
     facebook: "https://www.facebook.com/dolceesteticaclinic/",
     twitter: "#",
-    instagram: "https://www.instagram.com/dolceesteticaclinic/",
+    instagram: "https://www.instagram.com/dolceestetica_",
   },
 } as const;
 
