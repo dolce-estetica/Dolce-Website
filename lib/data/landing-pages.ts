@@ -348,7 +348,7 @@ export const landingPages: LandingPage[] = [
       "items": [
         {
           "name": "Hair Fall",
-          "text": "Stop counting lost strands. With a specialist you get the targeted medical protocol isolates hidden hormonal and nutritional triggers to freeze hair fall right at the root",
+          "text": "Stop counting lost strands. With a specialist, you get a targeted medical protocol that isolates hidden hormonal and nutritional triggers to freeze hair fall right at the root",
           "cta": "Stop My Hair Fall Now",
           "concern": "Hair fall or thinning"
         },
@@ -365,10 +365,10 @@ export const landingPages: LandingPage[] = [
           "concern": "Hair fall or thinning"
         },
         {
-          "name": "PRP Therapy",
-          "text": "Tap into your body's natural healing power. In-clinic, high-concentration platelet-rich plasma safely reactivates sleeping follicles to fast-track visible volume",
-          "cta": "Boost My Follicles with PRP",
-          "concern": "Hair fall or thinning"
+          "name": "Bald Patches",
+          "text": "Patches that will not fill in need a diagnosis first. Your doctor finds the cause, then combines prescribed topicals with scalp stimulation to wake up dormant roots",
+          "cta": "Treat My Bald Patches",
+          "concern": "Bald patches"
         },
         {
           "name": "Scalp Treatment",
@@ -422,6 +422,7 @@ export const landingPages: LandingPage[] = [
       "Acne or acne scars",
       "Pigmentation or dark patches",
       "Hair fall or thinning",
+      "Bald patches",
       "Scalp problems",
       "Skin allergy or rash",
       "Anti-ageing and fine lines",
@@ -711,10 +712,10 @@ export const landingPages: LandingPage[] = [
           "concern": "Dull skin or glow"
         },
         {
-          "name": "Chemical Peel",
-          "text": "See the real results with custom medical-grade peels matched to your skin tone, safely performed in-clinic with dedicated post-care protection",
-          "cta": "Plan My Peel",
-          "concern": "Chemical peel enquiry"
+          "name": "Uneven Skin Texture",
+          "text": "Smooth rough skin and reduce the appearance of enlarged pores for softer, smoother-looking skin",
+          "cta": "Improve My Skin",
+          "concern": "Open pores or texture"
         }
       ]
     },
