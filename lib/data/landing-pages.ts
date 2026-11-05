@@ -227,19 +227,22 @@ export const landingPages: LandingPage[] = [
       "text": "Real patients, no filters. Explore real treatment results. Results vary by skin, hair, and diagnosis.",
       "pairs": [
         {
-          "before": "/lp/derma-skin-treat.webp",
-          "after": "/lp/derma-skin-treat.webp",
-          "label": "Skin & acne treatment results"
+          "before": "/lp/results-derma-1-before.webp",
+          "after": "/lp/results-derma-1-after.webp",
+          "label": "Skin & acne treatment results",
+          "aspectRatio": 1
         },
         {
-          "before": "/lp/dermatology-skin-treat.webp",
-          "after": "/lp/dermatology-skin-treat.webp",
-          "label": "Dermatological skin care results"
+          "before": "/lp/results-derma-2-before.webp",
+          "after": "/lp/results-derma-2-after.webp",
+          "label": "Dermatological skin care results",
+          "aspectRatio": 1
         },
         {
-          "before": "/lp/results-hair-1-before.jpg",
-          "after": "/lp/results-hair-1-after.jpg",
-          "label": "Hair fall treatment"
+          "before": "/lp/results-hair-1-square-before.jpg",
+          "after": "/lp/results-hair-1-square-after.jpg",
+          "label": "Hair fall treatment",
+          "aspectRatio": 1
         }
       ]
     },
@@ -402,19 +405,22 @@ export const landingPages: LandingPage[] = [
       "text": "Every transformation maps a documented clinical journey, capturing actual follicular progression in its truest form",
       "pairs": [
         {
-          "before": "/lp/results-hair-1-before.jpg",
-          "after": "/lp/results-hair-1-after.jpg",
-          "label": "Hair fall treatment"
+          "before": "/lp/results-hair-1-square-before.jpg",
+          "after": "/lp/results-hair-1-square-after.jpg",
+          "label": "Hair fall treatment",
+          "aspectRatio": 1
         },
         {
-          "before": "/lp/results-hair-2-before.jpg",
-          "after": "/lp/results-hair-2-after.jpg",
-          "label": "Hair density improvement"
+          "before": "/lp/results-hair-2-square-before.jpg",
+          "after": "/lp/results-hair-2-square-after.jpg",
+          "label": "Hair density improvement",
+          "aspectRatio": 1
         },
         {
-          "before": "/lp/hair-treatment-before-after.webp",
-          "after": "/lp/hair-treatment-before-after.webp",
-          "label": "Hair restoration & regrowth results"
+          "before": "/lp/results-hair-3-square-before.webp",
+          "after": "/lp/results-hair-3-square-after.webp",
+          "label": "Hair restoration & regrowth results",
+          "aspectRatio": 1
         }
       ]
     },
