@@ -920,16 +920,16 @@ export const landingPages: LandingPage[] = [
       "text": "Many of our clients notice fresher, brighter-looking skin right after a session, with no redness or downtime. Results build over a course and vary from person to person",
       "pairs": [
         {
-          "before": "/lp/hydrafacial-before-after.webp",
-          "after": "/lp/hydrafacial-before-after.webp",
+          "before": "/lp/results-aqualuxe-1-before.webp",
+          "after": "/lp/results-aqualuxe-1-after.webp",
           "label": "HydraFacial skin rejuvenation results",
-          "aspectRatio": 2.0392561983471076
+          "aspectRatio": 1
         },
         {
-          "before": "/lp/results-hydra-radiance-before.jpg",
-          "after": "/lp/results-hydra-radiance-after.jpg",
+          "before": "/lp/results-aqualuxe-2-before.jpg",
+          "after": "/lp/results-aqualuxe-2-after.jpg",
           "label": "Pre-event radiance & tone brightening",
-          "aspectRatio": 562 / 351
+          "aspectRatio": 1
         }
       ]
     },
